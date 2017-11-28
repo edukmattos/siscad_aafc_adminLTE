@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="patrimonial_requests" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f152551a-cb11-4f72-92a5-6a88775ed39d">
+	<property name="net.sf.jasperreports.export.json.schema" value="/home/eduardo/Projetos/Laravel/siscad_aafc/public/reports/members/search_results.json"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SisCad Localhost"/>
+	<property name="com.jaspersoft.studio.report.description" value=""/>
+	<subDataset name="search_results" uuid="6817a268-041b-458b-9fd9-083824637238">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="json Adapter "/>
+		<queryString language="json">
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<parameter name="jsp_patrimonial_request_id" class="java.lang.Integer">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select 
+`patrimonial_requests`.`id` as `patrimonial_request_id`,
+`from_employees`.`name` as `from_employee_name`,
+`management_units`.`code` as `to_management_unit_code`,
+`company_sectors`.`description` as `to_company_sector_description`,
+`company_sub_sectors`.`description` as `to_company_sub_sector_description`,
+`to_employees`.`name` as `to_employee_name`,
+`patrimonial_statuses`.`description` as `to_patrimonial_status_description`
+
+from 
+`patrimonial_requests`
+inner join `employees` as `from_employees` on `patrimonial_requests`.`from_employee_id` = `from_employees`.`id`
+inner join `employees` as `to_employees` on `patrimonial_requests`.`to_employee_id` = `to_employees`.`id`
+inner join `management_units` on `patrimonial_requests`.`to_management_unit_id` = `management_units`.`id`
+inner join `company_sectors` on `patrimonial_requests`.`to_company_sector_id` = `company_sectors`.`id`
+inner join `company_sub_sectors` on `patrimonial_requests`.`to_company_sub_sector_id` = `company_sub_sectors`.`id`
+inner join `patrimonial_statuses` on `patrimonial_requests`.`to_patrimonial_status_id` = `patrimonial_statuses`.`id`
+
+where 
+(`patrimonial_requests`.`id` =  $P{jsp_patrimonial_request_id})]]>
+	</queryString>
+	<field name="patrimonial_request_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="patrimonial_request_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="patrimonial_requests"/>
+	</field>
+	<field name="from_employee_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="from_employee_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employees"/>
+	</field>
+	<field name="to_management_unit_code" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="to_management_unit_code"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="management_units"/>
+	</field>
+	<field name="to_company_sector_description" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="to_company_sector_description"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="company_sectors"/>
+	</field>
+	<field name="to_company_sub_sector_description" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="to_company_sub_sector_description"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="company_sub_sectors"/>
+	</field>
+	<field name="to_employee_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="to_employee_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employees"/>
+	</field>
+	<field name="to_patrimonial_status_description" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="to_patrimonial_status_description"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="patrimonial_statuses"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<image>
+				<reportElement x="-12" y="2" width="328" height="58" uuid="4e8bfa74-d947-4bf8-bbea-712c2b0d1813"/>
+				<imageExpression><![CDATA["/home/eduardo/Projetos/Laravel/siscad_aafc/public/img/AAFF_logomarca_400_065.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="377" y="0" width="420" height="30" uuid="6043c539-5194-4049-93fd-cbd682e359fb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Requisição de Bens Patrimoniais]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="147" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="521" y="127" width="86" height="14" uuid="4a557fb9-ce2c-4516-859a-231960aa697d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SETOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="750" y="126" width="48" height="14" uuid="6e71bd9f-c37c-4131-a38a-70100f1ee670"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="433" y="127" width="84" height="14" uuid="494de13e-93b0-4f7a-adb4-e970b4907bc3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNID.GESTORA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="127" width="388" height="14" uuid="70e8ef38-7dcf-4d6c-a865-302190d7becc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIÇÃO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="705" y="127" width="40" height="14" uuid="857a9a24-c5b1-4310-9af5-81e03d230ab2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SIT]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-10" y="144" width="810" height="1" uuid="20ff7033-65ef-4303-b949-098b4fee1836"/>
+			</line>
+			<staticText>
+				<reportElement x="-8" y="126" width="46" height="14" uuid="9effdc3b-e27a-40a5-9e5e-d2cb1299891b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CÓDIGO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-10" y="141" width="810" height="1" uuid="adeca3f7-e51a-4ac7-9689-989f9d77bed2"/>
+			</line>
+			<staticText>
+				<reportElement x="-3" y="10" width="78" height="14" uuid="74fbd4f9-f100-437a-83ed-bb5f15ce08b5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ORIGEM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="10" width="78" height="14" uuid="a302b5dd-d17f-4dea-99e8-1757e5a233ba"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESTINO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="24" width="78" height="14" uuid="ce3d808d-b033-4cad-99f6-83ec97cd2e9f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsável:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="24" width="78" height="14" uuid="53db1409-d7ec-432f-adf5-44e2b96a83c6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unid.Gestora:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="38" width="78" height="14" uuid="ab4beb2d-a825-4f78-b41e-d35973e8a92a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Setor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="52" width="78" height="14" uuid="257615ab-fd24-4940-893f-d4530242f4f8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sub-setor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="66" width="78" height="14" uuid="775156a7-26c8-4fae-a603-8e0ff81b8f10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsável:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="80" width="78" height="14" uuid="1fada258-73ea-466c-b0a2-306bbbd6077d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Situação:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="607" y="127" width="94" height="14" uuid="2099b524-4bc4-4020-9376-ec09b7c07f4c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUB-SETOR]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="80" y="24" width="174" height="14" uuid="2d75270a-0130-4dda-a02b-79348382f2f2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{from_employee_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="370" y="66" width="174" height="14" uuid="2b04e324-1520-496b-9376-cc9fb550411b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{to_employee_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="370" y="80" width="174" height="14" uuid="607224da-ff3c-4cfc-910e-dc347a0f0554"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{to_patrimonial_status_description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="370" y="52" width="174" height="14" uuid="dc9f37a1-b922-4deb-9be6-c01d5f20b9df"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{to_company_sub_sector_description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="370" y="38" width="174" height="14" uuid="bcd7a9d0-5d87-4f64-bc7c-61b22a44a6a9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{to_company_sector_description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="370" y="24" width="174" height="14" uuid="fd07695f-4cff-4d4f-afc5-c0c530ee3750"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{to_management_unit_code}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-7" y="4" width="810" height="1" uuid="d9670c9f-ee0f-4c86-8a53-a712e69dec84"/>
+			</line>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="621" y="-30" width="174" height="22" uuid="208fdc47-c208-479b-88c3-852ec9f3a900"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="16" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{patrimonial_request_id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<line>
+				<reportElement x="-10" y="14" width="810" height="1" uuid="437b0c2a-1897-4b03-adb7-fa82eb361397"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="780" y="4" width="20" height="16" uuid="d9a6f729-22af-4aab-96fa-c2f8cd23f433"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="d/MM/yyyy hh:mm:ss">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="-10" y="4" width="187" height="16" uuid="eb568204-65c4-4989-b739-79a935b41a9d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="690" y="4" width="90" height="16" uuid="4fc1c549-7749-4a97-bd03-e829ea829684"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina: " + $V{PAGE_NUMBER} + "  /"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-10" y="3" width="810" height="1" uuid="253fdfda-241c-4c41-a4ca-72675768a914"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="26" splitType="Stretch"/>
+	</summary>
+</jasperReport>
