@@ -183,7 +183,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div style="display: none;" class="box-body">
+                        <div class="box-body" style="display: none;">
                             @foreach($plan1_cities as $city)
                                 @if($city->region_id == $region->id)
                                     @if($city->members->count()>0)

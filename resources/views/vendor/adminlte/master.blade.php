@@ -10,7 +10,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
     <link href="{{ asset('assets/Bootstrap-3.3.7/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/Bootstrap-DatePicker/css/datepicker.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/Bootstrap-DatePicker/css/bootstrap-datepicker.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/InputMask/css/inputmask.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/Bootstrap-Dialog/css/bootstrap-dialog.min.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
@@ -75,7 +75,7 @@
     <script src="{{ asset('assets/Buttons-1.4.2/js/buttons.print.min.js') }}"></script>
 
     <script src="{{ asset('assets/Moment/js/moment.js') }}"></script>
-    <script src="{{ asset('assets/Bootstrap-DatePicker/js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('assets/Bootstrap-DatePicker/js/bootstrap-datetimepicker.js') }}"></script>
 
     <script src="{{ asset('assets/InputMask/jquery.inputmask.js') }}"></script>
     <script src="{{ asset('assets/InputMask/jquery.inputmask.date.extensions.js') }}"></script>
@@ -89,9 +89,25 @@
             $('.select2').select2()
 
             //Datemask dd/mm/yyyy
-            $('.datepicker_mask').inputmask('dd/mm/yyyy')
+            $('.date_mask').inputmask('dd/mm/yyyy')
 
             $('.phone_mask').inputmask('(99)9999-9999')
+
+            $('#Xinvoice_datepicker, #Xdepreciation_datepicker_start, #Xpatrimonial_status_datepicker').datepicker(
+                {
+                    autoclose: true,
+                    startDate: '-1d',
+                    format: 'dd/mm/yyyy'
+                }
+            )
+
+            $(".datepicker").datepicker({
+                format: 'dd/mm/yyyy',
+                setStartDate: '-3d',
+                endDate: '0',
+                todayBtn: true
+            })
+
         })
     </script>
 

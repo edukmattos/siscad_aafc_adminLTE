@@ -3,7 +3,7 @@
 	<div class="col-sm-9">
 		<div class="input-group date">
 			<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-			{!! Form::text('date', isset($meeting->date) ? $meeting->date->format('d/m/Y') : null, ['id'=>'date_datepicker', 'class'=>'form-control datepicker_mask']) !!}
+			{!! Form::text('date', isset($meeting->date) ? $meeting->date->format('d/m/Y') : null, ['id'=>'date_datepicker', 'class'=>'form-control date_mask']) !!}
 		</div>
 	</div>
 </div>

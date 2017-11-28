@@ -1,31 +1,35 @@
-<div class="panel panel-warning">
-	<div class="panel-heading">
-		<h3 class="panel-title">
-			<b>SERVIÇOS</b>
-		</h3>
-			<span class="pull-right clickable"><i class="fa fa-chevron-down"></i></span>
-	</div>
-	<div class="panel-body" style="display:none;">
-		<div class="table-responsive">
-			<table class="table table-bordered table-striped" id="table_patrimonial_services" data-toggle="table" data-toolbar="#filter-bar" data-show-toggle="false" data-search="false" data-show-filter="false" data-show-columns="false" data-show-export="false" data-pagination="false" data-click-to-select="true" data-show-footer="false">
-			   	<thead>
-			   		<tr>
-						<th data-width="1%" data-align="center">
+	<div class="row">
+	    <div class="col-md-12">
+	      	<div class="box box-info collapsed-box">
+		        <div class="box-header with-border">
+		          	<h3 class="box-title">SERVIÇOS</h3>
+		          	<div class="box-tools pull-right">
+		            	<button type="button" class="btn btn-box-tool" data-widget="collapse">
+		              		<i class="fa fa-plus"></i>
+		            	</button>
+		          	</div>
+		        </div>
+		        <div style="display: none;" class="box-body">
+		        	<div class="table-responsive">
+		              	<table class="table table-bordered table-striped">
+			                <thead>
+						   		<tr>
+						   			<th width="1%" class="text-center">
 						@if($patrimonial->patrimonial_status_id!=5)
 				          	<a href="{!! route('patrimonial_services.create', ['id' => $patrimonial->id]) !!}" type="button" class="round round-sm hollow green" rel="tooltip" title="Incluir"><i class="fa fa-file-o"></i></a>  
 			        	@endif
         				</th>
-						<th data-width="1%" data-align="right">Lanc</th>
-						<th data-width="1%" data-align="center">Tipo</th>
-						<th data-width="1%" data-align="left" data-field="date">Data Interv</th>
-						<th data-width="1%" data-align="right" data-field="code">Código</th>
-						<th data-align="left" data-field="service_id">Descrição</th>
-						<th data-width="10%" data-align="right" data-field="purchase_qty">Qte</th>
-						<th data-width="12%" data-align="left" data-field="provider_id">Fornecedor</th>
-						<th data-width="1%" data-align="right" data-field="invoice_date">Data Nota Fiscal</th>
-						<th data-width="10%" data-align="right" data-field="invoice">Nota Fiscal</th>
-						<th data-width="1%" data-align="right" data-field="purchase_value">Valor Compra</th>
-						<th data-width="1%" data-align="center">#</th>						
+						<th width="1%" class="text-right">Lanc</th>
+						<th width="1%" class="text-center">Tipo</th>
+						<th width="1%" class="text-left">Data Interv</th>
+						<th width="1%" class="text-right"="code">Código</th>
+						<th class="text-left" data-field="service_id">Descrição</th>
+						<th width="10%" class="text-right">Qte</th>
+						<th width="12%" class="text-left">Fornecedor</th>
+						<th width="1%" class="text-right"invoice_date">Data Nota Fiscal</th>
+						<th width="10%" class="text-right"></th>
+						<th width="1%" class="text-right"></th>
+						<th width="1%" class="text-center">#</th>						
 					</tr>
 				</thead>
 				<tbody>

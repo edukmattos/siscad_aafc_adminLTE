@@ -149,7 +149,7 @@
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-calendar"></i>
 				               		</div>
-				               		{!! Form::text('birthday', isset($member->birthday) ? $member->birthday->format('d/m/Y') : null, ['id'=>'birthday_datepicker', 'class'=>'form-control datepicker_mask']) !!}
+				               		{!! Form::text('birthday', isset($member->birthday) ? $member->birthday->format('d/m/Y') : null, ['id'=>'birthday_datepicker', 'class'=>'form-control date_mask']) !!}
 								</div>
 				            </div>
 						</div>
@@ -173,7 +173,7 @@
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-question-circle"></i>
 				               		</div>
-				               		{!! Form::text('date_aafc_ini', isset($member->date_aafc_ini) ? $member->date_aafc_ini->format('d/m/Y') : null, ['id'=>'date_aafc_ini_datepicker', 'class'=>'form-control datepicker_mask']) !!}
+				               		{!! Form::text('date_aafc_ini', isset($member->date_aafc_ini) ? $member->date_aafc_ini->format('d/m/Y') : null, ['id'=>'date_aafc_ini_datepicker', 'class'=>'form-control date_mask']) !!}
 				               	</div>
 				            </div>
 						</div>
@@ -185,7 +185,7 @@
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-question-circle"></i>
 				               		</div>
-				               		{!! Form::text('date_aafc_fim', isset($member->date_aafc_fim) ? $member->date_aafc_fim->format('d/m/Y') : null, ['id'=>'date_aafc_fim_datepicker', 'class'=>'form-control datepicker_mask']) !!}
+				               		{!! Form::text('date_aafc_fim', isset($member->date_aafc_fim) ? $member->date_aafc_fim->format('d/m/Y') : null, ['id'=>'date_aafc_fim_datepicker', 'class'=>'form-control date_mask']) !!}
 				               	</div>
 				            </div>
 						</div>
