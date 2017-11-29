@@ -103,17 +103,17 @@
 	<div class="col-sm-9">
 		<div class="input-group">
 			<span class="input-group-addon"><i class="fa fa-money"></i></span>
-			{!! Form::text('purchase_value', $value = null, ['id'=>'purchase_value', 'class'=>'form-control']) !!}
+			{!! Form::text('purchase_value', $value = null, ['id'=>'purchase_value', 'class'=>'form-control numeric_mask']) !!}
 		</div>
 	</div>
 </div>
 
 <div class="form-group {{ $errors->has('depreciation_date_start') ? 'has-error' : '' }}">
-	<label for="depreciation_date_start" class="col-sm-2 control-label">Data início depreciação:</label>
+	<label for="depreciation_date_start" class="col-sm-2 control-label">Data início Depreciação:</label>
 	<div class="col-sm-9">
 		<div class="input-group date">
 			<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-			{!! Form::text('depreciation_date_start', isset($patrimonial->depreciation_date_start) ? $patrimonial->depreciation_date_start->format('d/m/Y') : null, ['id'=>'depreciation_datepicker_start', 'class'=>'form-control date_mask']) !!}
+			{!! Form::text('depreciation_date_start', isset($patrimonial->depreciation_date_start) ? $patrimonial->depreciation_date_start->format('d/m/Y') : null, ['id'=>'depreciation_datepicker_start', 'class'=>'form-control datepicker date_mask']) !!}
 		</div>
 	</div>
 </div>
@@ -183,7 +183,7 @@
 	<div class="col-sm-9">
 		<div class="input-group date">
 			<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-			{!! Form::text('patrimonial_status_date', isset($patrimonial->patrimonial_status_date) ? $patrimonial->patrimonial_status_date->format('d/m/Y') : null, ['id'=>'patrimonial_status_datepicker', 'class'=>'form-control  date_mask']) !!}
+			{!! Form::text('patrimonial_status_date', isset($patrimonial->patrimonial_status_date) ? $patrimonial->patrimonial_status_date->format('d/m/Y') : null, ['id'=>'patrimonial_status_datepicker', 'class'=>'form-control datepicker date_mask']) !!}
 		</div>
 	</div>
 </div>
@@ -201,12 +201,6 @@
 
 @section('js')
 	<script type="text/javascript">
-	  	$("#depreciation_datepicker_start").datepicker(
-	  		{
-		        yearRange: '1960:'+(new Date).getFullYear()
-		    }
-    	);
-
 	  	$("#purchase_value, #residual_value").priceFormat(
   		{
  			prefix: '',
