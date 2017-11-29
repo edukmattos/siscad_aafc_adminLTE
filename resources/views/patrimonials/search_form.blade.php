@@ -112,7 +112,7 @@
 							<div class="col-sm-9">
 								<div class="input-group date">
 									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-									{!! Form::text('srch_patrimonial_invoice_date_start', $value = null, ['id'=>'patrimonial_invoice_daterangerpicker_start', 'class'=>'form-control']) !!}
+									{!! Form::text('srch_patrimonial_invoice_date_start', $value = null, ['id'=>'patrimonial_invoice_daterangerpicker_start', 'class'=>'form-control datepicker date_mask']) !!}
 								</div>
 							</div>
 						</div>
@@ -122,7 +122,7 @@
 							<div class="col-sm-9">
 								<div class="input-group date">
 									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-									{!! Form::text('srch_patrimonial_invoice_date_end', $value = null, ['id'=>'patrimonial_invoice_daterangerpicker_end', 'class'=>'form-control']) !!}
+									{!! Form::text('srch_patrimonial_invoice_date_end', $value = null, ['id'=>'patrimonial_invoice_daterangerpicker_end', 'class'=>'form-control datepicker date_mask']) !!}
 								</div>
 							</div>
 						</div>
@@ -192,7 +192,7 @@
 							<div class="col-sm-9">
 								<div class="input-group date">
 									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-									{!! Form::text('srch_patrimonial_status_date_start', $value = null, ['id'=>'patrimonial_status_daterangerpicker_start', 'class'=>'form-control']) !!}
+									{!! Form::text('srch_patrimonial_status_date_start', $value = null, ['id'=>'patrimonial_status_daterangerpicker_start', 'class'=>'form-control datepicker date_mask']) !!}
 								</div>
 							</div>
 						</div>
@@ -202,7 +202,7 @@
 							<div class="col-sm-9">
 								<div class="input-group date">
 									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-									{!! Form::text('srch_patrimonial_status_date_end', $value = null, ['id'=>'patrimonial_status_daterangerpicker_end', 'class'=>'form-control']) !!}
+									{!! Form::text('srch_patrimonial_status_date_end', $value = null, ['id'=>'patrimonial_status_daterangerpicker_end', 'class'=>'form-control datepicker date_mask']) !!}
 								</div>
 							</div>
 						</div>
@@ -212,7 +212,7 @@
 							<div class="col-sm-9">
 								<div class="input-group date">
 									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-									{!! Form::text('srch_depreciation_date', $value = date('d/m/Y'), ['id'=>'depreciation_datepicker', 'class'=>'form-control']) !!}
+									{!! Form::text('srch_depreciation_date', $value = date('d/m/Y'), ['id'=>'depreciation_datepicker', 'class'=>'form-control datepicker date_mask']) !!}
 								</div>
 							</div>
 						</div>
@@ -227,5 +227,3 @@
         </div>
     </section>
 <!-- /.content -->
-
-    
