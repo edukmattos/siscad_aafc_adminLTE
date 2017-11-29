@@ -102,7 +102,8 @@
                 format: 'dd/mm/yyyy',
                 startDate: '-50Y',
                 endDate: '0d',
-                todayBtn: true
+                todayBtn: true,
+                autoclose: true
             })
         })
     </script>

@@ -319,7 +319,7 @@ class PatrimonialsController extends Controller
     public function store(Requests\PatrimonialRequest $request)
     {
         $data = $request->all();
-
+        
         $data['code'] = strtoupper($data['code']);
 
         $patrimonial_sub_type = $this->patrimonial_sub_typeRepository->findPatrimonialSubTypeById($data['patrimonial_sub_type_id']);
@@ -333,10 +333,10 @@ class PatrimonialsController extends Controller
         $data['description'] = $patrimonial_sub_type->description." ".$patrimonial_model->description." ".$patrimonial_brand->description." ".$data['serial'];
 
         $numberFormatter_ptBR2en = new \NumberFormatter('pt_BR', \NumberFormatter::DECIMAL);
-        $data['purchase_value'] = $numberFormatter_ptBR2en->parse($data['purchase_value']);
+        $data['purchase_value'] = $numberFormatter_ptBR2en->parse(str_replace(['_','.'], '', $data['purchase_value']));
 
         $numberFormatter_ptBR2en = new \NumberFormatter('pt_BR', \NumberFormatter::DECIMAL);
-        $data['residual_value'] = $numberFormatter_ptBR2en->parse($data['residual_value']);
+        $data['residual_value'] = $numberFormatter_ptBR2en->parse(str_replace(['_','.'], '', $data['residual_value']));
         #dd($data['purchase_value']);
 
         $data['invoice'] = strtoupper($data['invoice']);
@@ -486,8 +486,12 @@ class PatrimonialsController extends Controller
             ->all();
 
         $patrimonial = $this->patrimonialRepository->findPatrimonialById($id);
+
+        $purchase_value = number_format($patrimonial->purchase_value, 2);
+        $residual_value = number_format($patrimonial->residual_value, 2);
+        #dd($purchase_value);
         
-        return view('patrimonials.edit', compact('accounting_accounts', 'patrimonial', 'patrimonial_types', 'patrimonial_sub_types', 'patrimonial_brands', 'patrimonial_models', 'providers'));
+        return view('patrimonials.edit', compact('accounting_accounts', 'patrimonial', 'patrimonial_types', 'patrimonial_sub_types', 'patrimonial_brands', 'patrimonial_models', 'providers', 'purchase_value', 'residual_value'));
     }
 
     /**
@@ -578,12 +582,12 @@ class PatrimonialsController extends Controller
         $data['description'] = $patrimonial_sub_type->description." ".$patrimonial_model->description." ".$patrimonial_brand->description." ".$data['serial'];
 
         $numberFormatter_ptBR2en = new \NumberFormatter('pt_BR', \NumberFormatter::DECIMAL);
-        $data['purchase_value'] = $numberFormatter_ptBR2en->parse($data['purchase_value']);
+        $data['purchase_value'] = $numberFormatter_ptBR2en->parse(str_replace(['_','.'], '', $data['purchase_value']));
         #dd($data['purchase_value']);
 
         $numberFormatter_ptBR2en = new \NumberFormatter('pt_BR', \NumberFormatter::DECIMAL);
-        $data['residual_value'] = $numberFormatter_ptBR2en->parse($data['residual_value']);
-        #dd($data['purchase_value']);
+        $data['residual_value'] = $numberFormatter_ptBR2en->parse(str_replace(['_','.'], '', $data['residual_value']));
+        #dd($data['residual_value']);
 
         $data['invoice'] = strtoupper($data['invoice']);
 
