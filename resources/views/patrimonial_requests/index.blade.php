@@ -1,58 +1,76 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('content_header')
+    <h1>PATRIMÔNIOS / REQUISIÇÕES</h1>
+    
+    <ol class="breadcrumb">
+      	<div class="btn-group-horizontal">
+    		<a href="{!! route('patrimonial_requests.create') !!}" type="button" class="btn btn-sm btn-success" rel="tooltip" title="Novo"><i class="fa fa-file-o"></i></a>
+	    </div>
+	</ol>
+@stop
 
 @section('content')
-	<ol class="breadcrumb breadcrumb-danger">
-	  	<li>Patrimônios</li>
-	  	<li>Requisições</li>
-	  	<li><b>PESQUISA</b></li>
+	<!-- Main content -->
+    <section class="content">
+      	<div class="row">
+        	<div class="col-md-12">
+          		<div class="box box-info">
+		            <div class="box-header with-border">
+		              <h3 class="box-title">PESQUISA</h3>
+		            </div>
 
-	  	<div class="btn-group btn-group-sm pull-right">
-	   		<a href="{!! route('patrimonial_requests.create') !!}" type="button" class="round round-sm hollow green" rel="tooltip" title="Incluir"><i class="fa fa-file-o"></i></a>
-	   	</div>
-	</ol>
-
-	<div class="table-responsive">
-       	<table class="table table-bordered table-striped" id="table_patrimonial_requests" data-toggle="table" data-toolbar="#filter-bar" data-show-toggle="false" data-search="false" data-show-filter="true" data-show-columns="true" data-show-export="true" data-pagination="true" data-click-to-select="true" data-page-list="[10, 20, 50, 100, All]" data-toolbar="#filter-bar"> 
-			<thead>
-				<tr>
-					<th data-width="1%" class="text-center">
-						<a href="{!! route('patrimonial_requests.create') !!}" type="button" class="round round-sm hollow green" rel="tooltip" title="Incluir"><i class="fa fa-file-o"></i></a>
-					</th>
-					<th data-field="from_employee_id" data-sortable="true">Origem</th>
-					<th data-field="to_employee_id" data-sortable="true">Destino</th>
-					<th data-field="to_patrimonial_status_date" data-align="center" data-sortable="true">Movimentação</th>
-					<th data-field="to_management_unit_id" data-align="center">Unid.Gestora</th>
-					<th data-field="to_company_sector_id">Setor</th>
-					<th data-field="to_company_sub_sector_id" data-sortable="true">Sub-Setor</th>
-					<th data-field="comments" data-align="left">Justificativa</th>
-					<th data-field="patrimonial_request_status_id" data-sortable="true" data-align="center">Situação</th>
-				</tr>
-			</thead>
-			<tbody>
-			    @foreach($patrimonial_requests as $patrimonial_request)
-			        <tr>
-			            <td><a href="{!! route('patrimonial_requests.show', [$patrimonial_request->id]) !!}">{!! $patrimonial_request->id !!}</a></td>
-			            <td>{!! $patrimonial_request->from_employee->name !!}</td>
-			            <td>{!! $patrimonial_request->to_employee->name !!}</td>
-			            <td>
-			            	@if($patrimonial_request->to_patrimonial_status_date!=null)
-			                    {{ $patrimonial_request->to_patrimonial_status_date->format('d/m/Y') }}
-			                @endif
-			            </td>
-			            <td>{!! $patrimonial_request->to_management_unit->code !!}</td>
-			            <td>{!! $patrimonial_request->to_company_sector->description !!}</td>
-			            <td>{!! $patrimonial_request->to_company_sub_sector->description !!}</td>
-			            <td>{!! $patrimonial_request->comments !!}</td>
-			            <td>{!! $patrimonial_request->patrimonial_request_status->description !!}</td>
-			        </tr>
-			    @endforeach
-		    </tbody>
-		</table>
-	</div>
-@endsection
-
-@section('js_scripts')
-	<script type="text/javascript">
-	  	$('#table_patrimonial_requests').bootstrapTable();
-	</script>
+		            <div class="box-body"><!-- Main content -->
+          				<table class="display dataTable" cellspacing="0" width="100%" id="table_meetings"> 
+							<thead>
+								<tr>
+									<th width="1%">ID</th>
+									<th>Origem</th>
+									<th>Destino</th>
+									<th>Movimentação</th>
+									<th>Unid.Gestora</th>
+									<th>Setor</th>
+									<th>Sub-Setor</th>
+									<th>Justificativa</th>
+									<th>Situação</th>
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<th width="1%">ID</th>
+									<th>Origem</th>
+									<th>Destino</th>
+									<th>Movimentação</th>
+									<th>Unid.Gestora</th>
+									<th>Setor</th>
+									<th>Sub-Setor</th>
+									<th>Justificativa</th>
+									<th>Situação</th>
+								</tr>
+							</tfoot>
+							<tbody>
+							    @foreach($patrimonial_requests as $patrimonial_request)
+							        <tr>
+							            <td><a href="{!! route('patrimonial_requests.show', [$patrimonial_request->id]) !!}">{!! $patrimonial_request->id !!}</a></td>
+							            <td>{!! $patrimonial_request->from_employee->name !!}</td>
+							            <td>{!! $patrimonial_request->to_employee->name !!}</td>
+							            <td>
+							            	@if($patrimonial_request->to_patrimonial_status_date!=null)
+							                    {{ $patrimonial_request->to_patrimonial_status_date->format('d/m/Y') }}
+							                @endif
+							            </td>
+							            <td>{!! $patrimonial_request->to_management_unit->code !!}</td>
+							            <td>{!! $patrimonial_request->to_company_sector->description !!}</td>
+							            <td>{!! $patrimonial_request->to_company_sub_sector->description !!}</td>
+							            <td>{!! $patrimonial_request->comments !!}</td>
+							            <td>{!! $patrimonial_request->patrimonial_request_status->description !!}</td>
+							        </tr>
+							    @endforeach
+						    </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 @endsection

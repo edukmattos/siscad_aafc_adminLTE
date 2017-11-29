@@ -145,6 +145,27 @@
             }
     </script>
 
+    <script type="text/javascript">
+        $(document).ready(function() 
+        {
+            $('.dataTable').DataTable( 
+            {
+                responsive: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                language: {
+                    "lengthMenu": "Display _MENU_ records per page",
+                    "zeroRecords": "Ops ... Nenhum REGISTRO localizado !",
+                    "info": "Showing page _PAGE_ of _PAGES_",
+                    "infoEmpty": "No records available",
+                    "infoFiltered": "(filtered from _MAX_ total records)"
+                }
+            });
+        }); 
+    </script>
+
 
 @endif
 

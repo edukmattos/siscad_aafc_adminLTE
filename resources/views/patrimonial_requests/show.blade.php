@@ -1,7 +1,55 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('content_header')
+  <h1>PATRIMÔNIOS / REQUISIÇÔES</h1>
+    
+  <ol class="breadcrumb">
+    <div class="btn-group-horizontal">
+      <a href="{!! route('patrimonial_requests.edit', ['id' => $patrimonial_request->id]) !!}" type="button" class="btn btn-sm btn-primary" rel="tooltip" title="Editar"><i class="fa fa-edit"></i></a>
+      
+      <a href="{!! route('patrimonial_requests.create') !!}" type="button" class="btn btn-sm btn-success" rel="tooltip" title="Novo"><i class="fa fa-file-o"></i></a>
+
+      @if($patrimonial_request->patrimonial_request_status_id == '1')
+        @if($patrimonial_request_items->count()>=1)
+          |
+          <a href="{!! route('patrimonial_requests.close', [$patrimonial_request->id]) Encerrar type="button" class="btn btn-sm btn-success" rel="tooltip" title="Encerrar"><i class="fa fa-thumbs-o-up"></i></a>
+        @endif
+        |
+        <a href="{!! route('patrimonial_requests.destroy', [$patrimonial_request->id]) !!}" type="button" class="round round-sm hollow red" rel="tooltip" title="Cancelar"><i class="fa fa-thumbs-o-down"></i></a>
+      @endif
+
+      @if($patrimonial_request->patrimonial_request_status_id == '2')
+        |
+        <a href="{!! route('patrimonial_requests.report', [$patrimonial_request->id]) !!}" type="button" class="round round-sm hollow" rel="tooltip" title="Imprimir"><i class="fa fa-print"></i></a>
+        |
+        <a href="{!! route('patrimonial_requests.destroy', [$patrimonial_request->id]) !!}" type="button" class="round round-sm hollow red" rel="tooltip" title="Cancelar"><i class="fa fa-thumbs-o-down"></i></a>
+      @endif
+    </div>
+  </ol>
+@stop
 
 @section('content')
-  <ol class="breadcrumb">
+<!-- Main content -->
+  @if($meeting->deleted_at)
+    @include('common.trashed')
+  @endif
+  
+  <section class="content">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="box box-info">
+          <div class="box-header with-border">
+            <h3 class="box-title">{{ $meeting->id }} - {{ $meeting->description }}</h3>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="box-body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped">
+    <ol class="breadcrumb">
     <li class="breadcrumb-item">Patrimônios</li>
     <li class="breadcrumb-item">Requisições</li>
     <li class="breadcrumb-item"><b>CONSULTA</b></li>
