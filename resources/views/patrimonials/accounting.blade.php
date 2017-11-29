@@ -1,6 +1,4 @@
-<section class="content">
-  <div class="row">
-    <div class="col-md-12">
+
       <div class="box box-info">
         <div class="box-header with-border">
           <h3 class="box-title">SITUAÇÃO CONTÁBIL EM {{ $srch_depreciation_date_BR }}</h3>
@@ -90,7 +88,4 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 

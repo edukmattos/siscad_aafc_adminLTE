@@ -15,24 +15,28 @@
 @stop
 
 @section('content')
-
   @if($patrimonial->deleted_at)
     @include('common.trashed')
   @endif
   
-  <div class="col-sm-6">
-    @include('patrimonials.patrimonial')    
-  </div>
+  <section class="content">
+    <div class="row">
+      <div class="col-sm-6">
+        @include('patrimonials.patrimonial')    
+      </div>
 
-  <div class="col-sm-6">
-   @include('patrimonials.accounting')
-  </div>
+      <div class="col-sm-6">
+        @include('patrimonials.accounting')
+      </div>
+    </div>
 
-  <div class="col-sm-12">
-    @include('patrimonials.files')
-    @include('patrimonials.movements')
-    @include('patrimonials.materials')
-    @include('patrimonials.services')
-  </div>
-    
+    <div class="row">
+      <div class="col-sm-12">
+        @include('patrimonials.files')
+        @include('patrimonials.movements')
+        @include('patrimonials.materials')
+        @include('patrimonials.services')
+      </div>
+    </div>
+  </section>
 @endsection

@@ -177,6 +177,14 @@ return [
             ],
         ],
 
+        [
+            'text'        => 'Materiais',
+            'url'         => '/materials/',
+            'icon'        => 'users',
+            'label'       => '',
+            'label_color' => 'success',
+        ],
+
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',
