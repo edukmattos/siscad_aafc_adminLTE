@@ -141,7 +141,7 @@ return [
         [
             'text'        => 'Eventos',
             'url'         => '/meetings/',
-            'icon'        => 'users',
+            'icon'        => 'calendar',
             'label'       => '',
             'label_color' => 'success',
         ],
@@ -149,7 +149,7 @@ return [
         [
             'text'        => 'Unid.Gestoras',
             'url'         => '/management_units/',
-            'icon'        => 'users',
+            'icon'        => 'home',
             'label'       => '',
             'label_color' => 'success',
         ],

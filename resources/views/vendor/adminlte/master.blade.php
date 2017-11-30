@@ -110,13 +110,21 @@
 
     <script>
         $(document).ready(function(){
-            $('.numeric_mask').inputmask('999.999.999,99', 
-                { 
-                    rightAlignNumerics: false,
-                    numericInput: true, 
-                    radixPoint: ",",
-                    clearMaskOnLostFocus: true 
-                });
+            $('.numeric_0_mask').inputmask('999.999.999', 
+            { 
+                rightAlignNumerics: false,
+                numericInput: true, 
+                radixPoint: ",",
+                clearMaskOnLostFocus: true 
+            });
+
+            $('.numeric_2_mask').inputmask('999.999.999,99', 
+            { 
+                rightAlignNumerics: false,
+                numericInput: true, 
+                radixPoint: ",",
+                clearMaskOnLostFocus: true 
+            });
         });
     </script>     
 

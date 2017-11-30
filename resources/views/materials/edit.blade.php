@@ -1,16 +1,45 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('content_header')
+  <h1>MATERIAIS</h1>
+    
+  <ol class="breadcrumb">
+    <div class="btn-group-horizontal">
+      	<a href="{!! route('materials.create') !!}" type="button" class="btn btn-sm btn-success" rel="tooltip" title="Novo"><i class="fa fa-file-o"></i></a>
+      	<a href="{!! route('materials') !!}" type="button" class="btn btn-sm btn-info" rel="tooltip" title="Pesquisar"><i class="fa fa-search"></i></a>
+	</div>
+  </ol>
+@stop
+
 
 @section('content')
+<!-- Main content -->
+    <section class="content">
+      	<div class="row">
+        	<div class="col-md-12">
+          		<div class="box box-info">
+		            <div class="box-header with-border">
+  						<h3 class="box-title">ALTERAÇÃO</h3>
+			        </div>
 
-	<ol class="breadcrumb">
-  		<li class="breadcrumb-item"><a href="{!! route('materials') !!}" class="btn btn-xs btn-warning"><i class="fa fa-arrow-left"></i> <b>Materiais</b></a></li>
-  		<li class="breadcrumb-item"><b>ALTERAÇÃO</b></li>
-	</ol>
+			        {!! Form::model($material, ['route' => ['materials.update', $material->id], 'method' => 'put', 'class' => 'form-horizontal', 'role'=>'form']) !!}
 
-	{!! Form::model($material, ['route' => ['materials.update', $material->id], 'method' => 'put', 'class' => 'form-horizontal', 'role'=>'form']) !!}
+						<div class="box-body">
+						
+		    				<?php $form_method = "put"; ?>
 
-	    @include('materials.form')
+		    				@include('materials.form')
+						</div>
 
-	{!! Form::close() !!}
-	    
+						<div class="box-footer">
+						    <label for="submit_buttons" class="col-sm-2 control-label"></label>
+						    <button type="submit" class="btn btn-flat btn-success">Confirmar <i class="fa fa-check"></i></button>
+						    <a href="{{ URL::previous() }}" class="btn btn-flat btn-danger">Cancelar <i class="fa fa-times"></i></a>
+						</div>
+						
+					{!! Form::close() !!}
+				</div>
+			</div>
+		</div>
+	</section>
 @endsection

@@ -10,7 +10,6 @@
 	</ol>
 @stop
 
-
 @section('content')
 
 <!-- Main content -->

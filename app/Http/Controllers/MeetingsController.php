@@ -69,24 +69,30 @@ class MeetingsController extends Controller
      */
     public function store(Requests\MeetingRequest $request)
     {
-        $input = $request->all();
+        $data = $request->all();
 
-        if($input['date'])
+        if($data['date'])
         {
-            $input['date'] = \DateTime::createFromFormat('d/m/Y', $input['date']);
-            $input['date'] = $input['date']->format('Y-m-d');
+            $data['date'] = \DateTime::createFromFormat('d/m/Y', $data['date']);
+            $data['date'] = $data['date']->format('Y-m-d');
         }
         else
         {
-            $input['date'] = null;
+            $data['date'] = null;
         }
 
         $numberFormatter_ptBR2en = new \NumberFormatter('pt_BR', \NumberFormatter::DECIMAL);
-        $input['participants_refunds_amount'] = $numberFormatter_ptBR2en->parse($input['participants_refunds_amount']);
+        $data['participants_estimated_qty'] = $numberFormatter_ptBR2en->parse(str_replace(['_','.'], '', $data['participants_estimated_qty']));
 
-        $input['description'] = strtoupper($input['description']);
+        $numberFormatter_ptBR2en = new \NumberFormatter('pt_BR', \NumberFormatter::DECIMAL);
+        $data['participants_confirmed_qty'] = $numberFormatter_ptBR2en->parse(str_replace(['_','.'], '', $data['participants_confirmed_qty']));
 
-        $meeting = $this->meetingRepository->storeMeeting($input);
+        $numberFormatter_ptBR2en = new \NumberFormatter('pt_BR', \NumberFormatter::DECIMAL);
+        $data['participants_refunds_amount'] = $numberFormatter_ptBR2en->parse(str_replace(['_','.'], '', $data['participants_refunds_amount']));
+
+        $data['description'] = strtoupper($data['description']);
+
+        $meeting = $this->meetingRepository->storeMeeting($data);
 
         $last_meeting = $this->meetingRepository->allMeetings()->last();
 
@@ -142,25 +148,31 @@ class MeetingsController extends Controller
      */
     public function update(Requests\MeetingRequest $request, $id)
     {
-        $input = $request->all();
+        $data = $request->all();
 
-        if($input['date'])
+        if($data['date'])
         {
-            $input['date'] = \DateTime::createFromFormat('d/m/Y', $input['date']);
-            $input['date'] = $input['date']->format('Y-m-d');
+            $data['date'] = \DateTime::createFromFormat('d/m/Y', $data['date']);
+            $data['date'] = $data['date']->format('Y-m-d');
         }
         else
         {
-            $input['date'] = null;
+            $data['date'] = null;
         }
         
         $numberFormatter_ptBR2en = new \NumberFormatter('pt_BR', \NumberFormatter::DECIMAL);
-        $input['participants_refunds_amount'] = $numberFormatter_ptBR2en->parse($input['participants_refunds_amount']);
+        $data['participants_estimated_qty'] = $numberFormatter_ptBR2en->parse(str_replace(['_','.'], '', $data['participants_estimated_qty']));
 
-        $input['description'] = strtoupper($input['description']);
+        $numberFormatter_ptBR2en = new \NumberFormatter('pt_BR', \NumberFormatter::DECIMAL);
+        $data['participants_confirmed_qty'] = $numberFormatter_ptBR2en->parse(str_replace(['_','.'], '', $data['participants_confirmed_qty']));
+
+        $numberFormatter_ptBR2en = new \NumberFormatter('pt_BR', \NumberFormatter::DECIMAL);
+        $data['participants_refunds_amount'] = $numberFormatter_ptBR2en->parse(str_replace(['_','.'], '', $data['participants_refunds_amount']));
+
+        $data['description'] = strtoupper($data['description']);
                 
         $meeting = $this->meetingRepository->findMeetingById($id);
-        $meeting->update($input);
+        $meeting->update($data);
 
         return redirect('meetings');
     }
@@ -209,7 +221,7 @@ class MeetingsController extends Controller
         $database = \Config::get('database.connections.mysql');
 
         $output = public_path() . '/reports/meetings/attendance ListByMeeting_'.date("Ymd_His");  
-        $input = public_path() . '/reports/meetings/attendance ListByMeeting.jrxml'; 
+        $data = public_path() . '/reports/meetings/attendance ListByMeeting.jrxml'; 
 
         $conditions = array("jsp_region_id" => $srch_region_id, "jsp_member_status_id" => $srch_member_status_id, "jsp_meeting_date" => $srch_meeting_date, "jsp_meeting_description" => $srch_meeting_description);
         
@@ -218,7 +230,7 @@ class MeetingsController extends Controller
         $report = new JasperPHP;
         $report->process
         (
-            $input, 
+            $data, 
             $output, 
             array('pdf'),
             $conditions,

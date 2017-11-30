@@ -103,7 +103,7 @@
 	<div class="col-sm-9">
 		<div class="input-group">
 			<span class="input-group-addon"><i class="fa fa-money"></i></span>
-			{!! Form::text('purchase_value', $value = null, ['id'=>'purchase_value', 'class'=>'form-control numeric_mask']) !!}
+			{!! Form::text('purchase_value', $value = null, ['id'=>'purchase_value', 'class'=>'form-control numeric_2_mask']) !!}
 		</div>
 	</div>
 </div>
@@ -123,7 +123,7 @@
 	<div class="col-sm-9">
 		<div class="input-group">
 			<span class="input-group-addon"><i class="fa fa-money"></i></span>
-			{!! Form::text('residual_value', $value = null, ['id'=>'residual_value', 'class'=>'form-control numeric_mask']) !!}
+			{!! Form::text('residual_value', $value = null, ['id'=>'residual_value', 'class'=>'form-control numeric_2_mask']) !!}
 		</div>
 	</div>
 </div>

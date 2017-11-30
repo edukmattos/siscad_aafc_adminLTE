@@ -145,11 +145,11 @@
 						<div class="form-group {{ $errors->has('birthday') ? 'has-error' : '' }}">
 							<label for="birthday" class="col-sm-2 control-label">Nascimento:</label>
 							<div class="col-sm-9">
-					            <div class="input-group">
+					            <div class="input-group date">
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-calendar"></i>
 				               		</div>
-				               		{!! Form::text('birthday', isset($member->birthday) ? $member->birthday->format('d/m/Y') : null, ['id'=>'birthday_datepicker', 'class'=>'form-control date_mask']) !!}
+				               		{!! Form::text('birthday', isset($member->birthday) ? $member->birthday->format('d/m/Y') : null, ['id'=>'birthday_datepicker', 'class'=>'form-control  datepicker date_mask']) !!}
 								</div>
 				            </div>
 						</div>
@@ -169,11 +169,11 @@
 						<div class="form-group {{ $errors->has('date_aafc_ini') ? 'has-error' : '' }}">
 							<label for="date_aafc_ini" class="col-sm-2 control-label">Ativo:</label>
 							<div class="col-sm-9">
-					            <div class="input-group">
+					            <div class="input-group date">
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-question-circle"></i>
 				               		</div>
-				               		{!! Form::text('date_aafc_ini', isset($member->date_aafc_ini) ? $member->date_aafc_ini->format('d/m/Y') : null, ['id'=>'date_aafc_ini_datepicker', 'class'=>'form-control date_mask']) !!}
+				               		{!! Form::text('date_aafc_ini', isset($member->date_aafc_ini) ? $member->date_aafc_ini->format('d/m/Y') : null, ['id'=>'date_aafc_ini_datepicker', 'class'=>'form-control datepicker date_mask']) !!}
 				               	</div>
 				            </div>
 						</div>
@@ -181,11 +181,11 @@
 						<div class="form-group {{ $errors->has('date_aafc_fim') ? 'has-error' : '' }}">
 							<label for="date_aafc_fim" class="col-sm-2 control-label">Inativo:</label>
 							<div class="col-sm-9">
-					            <div class="input-group">
+					            <div class="input-group date">
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-question-circle"></i>
 				               		</div>
-				               		{!! Form::text('date_aafc_fim', isset($member->date_aafc_fim) ? $member->date_aafc_fim->format('d/m/Y') : null, ['id'=>'date_aafc_fim_datepicker', 'class'=>'form-control date_mask']) !!}
+				               		{!! Form::text('date_aafc_fim', isset($member->date_aafc_fim) ? $member->date_aafc_fim->format('d/m/Y') : null, ['id'=>'date_aafc_fim_datepicker', 'class'=>'form-control datepicker date_mask']) !!}
 				               	</div>
 				            </div>
 						</div>
@@ -216,14 +216,3 @@
 
 						
 
-@section('js')
-	<script type="text/javascript">
-	  	$("#birthday_datepicker, #date_aafc_ini_datepicker, #date_aafc_fim_datepicker").datepicker(
-	  		{
-		        autoclose: true,
-   				startDate: '-1d',
-   				format: 'dd/mm/yyyy'
-		    }
-    	);    
-	</script>
-@endsection
