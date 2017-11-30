@@ -21,6 +21,8 @@ use SisCad\Repositories\CompanySubSectorRepository;
 use SisCad\Repositories\CompanyPositionRepository;
 use SisCad\Repositories\CompanyResponsibilityRepository;
 use SisCad\Repositories\EmployeeMovementRepository;
+use SisCad\Repositories\PatrimonialRepository;
+
 
 use SisCad\Services\EmployeeMovementService;
 
@@ -39,10 +41,25 @@ class EmployeesController extends Controller
     private $company_positionRepository;
     private $company_responsibilityRepository;
     private $employee_movementRepository;
+    private $patrimonialRepository;
 
     private $employee_movementService;
 
-    public function __construct(RegionRepository $regionRepository, CityRepository $cityRepository, EmployeeRepository $employeeRepository, EmployeeStatusRepository $employee_statusRepository, EmployeeStatusReasonRepository $employee_status_reasonRepository, GenderRepository $genderRepository, ManagementUnitRepository $management_unitRepository, CompanySectorRepository $company_sectorRepository, CompanySubSectorRepository $company_sub_sectorRepository, CompanyPositionRepository $company_positionRepository, CompanyResponsibilityRepository $company_responsibilityRepository, EmployeeMovementRepository $employee_movementRepository, EmployeeMovementService $employee_movementService)
+    public function __construct(
+        RegionRepository $regionRepository, 
+        CityRepository $cityRepository, 
+        EmployeeRepository $employeeRepository, 
+        EmployeeStatusRepository $employee_statusRepository, 
+        EmployeeStatusReasonRepository $employee_status_reasonRepository, 
+        GenderRepository $genderRepository, 
+        ManagementUnitRepository $management_unitRepository, 
+        CompanySectorRepository $company_sectorRepository, 
+        CompanySubSectorRepository $company_sub_sectorRepository, 
+        CompanyPositionRepository $company_positionRepository, 
+        CompanyResponsibilityRepository $company_responsibilityRepository, 
+        EmployeeMovementRepository $employee_movementRepository,
+        PatrimonialRepository $patrimonialRepository, 
+        EmployeeMovementService $employee_movementService)
     {
         $this->regionRepository = $regionRepository;
         $this->cityRepository = $cityRepository;
@@ -56,6 +73,7 @@ class EmployeesController extends Controller
         $this->company_positionRepository = $company_positionRepository;
         $this->company_responsibilityRepository = $company_responsibilityRepository;
         $this->employee_movementRepository = $employee_movementRepository;
+        $this->patrimonialRepository = $patrimonialRepository;
 
         $this->employee_movementService = $employee_movementService;
     }
@@ -243,10 +261,13 @@ class EmployeesController extends Controller
 
          # Lista todas as movimentacoes
         $employee_movements = $this->employee_movementRepository->allEmployeeMovementsByEmployeeId($id);
+
+        $employee_patrimonials  = $this->patrimonialRepository->allPatrimonialsByEmployeeId($id);
+        
         
         #$logs = $employee->revisionHistory;
         
-        return view('employees.show', compact('employee', 'employee_movements'));
+        return view('employees.show', compact('employee', 'employee_movements', 'employee_patrimonials'));
     }
 
     /**
@@ -508,5 +529,46 @@ class EmployeesController extends Controller
         $this->employee_movementService->end_movement_update($id, $data);
 
         return redirect()->route('employees.show', ['id' => $employee_movement->employee_id]);
+    }
+
+    public function rpt_patrimonials($id)
+    {
+        #dd($id);
+
+        $rpt_model                       = 'allPatrimonialsByEmployeeId';
+        
+        $database = \Config::get('database.connections.mysql');
+
+        if($rpt_model=='allPatrimonialsByEmployeeId')
+        {
+            $output = public_path() . '/reports/patrimonials/allPatrimonialsByEmployeeId_'.date("Ymd_His");  
+            $input = public_path() . '/reports/patrimonials/allPatrimonialsByEmployeeId.jrxml'; 
+
+            $conditions = array("jsp_employee_id" => $id);
+        }
+
+        $ext = "pdf";
+       
+        $report = new JasperPHP;
+        $report->process
+        (
+            $input, 
+            $output, 
+            array('pdf'),
+            $conditions,
+            $database  
+        )->execute();
+
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename=allPatrimonialsByEmployeeId_'.date("Ymd_His").'.'.$ext);
+        header('Content-Transfer-Encoding: binary');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($output.'.'.$ext));
+        flush();
+        readfile($output.'.'.$ext);
+        unlink($output.'.'.$ext);
     }
 }

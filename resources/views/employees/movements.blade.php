@@ -1,37 +1,39 @@
-<div class="panel panel-warning">
-	<div class="panel-heading">
-		<h3 class="panel-title">
-			<b>MOVIMENTAÇÕES</b>
-		</h3>
-			
-	</div>
-	<div class="panel-body">
-		<div class="table-responsive">
-			<table class="table table-bordered table-striped" id="table_employee_movements" data-toggle="table" data-toolbar="#filter-bar" data-show-toggle="false" data-search="false" data-show-filter="false" data-show-columns="false" data-show-export="false" data-pagination="false" data-click-to-select="true" data-show-footer="false">
+        <div class="box box-info">
+          <div class="box-header with-border">
+            <h3 class="box-title">MOVIMENTAÇÕES</h3>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="box-body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped">
 			   	<thead>
 			   		<tr>
-						<th data-width="1%" data-align="center">
+						<th width="1%" class="text-center">
 							@if($employee->employee_status_id=='2')
-					          	<a href="{!! route('employees.start_movement', ['id' => $employee->id]) !!}" type="button" class="round round-sm hollow green" rel="tooltip" title="Entrada"><i class="fa fa-file-o"></i></a> 
+					          	<a href="{!! route('employees.start_movement', ['id' => $employee->id]) !!}" type="button" class="btn btn-xs btn-primary" rel="tooltip" title="Entrada"><i class="fa fa-file-o"></i></a> 
 				        	@else
 				        		#
 				        	@endif
 				        </th>
-        				<th data-field="company_position_id">Cargo</th>
-						<th data-field="company_responsibility_id">Função</th>
-						<th data-field="management_unit_id">Unid.Gestora</th>
-						<th data-field="employee_sector_id">Setor</th>
-						<th data-field="employee_sub_sector_id">Sub-setor</th>
-						<th data-align="center" data-field="employee_status_date">Entrada</th>
-						<th data-align="center" data-field="employee_status_is">Saída</th>
-						<th data-align="center">Duração</th>						
+        				<th>Cargo</th>
+						<th>Função</th>
+						<th>Unid.Gestora</th>
+						<th>Setor</th>
+						<th>Sub-setor</th>
+						<th>Entrada</th>
+						<th>Saída</th>
+						<th>Duração</th>						
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($employee_movements as $employee_movement)
 						<tr>
 							<td>
-								<a href="{!! route('employees.edit_movement', ['id' => $employee_movement->id]) !!}" type="button" class="round round-sm hollow blue" rel="tooltip" title="Editar"><i class="fa fa-edit"></i></a>
+								<a href="{!! route('employees.edit_movement', ['id' => $employee_movement->id]) !!}" type="button" class="btn btn-xs btn-primary" rel="tooltip" title="Editar"><i class="fa fa-edit"></i></a>
 							</td>
 							<td>{{ $employee_movement->company_position->description }}</td>
 							<td>{{ $employee_movement->company_responsibility->description }}</td>
@@ -41,7 +43,7 @@
 							<td>{{ $employee_movement->date_start->format('d/m/Y') }}</td>
 							<td>
 								@if($employee_movement->date_end==Null)
-					          		<a href="{!! route('employees.end_movement_edit', ['id' => $employee_movement->id]) !!}" type="button" class="round round-sm hollow green" rel="tooltip" title="Saída"><i class="fa fa-file-o"></i></a> 
+					          		<a href="{!! route('employees.end_movement_edit', ['id' => $employee_movement->id]) !!}" type="button" class="btn btn-xs btn-success" rel="tooltip" title="Saída"><i class="fa fa-file-o"></i></a> 
 					        	@else
 					        		{{ $employee_movement->date_end->format('d/m/Y') }}
 					        	@endif
@@ -56,7 +58,7 @@
 						</tr>
 					@endforeach
 				</tbody>
-		</table>
+			</table>
 		</div>
 	</div>
 </div>

@@ -494,6 +494,8 @@ Route::group(['prefix' => 'employees'], function () {
 	Route::put('/{id}/start_movement_update', 'EmployeesController@start_movement_update')->name('employees.start_movement_update');
 	Route::get('/{id}/end_movement_edit', 'EmployeesController@end_movement_edit')->name('employees.end_movement_edit');
 	Route::put('/{id}/end_movement_update', 'EmployeesController@end_movement_update')->name('employees.end_movement_update');
+
+	Route::get('/{id}/reports/patrimonials', 'EmployeesController@rpt_patrimonials')->name('employees.rpt_patrimonials');
 });
 
 

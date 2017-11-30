@@ -133,7 +133,7 @@ return [
         [
             'text'        => 'Parceiros',
             'url'         => '/partners/search',
-            'icon'        => 'users',
+            'icon'        => 'handshake-o',
             'label'       => '',
             'label_color' => 'success',
         ],
@@ -149,7 +149,7 @@ return [
         [
             'text'        => 'Unid.Gestoras',
             'url'         => '/management_units/',
-            'icon'        => 'home',
+            'icon'        => 'sitemap',
             'label'       => '',
             'label_color' => 'success',
         ],
@@ -157,14 +157,14 @@ return [
         [
             'text'        => 'Fornecedores',
             'url'         => '/providers/',
-            'icon'        => 'users',
+            'icon'        => 'truck',
             'label'       => '',
             'label_color' => 'success',
         ],
 
                 [
             'text'    => 'Patrimônios',
-            'icon'    => 'share',
+            'icon'    => 'building-o',
             'submenu' => [
                 [
                     'text' => 'Pesquisa',
@@ -180,6 +180,14 @@ return [
         [
             'text'        => 'Materiais',
             'url'         => '/materials/',
+            'icon'        => 'shopping-basket',
+            'label'       => '',
+            'label_color' => 'success',
+        ],
+
+        [
+            'text'        => 'Funcionários',
+            'url'         => '/employees/search/',
             'icon'        => 'users',
             'label'       => '',
             'label_color' => 'success',
@@ -198,7 +206,7 @@ return [
         ],
         [
             'text'    => 'Multilevel',
-            'icon'    => 'share',
+            'icon'    => 'gears',
             'submenu' => [
                 [
                     'text' => 'Level One',

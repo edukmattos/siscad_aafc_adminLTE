@@ -32,8 +32,9 @@
       <div class="col-sm-8">
         <div class="box box-info">
           <div class="box-header with-border">
-            <h3 class="box-title">{{ $patrimonial_request->id }} <b>Situação: {{ $patrimonial_request->patrimonial_request_status->description }}</b></h3>
+            <h3 class="box-title">{{ $patrimonial_request->id }}</h3>
             <div class="box-tools pull-right">
+              {{ $patrimonial_request->patrimonial_request_status->description }}
               <button type="button" class="btn btn-box-tool" data-widget="collapse">
                 <i class="fa fa-minus"></i>
               </button>

@@ -33,8 +33,7 @@
           <div class="box-body">
             <div class="table-responsive">
               <table class="table table-bordered table-striped">
-                <thead>
-                  
+                <thead>                  
                 </thead>
                 <tbody>
                   <tr>
