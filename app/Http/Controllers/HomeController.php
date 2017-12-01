@@ -4,6 +4,8 @@ namespace SisCad\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use SisCad\Repositories\PatrimonialRepository;
+
 class HomeController extends Controller
 {
     /**
@@ -11,9 +13,16 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    
+    private $patrimonialRepository;
+
+    public function __construct(
+            PatrimonialRepository $patrimonialRepository
+        )
     {
         $this->middleware('auth');
+
+        $this->patrimonialRepository = $patrimonialRepository;
     }
 
     /**
@@ -23,6 +32,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $last_patrimonials = $this->patrimonialRepository->lastPatrimonialsByInvoiceDate(6); 
+
+        return view('home', compact('last_patrimonials'));
     }
 }

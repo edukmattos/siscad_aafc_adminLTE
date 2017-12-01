@@ -101,6 +101,14 @@ class PatrimonialRepositoryEloquent extends BaseRepository implements Patrimonia
             ->get();
     }
 
+    public function lastPatrimonialsByInvoiceDate($limit)
+    {
+        return $this->patrimonial
+            ->orderBy('invoice_date', 'desc')
+            ->limit($limit)
+            ->get();
+    }
+
     public function findPatrimonialById($id)
     {
         return $this->patrimonial->withTrashed()->find($id);
