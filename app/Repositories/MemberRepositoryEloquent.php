@@ -89,6 +89,16 @@ class MemberRepositoryEloquent extends BaseRepository implements MemberRepositor
 			->get();
 	}
 
+	public function lastMembersByPlanStatusLimit($plan_id, $member_status_id, $limit)
+	{
+		return $this->member
+			->wherePlanId($plan_id)
+			->whereMemberStatusId($member_status_id)
+			->orderBy('date_aafc_ini', 'desc')
+			->limit($limit)
+			->get();
+	}
+
 	public function allMembersById()
 	{
 		return $this->member

@@ -5,6 +5,7 @@ namespace SisCad\Http\Controllers;
 use Illuminate\Http\Request;
 
 use SisCad\Repositories\PatrimonialRepository;
+use SisCad\Repositories\MemberRepository;
 
 class HomeController extends Controller
 {
@@ -15,14 +16,17 @@ class HomeController extends Controller
      */
     
     private $patrimonialRepository;
+    private $memberRepository;
 
     public function __construct(
-            PatrimonialRepository $patrimonialRepository
+            PatrimonialRepository $patrimonialRepository,
+            MemberRepository $memberRepository
         )
     {
         $this->middleware('auth');
 
         $this->patrimonialRepository = $patrimonialRepository;
+        $this->memberRepository = $memberRepository;
     }
 
     /**
@@ -32,8 +36,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $last_patrimonials = $this->patrimonialRepository->lastPatrimonialsByInvoiceDate(6); 
+        $last_patrimonials = $this->patrimonialRepository->lastPatrimonialsByInvoiceDate(6);
 
-        return view('home', compact('last_patrimonials'));
+        $plan1_last_members = $this->memberRepository->lastMembersByPlanStatusLimit(1, 2, 8);
+        $plan2_last_members = $this->memberRepository->lastMembersByPlanStatusLimit(2, 2, 8);
+        $plan3_last_members = $this->memberRepository->lastMembersByPlanStatusLimit(3, 2, 8);
+
+        return view('home', compact('last_patrimonials', 'plan1_last_members', 'plan2_last_members', 'plan3_last_members'));
     }
 }
