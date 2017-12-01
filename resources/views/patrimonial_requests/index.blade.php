@@ -5,7 +5,7 @@
     
     <ol class="breadcrumb">
       	<div class="btn-group-horizontal">
-    		<a href="{!! route('patrimonial_requests.create') !!}" type="button" class="btn btn-sm btn-success" rel="tooltip" title="Novo"><i class="fa fa-file-o"></i></a>
+    		<a href="{!! route('patrimonial_requests.create') }}" type="button" class="btn btn-sm btn-success" rel="tooltip" title="Novo"><i class="fa fa-file-o"></i></a>
 	    </div>
 	</ol>
 @stop
@@ -51,19 +51,19 @@
 							<tbody>
 							    @foreach($patrimonial_requests as $patrimonial_request)
 							        <tr>
-							            <td><a href="{!! route('patrimonial_requests.show', [$patrimonial_request->id]) !!}">{!! $patrimonial_request->id !!}</a></td>
-							            <td>{!! $patrimonial_request->from_employee->name !!}</td>
-							            <td>{!! $patrimonial_request->to_employee->name !!}</td>
+							            <td><a href="{!! route('patrimonial_requests.show', [$patrimonial_request->id]) !!}">{{ $patrimonial_request->id }}</a></td>
+							            <td>{{ $patrimonial_request->from_employee->name }}</td>
+							            <td>{{ $patrimonial_request->to_employee->name }}</td>
 							            <td>
 							            	@if($patrimonial_request->to_patrimonial_status_date!=null)
 							                    {{ $patrimonial_request->to_patrimonial_status_date->format('d/m/Y') }}
 							                @endif
 							            </td>
-							            <td>{!! $patrimonial_request->to_management_unit->code !!}</td>
-							            <td>{!! $patrimonial_request->to_company_sector->description !!}</td>
-							            <td>{!! $patrimonial_request->to_company_sub_sector->description !!}</td>
-							            <td>{!! $patrimonial_request->comments !!}</td>
-							            <td>{!! $patrimonial_request->patrimonial_request_status->description !!}</td>
+							            <td>{{ $patrimonial_request->to_management_unit->code }}</td>
+							            <td>{{ $patrimonial_request->to_company_sector->description }}</td>
+							            <td>{{ $patrimonial_request->to_company_sub_sector->description }}</td>
+							            <td>{{ $patrimonial_request->comments }}</td>
+							            <td>{{ $patrimonial_request->patrimonial_request_status->description }}</td>
 							        </tr>
 							    @endforeach
 						    </tbody>

@@ -45,4 +45,12 @@ class PatrimonialRequestRepositoryEloquent extends BaseRepository implements Pat
             ->first();
     }
 
+    public function lastPatrimonialRequestByDateLimit($limit)
+    {
+        return $this->patrimonial_request
+            ->orderBy('id', 'desc')
+            ->limit($limit)
+            ->get();
+    }
+
 }
