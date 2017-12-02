@@ -7,7 +7,7 @@
 @section('content')
   <h4>ASSOCIADOS</h4>
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <div class="box box-danger">
         <div class="box-header with-border">
           <h3 class="box-title">Plano: ESPECIAL</h3>
@@ -24,7 +24,11 @@
           <ul class="users-list clearfix">
             @foreach($plan1_last_members as $member)
               <li>
-                <img src="/uploads/avatars/users/default.png" class="img-circle img-responsive center-block" width="100">
+                @if($member->gender_id == 1)
+                  <img src="/img/user_male.png" class="img-circle img-responsive center-block" width="100">
+                @else
+                  <img src="/img/user_female.png" class="img-circle img-responsive center-block" width="100">
+                @endif
                 <a class="users-list-name" href="{!! route('members.show', ['id' => $member->id]) !!}">{{ $member->name }}</a>
                 <span class="users-list-date">{{ $member->date_aafc_ini->diffForHumans() }}</span>
               </li>
@@ -34,13 +38,13 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer text-center">
-          <a href="javascript:void(0)" class="uppercase">View All Users</a>
+          <a href="{!! route('dashboard.members', ['plan_id' => 1, 'status_id' => 2]) !!}" class="uppercase">Ver TODOS</a>
         </div>
         <!-- /.box-footer -->
       </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <div class="box box-primary">
         <div class="box-header with-border">
           <h3 class="box-title">Plano: NORMAL</h3>
@@ -57,7 +61,11 @@
           <ul class="users-list clearfix">
             @foreach($plan2_last_members as $member)
               <li>
-                <img src="/uploads/avatars/users/default.png" class="img-circle img-responsive center-block" width="100">
+                @if($member->gender_id == 1)
+                  <img src="/img/user_male.png" class="img-circle img-responsive center-block" width="100">
+                @else
+                  <img src="/img/user_female.png" class="img-circle img-responsive center-block" width="100">
+                @endif
                 <a class="users-list-name" href="{!! route('members.show', ['id' => $member->id]) !!}">{{ $member->name }}</a>
                 <span class="users-list-date">{{ $member->date_aafc_ini->diffForHumans() }}</span>
               </li>
@@ -67,13 +75,13 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer text-center">
-          <a href="javascript:void(0)" class="uppercase">View All Users</a>
+          <a href="{!! route('dashboard.members', ['plan_id' => 2, 'status_id' => 2]) !!}" class="uppercase">Ver TODOS</a>
         </div>
         <!-- /.box-footer -->
       </div>
     </div>
   
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <div class="box box-info">
         <div class="box-header with-border">
           <h3 class="box-title">Plano: INSS</h3>
@@ -90,7 +98,11 @@
           <ul class="users-list clearfix">
             @foreach($plan3_last_members as $member)
               <li>
-                <img src="/uploads/avatars/users/default.png" class="img-circle img-responsive center-block" width="100">
+                @if($member->gender_id == 1)
+                  <img src="/img/user_male.png" class="img-circle img-responsive center-block" width="100">
+                @else
+                  <img src="/img/user_female.png" class="img-circle img-responsive center-block" width="100">
+                @endif
                 <a class="users-list-name" href="{!! route('members.show', ['id' => $member->id]) !!}">{{ $member->name }}</a>
                 <span class="users-list-date">{{ $member->date_aafc_ini->diffForHumans() }}</span>
               </li>
@@ -100,7 +112,61 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer text-center">
-          <a href="javascript:void(0)" class="uppercase">View All Users</a>
+          <a href="{!! route('dashboard.members', ['plan_id' => 3, 'status_id' => 2]) !!}" class="uppercase">Ver TODOS</a>
+        </div>
+        <!-- /.box-footer -->
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Aniversários do mês</h3>
+          <div class="box-tools pull-right">
+            <div class="btn-group">
+              <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-calendar"></i></button>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Janeiro</a></li>
+                  <li><a href="#">Fevereiro</a></li>
+                  <li><a href="#">Março</a></li>
+                  <li><a href="#">Abril</a></li>
+                  <li><a href="#">Maio</a></li>
+                  <li><a href="#">Junho</a></li>
+                  <li><a href="#">Julho</a></li>
+                  <li><a href="#">Agosto</a></li>
+                  <li><a href="#">Setembro</a></li>
+                  <li><a href="#">Outubro</a></li>
+                  <li><a href="#">Novembro</a></li>
+                  <li><a href="#">Dezembro</a></li>
+                </ul>
+            </div>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+          <ul class="users-list clearfix">
+            @foreach($plan3_last_members as $member)
+              <li>
+                @if($member->gender_id == 1)
+                  <img src="/img/user_male.png" class="img-circle img-responsive center-block" width="100">
+                @else
+                  <img src="/img/user_female.png" class="img-circle img-responsive center-block" width="100">
+                @endif
+                <a class="users-list-name" href="{!! route('members.show', ['id' => $member->id]) !!}">{{ $member->name }}</a>
+                <span class="users-list-date">{{ $member->date_aafc_ini->diffForHumans() }}</span>
+              </li>
+            @endforeach
+          </ul>
+          <!-- /.users-list -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer text-center">
+          <a href="{!! route('dashboard.members', ['plan_id' => 3, 'status_id' => 2]) !!}" class="uppercase">Ver TODOS</a>
         </div>
         <!-- /.box-footer -->
       </div>
@@ -126,7 +192,7 @@
               @foreach($last_patrimonials as $patrimonial)
                 <li class="item">
                   <div class="product-img">
-                    <img src="/uploads/avatars/users/default.png" alt="Product Image">
+                    <img src="/uploads/patrimonials/default.gif" alt="Product Image">
                   </div>
                   <div class="product-info">
                     <a href="{!! route('patrimonials.show', [$patrimonial->id]) !!}" class="product-title">
