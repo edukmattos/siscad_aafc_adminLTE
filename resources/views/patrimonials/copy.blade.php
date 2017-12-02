@@ -1,21 +1,47 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('content_header')
+    <h1>PATRIMÔNIOS</h1>
+    
+    <ol class="breadcrumb">
+      	<div class="btn-group-horizontal">
+	    	<a href="{!! route('patrimonials.search_results_back') !!}" type="button" class="btn btn-sm btn-info" rel="tooltip" title="Pesquisar"><i class="fa fa-search"></i></a>
+		</div>
+	</ol>
+@stop
+
 
 @section('content')
 
-	<ol class="breadcrumb">
-  		<li class="breadcrumb-item"><a href="{!! route('patrimonials.search_results_back') !!}" class="btn btn-xs btn-warning"><i class="fa fa-arrow-left"></i> <b>Patrimônios</b></a></li>
-  		<li class="breadcrumb-item"><b>CÓPIA</b></li>
+<!-- Main content -->
+    <section class="content">
+      	<div class="row">
+        	<div class="col-md-12">
+          		<div class="box box-info">
+		            <div class="box-header with-border">
+  						<h3 class="box-title">CÓPIA</h3>
+			        </div>
 
-  		<div class="btn-group btn-group-sm pull-right">
-			<a href="{!! route('patrimonials.create') !!}" type="button" class="round round-sm hollow green" rel="tooltip" title="Incluir"><i class="fa fa-file-o"></i></a> 
-	        <a href="{!! route('patrimonials.search') !!}" type="button" class="round round-sm hollow" rel="tooltip" title="Pesquisar"><i class="fa fa-search"></i></a>
-	    </div>
-	</ol>
+					{!! Form::model($patrimonial, ['route' => ['patrimonials.store', $patrimonial->id], 'method' => 'post', 'class' => 'form-horizontal', 'role'=>'form']) !!}
 
-	{!! Form::model($patrimonial, ['route' => ['patrimonials.store', $patrimonial->id], 'method' => 'post', 'class' => 'form-horizontal', 'role'=>'form']) !!}
+					
+						<div class="box-body">
+						
+		    				<?php $form_method = "post"; ?>
 
-	    @include('patrimonials.form')
+		    				@include('patrimonials.form')
+						</div>
 
-	{!! Form::close() !!}
+						<div class="box-footer">
+						    <label for="submit_buttons" class="col-sm-2 control-label"></label>
+						    <button type="submit" class="btn btn-flat btn-success">Confirmar <i class="fa fa-check"></i></button>
+						    <a href="{{ URL::previous() }}" class="btn btn-flat btn-danger">Cancelar <i class="fa fa-times"></i></a>
+						</div>
+						
+					{!! Form::close() !!}
+				</div>
+			</div>
+		</div>
+	</section>
 	    
 @endsection

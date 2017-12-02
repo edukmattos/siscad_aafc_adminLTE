@@ -1,7 +1,5 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
-
 @section('content_header')
     <h1>Painel Controle</h1>
 @stop
@@ -153,8 +151,8 @@
         <!-- /.box -->
     </div>
 
-        <!-- TABLE: LATEST ORDERS -->
-    <div class="col-sm-6">
+    <!-- TABLE: LATEST ORDERS -->
+    <div class="col-sm-4">
       <div class="box box-info">
         <div class="box-header with-border">
           <h3 class="box-title">Últimas Requisições</h3>
@@ -171,7 +169,6 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Origem</th>
                   <th>Destino</th>
                   <th>Situação</th>
                 </tr>
@@ -183,7 +180,6 @@
                         {!! $patrimonial_request->id !!}
                         </a>
                     </td>
-                    <td>{{ $patrimonial_request->from_employee->name }}</td>
                     <td>{{ $patrimonial_request->to_employee->name }}</td>
                     <td><span class="label label-success">Shipped</span></td>
                   </tr>

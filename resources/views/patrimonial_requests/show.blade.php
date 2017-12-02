@@ -1,7 +1,8 @@
 @extends('adminlte::page')
 
 @section('content_header')
-  <h1>PATRIMÔNIOS / REQUISIÇÔES</h1>
+  <h1>PATRIMÔNIOS / REQUISIÇÕES</h1>
+  
   <ol class="breadcrumb">
     <div class="btn-group-horizontal">
       <a href="{!! route('patrimonial_requests.create') !!}" type="button" class="btn btn-sm btn-success" rel="tooltip" title="Novo"><i class="fa fa-file-o"></i></a>

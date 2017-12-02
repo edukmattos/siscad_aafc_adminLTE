@@ -355,7 +355,7 @@ class EmployeesController extends Controller
      */
     public function destroy($id)
     {
-        $this->employeeRepository->findEmployeeById($id)->delete();
+        #$this->employeeRepository->findEmployeeById($id)->delete();
 
         return redirect('employees');
     }

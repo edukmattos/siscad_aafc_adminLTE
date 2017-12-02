@@ -110,19 +110,6 @@ return [
     'menu' => [
         'MENU',
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-
-        [
             'text'        => 'Sócios',
             'url'         => '/members/search',
             'icon'        => 'users',
