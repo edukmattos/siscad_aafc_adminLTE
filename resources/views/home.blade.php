@@ -204,7 +204,7 @@
                     <span class="product-description">
                       {{ $patrimonial->patrimonial_sub_type->description }} {{ $patrimonial->patrimonial_model->description }}
                       <br>
-                      <small><small>R$ {{ number_format($patrimonial->purchase_value, 2,",",".") }}</small></small>
+                      <small>{{ $patrimonial->management_unit->code }} - {{ $patrimonial->company_sector->description }} / {{ $patrimonial->company_sub_sector->description }}</small>
                     </span>
                   </div>
                 </li>
@@ -247,7 +247,19 @@
                         </a>
                     </td>
                     <td>{{ $patrimonial_request->to_employee->name }}</td>
-                    <td><span class="label label-success">Shipped</span></td>
+                    <td>
+                      @if($patrimonial_request->patrimonial_request_status_id == 1)
+                        <span class="label label-default">
+                      @elseif($patrimonial_request->patrimonial_request_status_id == 2)
+                        <span class="label label-warning">
+                      @elseif($patrimonial_request->patrimonial_request_status_id == 3)
+                        <span class="label label-success">
+                      @elseif($patrimonial_request->patrimonial_request_status_id == 4)
+                        <span class="label label-danger">
+                      @endif
+                        {{ $patrimonial_request->patrimonial_request_status->description }}
+                        </span>
+                    </td>
                   </tr>
                 @endforeach
               </tbody>
