@@ -100,7 +100,7 @@
                 todayHighlight: true,
                 weekStart: 1,
                 format: 'dd/mm/yyyy',
-                startDate: '-50Y',
+                startDate: '-90Y',
                 endDate: '0d',
                 todayBtn: true,
                 autoclose: true

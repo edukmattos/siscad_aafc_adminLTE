@@ -1,71 +1,37 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('content_header')
+    <h1>MEU PERFIL</h1>
+@stop
+
 
 @section('content')
-
-  <ol class="breadcrumb">
-      <li class="breadcrumb-item"><b>MEU PERFIL</b></li>
-  </ol>
-
   <div class="row">
-    <div class="col-sm-8">
-    <div class="panel panel-warning">
-      <div class="panel-heading">
-        <h3 class="panel-title"><b>{{ $user->name }}</b></h3>
-      </div>
-      <div class="panel-body">
-        <div class="table-responsive">
-          <table class="table table-bordered table-striped">
-            <thead>
-              
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-right" width="25%">Nome completo</td>
-                <td class="text-left">{{ $user->fullname }}</td>
-              </tr>
-
-              <tr>
-                <td class="text-right">e-mail</td>
-                <td class="text-left">{{ $user->email }}</td>
-              </tr>
-
-            </tbody>
-          </table>
+    <div class="col-sm-3">
+      <!-- Profile Image -->
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">{{ Auth::user()->name }}</h3>
         </div>
-      </div>
-    </div>
+        <div class="box-body box-profile">
+          <img class="profile-user-img img-responsive img-circle" src="/uploads/avatars/users/{{ Auth::user()->avatar }}" alt="User profile picture">
 
-    <div class="panel panel-warning">
-      <div class="panel-heading">
-        <h3 class="panel-title"><b>GRUPOS</b></h3>
-      </div>
-      <div class="panel-body">
-        <div class="table-responsive">
-          <table class="table table-bordered table-striped" id="table_roles" data-toggle="table" data-toolbar="#filter-bar" data-show-toggle="false" data-search="false" data-show-filter="false" data-show-columns="false" data-show-export="false" data-pagination="false" data-click-to-select="true" data-toolbar="#filter-bar"> 
-            <thead>
-            </thead>
-            <tbody>
-              @foreach ($user->roles as $role)
-                <tr>
-                  <td>{{ $role->display_name }}</td>
-                </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    </div>
+          <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
 
-    <div class="col-sm-4">
-    <div class="panel panel-warning">
-      <div class="panel-heading">
-        <h3 class="panel-title"><b>AVATAR</b></h3>
-      </div>
-      <div class="panel-body">
-        <div class="col-sm-12 col-sm-offset-0">
-          <img src="/uploads/avatars/users/{{ $user->avatar }}" class="img-circle img-responsive center-block" width="125">
-          
+          <p class="text-muted text-center">Desde {{ Auth::user()->created_at->format('d/m/Y') }} </p>
+
+          <ul class="list-group list-group-unbordered">
+            <li class="list-group-item">
+              <b>Nome completo</b> <a class="pull-right">{{ Auth::user()->fullname }}</a>
+            </li>
+            <li class="list-group-item">
+              <b>e-mail</b> <a class="pull-right">{{ Auth::user()->email }}</a>
+            </li>
+            <li class="list-group-item">
+              <b>Atividades</b> <a class="pull-right">13,287</a>
+            </li>
+          </ul>
+
           {!! Form::model($user, ['route' => ['users.avatar', $user->id], 'method' => 'put', 'files' => true, 'class' => 'form-horizontal', 'role'=>'form']) !!}
             <div class="control-group">
               <label class="custom-file">
@@ -75,16 +41,36 @@
               <button type="submit" class="pull-right btn btn-sm btn-success">Alterar <i class="fa fa-check"></i></button>
             </div>
           {!! Form::close() !!}
+
         </div>
+        <!-- /.box-body -->
       </div>
     </div>
+
+    <div class="col-sm-9">
+      <!-- About Me Box -->
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">GRUPOS</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped" id="table_roles"> 
+              <thead>
+              </thead>
+              <tbody>
+                @foreach ($user->roles as $role)
+                  <tr>
+                    <td>{{ $role->display_name }}</td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- /.box-body -->
+      </div>
     </div>
   </div>
 @endsection
-
-@section('js_scripts')
-  <script type="text/javascript">
-      $('#roles_list').select2();
-  </script>
-@endsection
-  

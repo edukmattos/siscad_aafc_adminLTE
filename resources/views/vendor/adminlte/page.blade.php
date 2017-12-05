@@ -56,6 +56,48 @@
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="/uploads/avatars/users/{{ Auth::user()->avatar }}" class="user-image" alt="User Image">
+                                <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="/uploads/avatars/users/{{ Auth::user()->avatar }}" class="img-circle" alt="User Image">
+                                    <p>
+                                        {{ Auth::user()->name }}
+                                        <small>{{ Auth::user()->fullname }}</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <div class="row">
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Followers</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Sales</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Friends</a>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="{{ url('/users/profile') }}" class="btn btn-primary btn-flat">Perfil</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="{{ url('/auth/logout') }}" class="btn btn-default btn-flat">Sair</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li>
                             @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
                                 <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
@@ -89,18 +131,6 @@
 
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-                <!-- Sidebar user panel -->
-                <div class="user-panel">
-                    <div class="pull-left image">
-                        <img src="/uploads/avatars/users/{{ Auth::user()->avatar }}" class="img-circle" alt="User Image">
-                    </div>
-                    <div class="pull-left info">
-                        <a href="{{ url('/users/profile') }}">
-                            <p>{{ Auth::user()->name }}</p>
-                            <i class="fa fa-circle text-success"></i> Online
-                        </a>
-                    </div>
-                </div>
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">
                     @each('adminlte::partials.menu-item', $adminlte->menu(), 'item')
