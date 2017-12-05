@@ -110,7 +110,7 @@ return [
     'menu' => [
         'MENU',
         [
-            'text'        => 'Sócios',
+            'text'        => 'SÓCIOS',
             'url'         => '/members/search',
             'icon'        => 'users',
             'label'       => '',
@@ -118,7 +118,7 @@ return [
         ],
 
         [
-            'text'        => 'Parceiros',
+            'text'        => 'PARCEIROS',
             'url'         => '/partners/search',
             'icon'        => 'handshake-o',
             'label'       => '',
@@ -126,7 +126,7 @@ return [
         ],
 
         [
-            'text'        => 'Eventos',
+            'text'        => 'EVENTOS',
             'url'         => '/meetings/',
             'icon'        => 'calendar',
             'label'       => '',
@@ -134,7 +134,7 @@ return [
         ],
 
         [
-            'text'        => 'Unid.Gestoras',
+            'text'        => 'UNID.GESTORAS',
             'url'         => '/management_units/',
             'icon'        => 'sitemap',
             'label'       => '',
@@ -142,7 +142,7 @@ return [
         ],
 
         [
-            'text'        => 'Fornecedores',
+            'text'        => 'FORNECEDORES',
             'url'         => '/providers/',
             'icon'        => 'truck',
             'label'       => '',
@@ -150,7 +150,7 @@ return [
         ],
 
                 [
-            'text'    => 'Patrimônios',
+            'text'    => 'PATRIMÔNIOS',
             'icon'    => 'building-o',
             'submenu' => [
                 [
@@ -165,7 +165,7 @@ return [
         ],
 
         [
-            'text'        => 'Materiais',
+            'text'        => 'MATERIAIS',
             'url'         => '/materials/',
             'icon'        => 'shopping-basket',
             'label'       => '',
@@ -173,14 +173,14 @@ return [
         ],
 
         [
-            'text'        => 'Funcionários',
+            'text'        => 'FUNCIONÁRIOS',
             'url'         => '/employees/search/',
             'icon'        => 'users',
             'label'       => '',
             'label_color' => 'success',
         ],
 
-        'ACCOUNT SETTINGS',
+        'CONFIGURAÇÕES',
         [
             'text' => 'Profile',
             'url'  => 'admin/settings',
@@ -192,7 +192,7 @@ return [
             'icon' => 'lock',
         ],
         [
-            'text'    => 'Multilevel',
+            'text'    => 'CONFIGURAÇÕES',
             'icon'    => 'gears',
             'submenu' => [
                 [
@@ -200,12 +200,12 @@ return [
                     'url'  => '#',
                 ],
                 [
-                    'text'    => 'Level One',
+                    'text'    => 'SÓCIOS',
                     'url'     => '#',
                     'submenu' => [
                         [
-                            'text' => 'Level Two',
-                            'url'  => '#',
+                            'text' => 'DESLIG - MOTIVOS',
+                            'url'  => '/member_status_reasons',
                         ],
                         [
                             'text'    => 'Level Two',
@@ -224,8 +224,41 @@ return [
                     ],
                 ],
                 [
-                    'text' => 'Level One',
+                    'text' => 'PATRIMÔNIOS',
                     'url'  => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'Tipos',
+                            'url'  => '/patrimonial_types',
+                        ],
+                        [
+                            'text' => 'Sub-Tipos',
+                            'url'  => '/patrimonial_sub_types',
+                        ],
+                        [
+                            'text' => 'Marcas',
+                            'url'  => '/patrimonial_brands',
+                        ],
+                                                [
+                            'text' => 'Modelos',
+                            'url'  => '/patrimonial_models',
+                        ],
+
+                        [
+                            'text'    => 'Level Two',
+                            'url'     => '#',
+                            'submenu' => [
+                                [
+                                    'text' => 'Level Three',
+                                    'url'  => '#',
+                                ],
+                                [
+                                    'text' => 'Level Three',
+                                    'url'  => '#',
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
             ],
         ],

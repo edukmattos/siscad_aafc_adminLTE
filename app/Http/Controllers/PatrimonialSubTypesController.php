@@ -9,16 +9,24 @@ use SisCad\Http\Controllers\Controller;
 use SisCad\Repositories\PatrimonialSubTypeRepository;
 
 use SisCad\Services\PatrimonialService;
+use SisCad\Services\PatrimonialSubTypeService;
+
+use Session;
 
 class PatrimonialSubTypesController extends Controller
 {
     private $patrimonial_sub_typeRepository;
     private $patrimonialService;
+    private $patrimonial_sub_typeService;
 
-    public function __construct(PatrimonialSubTypeRepository $patrimonial_sub_typeRepository, PatrimonialService $patrimonialService)
+    public function __construct(
+        PatrimonialSubTypeRepository $patrimonial_sub_typeRepository, 
+        PatrimonialService $patrimonialService,
+        PatrimonialSubTypeService $patrimonial_sub_typeService)
     {
         $this->patrimonial_sub_typeRepository = $patrimonial_sub_typeRepository;
         $this->patrimonialService = $patrimonialService;
+        $this->patrimonial_sub_typeService = $patrimonial_sub_typeService;
     }
 
     /**
@@ -111,12 +119,10 @@ class PatrimonialSubTypesController extends Controller
         $patrimonial_sub_type = $this->patrimonial_sub_typeRepository->findPatrimonialSubTypeById($id);
         $patrimonial_sub_type->update($input);
 
-        $this->patrimonialService->sub_type_update($id);
-
-        return redirect('patrimonial_sub_types');
+        return redirect()->route('patrimonial_sub_types.show', ['id' => $id]);
     }
 
-    /**
+        /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -126,26 +132,27 @@ class PatrimonialSubTypesController extends Controller
     {
         $this->authorize('patrimonial_sub_types-destroy');
 
-        if($this->memberRepository->findMembersByPatrimonialSubTypeId($id)->count()>0)
+        if($this->patrimonial_sub_typeService->destroy($id))
         {
-           return redirect('patrimonial_sub_types')->withInput()->withErrors(['error' => '<b>Exclusão CANCELADA</b> >> Existe(m) Associado(s) vinculado(s) ao registro selecionado !']); 
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) patrimônio(s) vinculado(s) ao registro selecionado !');
+            
+            return redirect()->route('patrimonial_sub_types.show', ['id' => $id]);
         }
-
+        
         $this->patrimonial_sub_typeRepository->findPatrimonialSubTypeById($id)->delete();
 
-        return redirect('patrimonial_sub_types');
+        Session::flash('flash_message_patrimonial_sub_type_destroy', 'Registro EXCLUÍDO com sucesso !');
+            
+        return redirect()->route('patrimonial_sub_types.show', ['id' => $id]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function restore($id)
     {
-        $this->patrimonial_sub_typeRepository->withTrashed()->findPatrimonialSubTypeById($id)->restore();
+        $patrimonial_sub_type = $this->patrimonial_sub_typeRepository->findPatrimonialSubTypeById($id);
+        $patrimonial_sub_type->restore();
 
-        return redirect('patrimonial_sub_types');
+        Session::flash('flash_message_success', 'Registro RESTAURADO !');
+
+        return redirect()->route('patrimonial_sub_types.show', ['id' => $id]);
     }
 }

@@ -10,7 +10,7 @@
 	              	<div class="box-body">
 		              	<div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
 							<label for="name" class="col-sm-2 control-label">Nome:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 						        <div class="input-group">
 					           		<div class="input-group-addon">
 					           			<i class="fa fa-question-circle"></i>
@@ -23,7 +23,7 @@
 
 						<div class="form-group">
 							<label for="region_id" class="col-sm-2 control-label">Região:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 						        <div class="input-group">
 					           		<div class="input-group-addon">
 					           			<i class="fa fa-map-marker"></i>
@@ -35,7 +35,7 @@
 
 						<div class="form-group">
 							<label for="city_id" class="col-sm-2 control-label">Cidade:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 						        <div class="input-group">
 					           		<div class="input-group-addon">
 					           			<i class="fa fa-map-marker"></i>
@@ -47,7 +47,7 @@
 
 						<div class="form-group">
 							<label for="partner_type_id" class="col-sm-2 control-label">Tipo:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 						        <div class="input-group">
 					           		<div class="input-group-addon">
 					           			<i class="fa fa-question-circle"></i>

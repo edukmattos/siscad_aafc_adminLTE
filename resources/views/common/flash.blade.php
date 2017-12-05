@@ -78,3 +78,26 @@
   </div>
 @endif
 
+@if(Session::has('flash_message_patrimonial_type_destroy'))
+  <div class="alert alert-danger" role="alert" align="left">
+    <b>{{ Session::get('flash_message_patrimonial_type_destroy') }}</b>
+    <p class="pull-right">
+      Recuperar ? 
+      <a href="{!! route('patrimonial_types.restore', ['id' => $patrimonial_type->id]) !!}" class="btn btn-success">SIM</a>
+      <a href="{!! route('patrimonial_types.show', ['id' => $patrimonial_type->id]) !!}" class="btn btn-danger">Não</a>
+    </p>
+  </div>
+@endif
+
+@if(Session::has('flash_message_patrimonial_sub_type_destroy'))
+  <div class="alert alert-danger" role="alert" align="left">
+    <b>{{ Session::get('flash_message_patrimonial_sub_type_destroy') }}</b>
+    <p class="pull-right">
+      Recuperar ? 
+      <a href="{!! route('patrimonial_sub_types.restore', ['id' => $patrimonial_sub_type->id]) !!}" class="btn btn-success">SIM</a>
+      <a href="{!! route('patrimonial_sub_types.show', ['id' => $patrimonial_sub_type->id]) !!}" class="btn btn-danger">Não</a>
+    </p>
+  </div>
+@endif
+
+

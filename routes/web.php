@@ -188,6 +188,7 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::get('/{id}/show', 'PatrimonialTypesController@show')->name('patrimonial_types.show');
 		Route::get('/{id}/edit', 'PatrimonialTypesController@edit')->name('patrimonial_types.edit');
 		Route::get('/{id}/destroy', 'PatrimonialTypesController@destroy')->name('patrimonial_types.destroy');
+		Route::get('/{id}/restore', 'PatrimonialTypesController@restore')->name('patrimonial_types.restore');
 		Route::put('/{id}/update', 'PatrimonialTypesController@update')->name('patrimonial_types.update');
 		Route::post('/', 'PatrimonialTypesController@store')->name('patrimonial_types.store');
 	});
@@ -198,6 +199,7 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::get('/{id}/show', 'PatrimonialSubTypesController@show')->name('patrimonial_sub_types.show');
 		Route::get('/{id}/edit', 'PatrimonialSubTypesController@edit')->name('patrimonial_sub_types.edit');
 		Route::get('/{id}/destroy', 'PatrimonialSubTypesController@destroy')->name('patrimonial_sub_types.destroy');
+		Route::get('/{id}/restore', 'PatrimonialSubTypesController@restore')->name('patrimonial_sub_types.restore');
 		Route::put('/{id}/update', 'PatrimonialSubTypesController@update')->name('patrimonial_sub_types.update');
 		Route::post('/', 'PatrimonialSubTypesController@store')->name('patrimonial_sub_types.store');
 	});

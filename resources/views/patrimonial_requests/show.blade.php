@@ -115,7 +115,7 @@
               {!! Form::model($patrimonial_request, ['route' => ['patrimonial_requests.confirm', $patrimonial_request->id], 'method' => 'put', 'class' => 'form-horizontal', 'role'=>'form']) !!}
                 <div class="form-group {{ $errors->has('to_patrimonial_status_date') ? 'has-error' : '' }}">
                   <label for="to_patrimonial_status_date" class="col-sm-3 control-label">Data Movimentação:</label>
-                  <div class="col-sm-9">
+                  <div class="col-sm-8">
                     <div class="input-group date">
                       <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         {!! Form::text('to_patrimonial_status_date', isset($patrimonial_request->to_patrimonial_status_date) ? $patrimonial_request->to_patrimonial_status_date->format('d/m/Y') : null, ['id'=>'to_patrimonial_status_datepicker', 'class'=>'form-control datepicker date_mask']) !!}

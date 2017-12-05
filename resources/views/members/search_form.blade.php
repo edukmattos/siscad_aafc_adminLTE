@@ -11,7 +11,7 @@
 		              	<div class="box-body">
 		              		<div class="form-group">
 			                  	<label for="code" class="col-sm-2 control-label">Matrícula:</label>
-				                <div class="col-sm-9">
+				                <div class="col-sm-8">
 					                <div class="input-group">
 				                  		<div class="input-group-addon">
 				                  			<i class="fa fa-question-circle"></i>
@@ -23,7 +23,7 @@
 
 			               	<div class="form-group">
 			                  	<label for="name" class="col-sm-2 control-label">CPF:</label>
-				                <div class="col-sm-9">
+				                <div class="col-sm-8">
 					                <div class="input-group">
 				                  		<div class="input-group-addon">
 				                  			<i class="fa fa-question-circle"></i>
@@ -35,7 +35,7 @@
 
 			               	<div class="form-group">
 			                  	<label for="name" class="col-sm-2 control-label">Nome:</label>
-				                <div class="col-sm-9">
+				                <div class="col-sm-8">
 					                <div class="input-group">
 				                  		<div class="input-group-addon">
 				                  			<i class="fa fa-question-circle"></i>
@@ -47,7 +47,7 @@
 			                
 			                <div class="form-group">
 			                  	<label for="plan_id" class="col-sm-2 control-label">Plano:</label>
-								<div class="col-sm-9">
+								<div class="col-sm-8">
 			                    	<div class="input-group">
 				                  		<div class="input-group-addon">
 				                  			<i class="fa fa-question-circle"></i>
@@ -59,7 +59,7 @@
 
 			                <div class="form-group">
 			                  	<label for="gender_id" class="col-sm-2 control-label">Sexo:</label>
-								<div class="col-sm-9">
+								<div class="col-sm-8">
 			                    	<div class="input-group">
 				                  		<div class="input-group-addon">
 				                  			<i class="fa fa-question-circle"></i>
@@ -71,7 +71,7 @@
 
 			                <div class="form-group">
 			                  	<label for="region_id" class="col-sm-2 control-label">Região:</label>
-								<div class="col-sm-9">
+								<div class="col-sm-8">
 			                    	<div class="input-group">
 				                  		<div class="input-group-addon">
 				                  			<i class="fa fa-question-circle"></i>
@@ -83,7 +83,7 @@
 
 			                <div class="form-group">
 			                  	<label for="city_id" class="col-sm-2 control-label">Cidade:</label>
-								<div class="col-sm-9">
+								<div class="col-sm-8">
 			                    	<div class="input-group">
 				                  		<div class="input-group-addon">
 				                  			<i class="fa fa-question-circle"></i>
@@ -95,7 +95,7 @@
 
 			                <div class="form-group">
 			                  	<label for="member_status_id" class="col-sm-2 control-label">Situação:</label>
-								<div class="col-sm-9">
+								<div class="col-sm-8">
 			                    	<div class="input-group">
 				                  		<div class="input-group-addon">
 				                  			<i class="fa fa-question-circle"></i>
@@ -107,7 +107,7 @@
 
 			                <div class="form-group">
 			                  	<label for="member_status_reason_id" class="col-sm-2 control-label">Motivo:</label>
-								<div class="col-sm-9">
+								<div class="col-sm-8">
 			                    	<div class="input-group">
 				                  		<div class="input-group-addon">
 				                  			<i class="fa fa-question-circle"></i>

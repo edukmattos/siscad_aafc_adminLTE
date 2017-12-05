@@ -1,6 +1,6 @@
 	<div class="form-group {{ $errors->has('code') ? 'has-error' : '' }}">
 		<label for="code" class="col-sm-2 control-label">Matricula:</label>
-		<div class="col-sm-9">
+		<div class="col-sm-8">
             <div class="input-group">
            		<div class="input-group-addon">
            			<i class="fa fa-question-circle"></i>
@@ -12,7 +12,7 @@
 
 	<div class="form-group {{ $errors->has('cpf') ? 'has-error' : '' }}">
 		<label for="cpf" class="col-sm-2 control-label">CPF:</label>
-		<div class="col-sm-9">
+		<div class="col-sm-8">
 	        <div class="input-group">
 	       		<div class="input-group-addon">
 	       			<i class="fa fa-question-circle"></i>
@@ -24,7 +24,7 @@
 
 	<div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
 		<label for="name" class="col-sm-2 control-label">Nome completo:</label>
-		<div class="col-sm-9">
+		<div class="col-sm-8">
 		    <div class="input-group">
 		   		<div class="input-group-addon">
 		   			<i class="fa fa-question-circle"></i>
@@ -36,7 +36,7 @@
 
 	<div class="form-group {{ $errors->has('plan_id') ? 'has-error' : '' }}">
 		<label for="plan_id" class="col-sm-2 control-label">Plano:</label>
-		<div class="col-sm-9">
+		<div class="col-sm-8">
 	        <div class="input-group">
 	       		<div class="input-group-addon">
 	       			<i class="fa fa-question-circle"></i>
@@ -48,7 +48,7 @@
 
 	<div class="form-group {{ $errors->has('gender_id') ? 'has-error' : '' }}">
 		<label for="gender_id" class="col-sm-2 control-label">Sexo:</label>
-		<div class="col-sm-9">
+		<div class="col-sm-8">
 	        <div class="input-group">
 	      		<div class="input-group-addon">
 	      			<i class="fa fa-question-circle"></i>
@@ -60,7 +60,7 @@
 	
 	<div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
 		<label for="email" class="col-sm-2 control-label">e-mail:</label>
-		<div class="col-sm-9">
+		<div class="col-sm-8">
 	        <div class="input-group">
 	       		<div class="input-group-addon">
 	       			<i class="fa fa-question-circle"></i>
@@ -72,7 +72,7 @@
 
 	<div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
 							<label for="address" class="col-sm-2 control-label">Endereço:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 					            <div class="input-group">
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-question-circle"></i>
@@ -84,7 +84,7 @@
 
 						<div class="form-group {{ $errors->has('neighborhood') ? 'has-error' : '' }}">
 							<label for="neighborhood" class="col-sm-2 control-label">Bairro:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 					            <div class="input-group">
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-question-circle"></i>
@@ -96,7 +96,7 @@
 
 						<div class="form-group {{ $errors->has('city_id') ? 'has-error' : '' }}">
 							<label for="city_id" class="col-sm-2 control-label">Cidade:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 					            <div class="input-group">
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-question-circle"></i>
@@ -108,7 +108,7 @@
 
 						<div class="form-group {{ $errors->has('zip_code') ? 'has-error' : '' }}">
 							<label for="zip_code" class="col-sm-2 control-label">CEP:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 					            <div class="input-group">
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-question-circle"></i>
@@ -120,7 +120,7 @@
 
 						<div class="form-group {{ $errors->has('phone') ? 'has-error' : '' }} ">
 							<label for="phone" class="col-sm-2 control-label">Telefone:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 					            <div class="input-group">
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-question-circle"></i>
@@ -132,7 +132,7 @@
 
 						<div class="form-group {{ $errors->has('mobile') ? 'has-error' : '' }} ">
 							<label for="mobile" class="col-sm-2 control-label">Celular:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 					            <div class="input-group">
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-question-circle"></i>
@@ -144,7 +144,7 @@
 
 						<div class="form-group {{ $errors->has('birthday') ? 'has-error' : '' }}">
 							<label for="birthday" class="col-sm-2 control-label">Nascimento:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 					            <div class="input-group date">
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-calendar"></i>
@@ -156,7 +156,7 @@
 
 						<div class="form-group {{ $errors->has('member_status_id') ? 'has-error' : '' }}">
 							<label for="member_status_id" class="col-sm-2 control-label">Situação:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 					            <div class="input-group">
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-question-circle"></i>
@@ -168,7 +168,7 @@
 
 						<div class="form-group {{ $errors->has('date_aafc_ini') ? 'has-error' : '' }}">
 							<label for="date_aafc_ini" class="col-sm-2 control-label">Ativo:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 					            <div class="input-group date">
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-question-circle"></i>
@@ -180,7 +180,7 @@
 
 						<div class="form-group {{ $errors->has('date_aafc_fim') ? 'has-error' : '' }}">
 							<label for="date_aafc_fim" class="col-sm-2 control-label">Inativo:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 					            <div class="input-group date">
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-question-circle"></i>
@@ -192,7 +192,7 @@
 
 						<div class="form-group {{ $errors->has('member_status_reason_id') ? 'has-error' : '' }}">
 							<label for="member_status_reason_id" class="col-sm-2 control-label">Motivo:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 					            <div class="input-group">
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-question-circle"></i>
@@ -204,7 +204,7 @@
 
 						<div class="form-group {{ $errors->has('comments') ? 'has-error' : '' }}">
 							<label for="comments" class="col-sm-2 control-label">Observações:</label>
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 					            <div class="input-group">
 				              		<div class="input-group-addon">
 				               			<i class="fa fa-question-circle"></i>

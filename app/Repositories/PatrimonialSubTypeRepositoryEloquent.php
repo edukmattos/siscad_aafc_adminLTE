@@ -29,7 +29,9 @@ class PatrimonialSubTypeRepositoryEloquent extends BaseRepository implements Pat
 
 	public function findPatrimonialSubTypeById($id)
     {
-        return $this->patrimonial_sub_type->find($id);
+        return $this->patrimonial_sub_type
+        	->withTrashed()
+        	->find($id);
     }
 
     public function storePatrimonialSubType($input)

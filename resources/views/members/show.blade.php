@@ -15,6 +15,10 @@
 @stop
 
 @section('content')
+  @if($member->deleted_at)
+    @include('common.trashed')
+  @endif
+
   <!-- Main content -->
   <section class="content">
     <div class="row">

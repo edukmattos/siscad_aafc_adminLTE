@@ -8,8 +8,7 @@
       <a href="{!! route('providers.edit', ['id' => $provider->id]) !!}" type="button" class="btn btn-sm btn-primary" rel="tooltip" title="Editar"><i class="fa fa-edit"></i></a>
       <a href="{!! route('providers.create') !!}" type="button" class="btn btn-sm btn-success" rel="tooltip" title="Novo"><i class="fa fa-file-o"></i></a>
       <a href="{!! route('providers') !!}" type="button" class="btn btn-sm btn-info" rel="tooltip" title="Pesquisar"><i class="fa fa-search"></i></a>
-      
-      <a href="javascript:;" onclick="onDestroy('{!! route('providers.destroy', ['id' => $provider->id]) !!}')" id="link_delete" type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>
+      <a href="javascript:;" onclick="onDestroy('{!! route('providers.destroy', ['id' => $provider->id]) !!}')" id="link_delete" type="button" title="Excluir" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>
     </div>
   </ol>
 @stop
