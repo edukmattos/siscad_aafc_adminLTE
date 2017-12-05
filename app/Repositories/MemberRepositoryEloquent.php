@@ -143,6 +143,15 @@ class MemberRepositoryEloquent extends BaseRepository implements MemberRepositor
         $member->save();
     }
 
+    public function lastMembersBirthdaysByStatusMonthLimit($status, $month, $limit)
+    {
+    	return $this->member
+        	->whereMemberStatusId($status)
+        	->whereMonth('birthday', '=', $month)
+        	->limit($limit)
+        	->get();
+    }
+
     public function searchMembers()
 	{
 		$srch_member_code 				= session()->has('srch_member_code') ? session()->get('srch_member_code') : null;

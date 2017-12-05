@@ -140,7 +140,7 @@ class Employee extends Revisionable
 
     public function gender()
     {
-        return $this->belongsTo('SisCad\Entities\Entities\Gender');   
+        return $this->belongsTo('SisCad\Entities\Gender');   
     }
 
     public function employee_status()

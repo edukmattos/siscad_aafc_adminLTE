@@ -170,7 +170,7 @@ class Member extends Revisionable
 
     public function gender()
     {
-        return $this->belongsTo('SisCad\Entities\Entities\Gender');   
+        return $this->belongsTo('SisCad\Entities\Gender');   
     }
 
     public function member_status_reason()

@@ -121,7 +121,7 @@
     <div class="col-sm-3">
       <div class="box box-info">
         <div class="box-header with-border">
-          <h3 class="box-title">Aniversários do mês</h3>
+          <h3 class="box-title">Aniversários do mês {{ $nowMonthF }}</h3>
           <div class="box-tools pull-right">
             <div class="btn-group">
               <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
@@ -150,7 +150,7 @@
         <!-- /.box-header -->
         <div class="box-body no-padding">
           <ul class="users-list clearfix">
-            @foreach($plan3_last_members as $member)
+            @foreach($birthday_last_members as $member)
               <li>
                 @if($member->gender_id == 1)
                   <img src="/img/user_male.png" class="img-circle img-responsive center-block" width="100">
@@ -158,7 +158,7 @@
                   <img src="/img/user_female.png" class="img-circle img-responsive center-block" width="100">
                 @endif
                 <a class="users-list-name" href="{!! route('members.show', ['id' => $member->id]) !!}">{{ $member->name }}</a>
-                <span class="users-list-date">{{ $member->date_aafc_ini->diffForHumans() }}</span>
+                <span class="users-list-date">{{ $member->birthday->format('d') }} ({{ $member->birthday->age }} anos)</span>
               </li>
             @endforeach
           </ul>

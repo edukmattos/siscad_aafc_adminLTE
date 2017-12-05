@@ -19,43 +19,42 @@
         <!-- Main Header -->
         <header class="main-header">
             @if(config('adminlte.layout') == 'top-nav')
-            <nav class="navbar navbar-static-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="navbar-brand">
-                            {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
-                        </a>
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </div>
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="navbar-brand">
+                                {!! config('adminlte.logo', '<b>Sis</b>CAD') !!}
+                            </a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                        </div>
 
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            @each('adminlte::partials.menu-item-top-nav', $adminlte->menu(), 'item')
-                        </ul>
-                    </div>
-                    <!-- /.navbar-collapse -->
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                @each('adminlte::partials.menu-item-top-nav', $adminlte->menu(), 'item')
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
             @else
-            <!-- Logo -->
-            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="logo">
-                <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini">{!! config('adminlte.logo_mini', '<b>A</b>LT') !!}</span>
-                <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</span>
-            </a>
-
-            <!-- Header Navbar -->
-            <nav class="navbar navbar-static-top" role="navigation">
-                <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                    <span class="sr-only">{{ trans('adminlte::adminlte.toggle_navigation') }}</span>
+                <!-- Logo -->
+                <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="logo">
+                    <!-- mini logo for sidebar mini 50x50 pixels -->
+                    <span class="logo-mini">{!! config('adminlte.logo_mini', '<b>S</b>CD') !!}</span>
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg">{!! config('adminlte.logo', '<b>Sis</b>CAD') !!}</span>
                 </a>
+
+                <!-- Header Navbar -->
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                        <span class="sr-only">{{ trans('adminlte::adminlte.toggle_navigation') }}</span>
+                    </a>
             @endif
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
-
                     <ul class="nav navbar-nav">
                         <li>
                             @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
@@ -64,8 +63,8 @@
                                 </a>
                             @else
                                 <a href="#"
-                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                >
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                            >
                                     <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
                                 </a>
                                 <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
@@ -77,13 +76,11 @@
                             @endif
                         </li>
                     </ul>
-
-                    
                 </div>
-                @if(config('adminlte.layout') == 'top-nav')
+            @if(config('adminlte.layout') == 'top-nav')
                 </div>
-                @endif
-            </nav>
+            @endif
+        </nav>
         </header>
 
         @if(config('adminlte.layout') != 'top-nav')
@@ -92,7 +89,18 @@
 
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="/uploads/avatars/users/{{ Auth::user()->avatar }}" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <a href="{{ url('/users/profile') }}">
+                            <p>{{ Auth::user()->name }}</p>
+                            <i class="fa fa-circle text-success"></i> Online
+                        </a>
+                    </div>
+                </div>
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">
                     @each('adminlte::partials.menu-item', $adminlte->menu(), 'item')

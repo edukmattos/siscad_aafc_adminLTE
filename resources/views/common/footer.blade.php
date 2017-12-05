@@ -1,10 +1,6 @@
-<footer>
-    <div class="row">
-        <div class="col-sm-8 text-left">
-            <p><b>SisCAD</b> versão 2.01</p>
-        </div>
-        <div class="col-sm-4 text-right">
-            <p>© 2017<a href="www.aafcorsan.com.br"> AAFCorsan</a> - Todos os direitos reservados.</p>
-        </div>
+<footer class="footer">
+    <div class="pull-right hidden-xs">
+      <b>SisCAD</b> Versão 2.4.0
     </div>
+    <strong>Copyright &copy; 2014-2016 <a href="www.aafcorsan.com.br"> AAFCorsan</a>.</strong> Todos os direitos reservados.
 </footer>
