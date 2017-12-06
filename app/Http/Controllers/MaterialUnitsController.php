@@ -9,15 +9,26 @@ use SisCad\Http\Controllers\Controller;
 use SisCad\Repositories\MaterialUnitRepository;
 use SisCad\Repositories\MaterialRepository;
 
+use SisCad\Services\MaterialUnitService;
+
+use Session;
+
 class MaterialUnitsController extends Controller
 {
     private $material_unitRepository;
     private $materialRepository;
+    private $material_unitService;
 
-    public function __construct(MaterialUnitRepository $material_unitRepository, MaterialRepository $materialRepository)
+
+    public function __construct(
+            MaterialUnitRepository $material_unitRepository, 
+            MaterialRepository $materialRepository,
+            MaterialUnitService $material_unitService
+        )
     {
         $this->material_unitRepository = $material_unitRepository;
         $this->materialRepository = $materialRepository;
+        $this->material_unitService = $material_unitService;
     }
 
     /**
@@ -113,6 +124,7 @@ class MaterialUnitsController extends Controller
         return redirect('material_units');
     }
 
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -123,26 +135,28 @@ class MaterialUnitsController extends Controller
     {
         $this->authorize('material_units-destroy');
 
-        if($this->materialRepository->allMaterialsByMaterialUnitId($id)->count()>0)
+        if($this->material_unitService->destroy($id))
         {
-           return redirect('material_units')->withInput()->withErrors(['error' => '<b>Exclusão CANCELADA</b> >> Existe(m) unidade(s) vinculado(s) ao registro selecionado !']); 
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) patrimônio(s) vinculado(s) ao registro selecionado !');
+            
+            return redirect()->route('material_units.show', ['id' => $id]);
         }
-
+        
         $this->material_unitRepository->findMaterialUnitById($id)->delete();
 
-        return redirect('material_units');
+        Session::flash('flash_message_material_unit_destroy', 'Registro EXCLUÍDO com sucesso !');
+            
+        return redirect()->route('material_units.show', ['id' => $id]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function restore($id)
     {
-        $this->material_unitRepository->withTrashed()->findMaterialUnitById($id)->restore();
+        $material_unit = $this->material_unitRepository->findMaterialUnitById($id);
+        $material_unit->restore();
 
-        return redirect('material_units');
+        Session::flash('flash_message_success', 'Registro RESTAURADO !');
+
+        return redirect()->route('material_units.show', ['id' => $id]);
     }
+
 }

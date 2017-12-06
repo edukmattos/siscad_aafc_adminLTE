@@ -36,7 +36,9 @@ class MaterialRepositoryEloquent extends BaseRepository implements MaterialRepos
 
 	public function findMaterialById($id)
     {
-        return $this->material->find($id);
+        return $this->material
+        	->withTrashed()
+        	->find($id);
     }
 
     public function storeMaterial($input)

@@ -210,6 +210,7 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::get('/{id}/show', 'PatrimonialBrandsController@show')->name('patrimonial_brands.show');
 		Route::get('/{id}/edit', 'PatrimonialBrandsController@edit')->name('patrimonial_brands.edit');
 		Route::get('/{id}/destroy', 'PatrimonialBrandsController@destroy')->name('patrimonial_brands.destroy');
+		Route::get('/{id}/restore', 'PatrimonialBrandsController@restore')->name('patrimonial_brands.restore');
 		Route::put('/{id}/update', 'PatrimonialBrandsController@update')->name('patrimonial_brands.update');
 		Route::post('/', 'PatrimonialBrandsController@store')->name('patrimonial_brands.store');
 	});
@@ -220,6 +221,7 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::get('/{id}/show', 'PatrimonialModelsController@show')->name('patrimonial_models.show');
 		Route::get('/{id}/edit', 'PatrimonialModelsController@edit')->name('patrimonial_models.edit');
 		Route::get('/{id}/destroy', 'PatrimonialModelsController@destroy')->name('patrimonial_models.destroy');
+		Route::get('/{id}/restore', 'PatrimonialModelsController@restore')->name('patrimonial_models.restore');
 		Route::put('/{id}/update', 'PatrimonialModelsController@update')->name('patrimonial_models.update');
 		Route::post('/', 'PatrimonialModelsController@store')->name('patrimonial_models.store');
 	});
@@ -327,6 +329,7 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::get('/{id}/show', 'MaterialUnitsController@show')->name('material_units.show');
 		Route::get('/{id}/edit', 'MaterialUnitsController@edit')->name('material_units.edit');
 		Route::get('/{id}/destroy', 'MaterialUnitsController@destroy')->name('material_units.destroy');
+		Route::get('/{id}/restore', 'MaterialUnitsController@restore')->name('material_units.restore');
 		Route::put('/{id}/update', 'MaterialUnitsController@update')->name('material_units.update');
 		Route::post('/', 'MaterialUnitsController@store')->name('material_units.store');
 	});

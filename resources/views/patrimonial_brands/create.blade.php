@@ -1,18 +1,47 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('content_header')
+    <h1>CONFIGURAÇÃO: PATRIMÔNIOS - MARCAS</h1>
+    
+    <ol class="breadcrumb">
+      	<div class="btn-group-horizontal">
+	    	<a href="{!! route('patrimonial_brands') !!}" type="button" class="btn btn-sm btn-info" rel="tooltip" title="Pesquisar"><i class="fa fa-search"></i></a>
+		</div>
+	</ol>
+@stop
+
 
 @section('content')
+
+<!-- Main content -->
+    <section class="content">
+      	<div class="row">
+        	<div class="col-md-12">
+          		<div class="box box-info">
+		            <div class="box-header with-border">
+  						<h3 class="box-title">INCLUSÃO</h3>
+			        </div>
 	
-	<ol class="breadcrumb">
-  		<li class="breadcrumb-item">Administração</li>
-  		<li class="breadcrumb-item">Patrimônios</li>
-  		<li class="breadcrumb-item"><a href="{!! route('patrimonial_brands') !!}" class="btn btn-xs btn-warning"><i class="fa fa-arrow-left"></i> <b>Marcas</b></a></li>
-  		<li class="breadcrumb-item"><b>INCLUSÃO</b></li>
-	</ol>
-	
-	{!! Form::open(['route' => 'patrimonial_brands.store', 'class'=>'form-horizontal', 'role'=>'form']) !!}
+					{!! Form::open(['route' => 'patrimonial_brands.store', 'class'=>'form-horizontal', 'role'=>'form']) !!}
 
-	    @include('patrimonial_brands.form')
+						<div class="box-body">
+						
+		    				<?php $form_method = "post"; ?>
 
-	{!! Form::close() !!}
+		    				@include('patrimonial_brands.form')
 
+						</div>
+
+						<div class="box-footer">
+						    <label for="submit_buttons" class="col-sm-2 control-label"></label>
+						    <button type="submit" class="btn btn-flat btn-success">Confirmar <i class="fa fa-check"></i></button>
+						    <a href="{{ URL::previous() }}" class="btn btn-flat btn-danger">Cancelar <i class="fa fa-times"></i></a>
+						</div>
+						
+					{!! Form::close() !!}
+				</div>
+			</div>
+		</div>
+	</section>
+	    
 @endsection

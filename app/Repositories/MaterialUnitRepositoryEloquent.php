@@ -29,7 +29,9 @@ class MaterialUnitRepositoryEloquent extends BaseRepository implements MaterialU
 
 	public function findMaterialUnitById($id)
     {
-        return $this->material_unit->find($id);
+        return $this->material_unit
+        	->withTrashed()
+        	->find($id);
     }
 
     public function storeMaterialUnit($input)

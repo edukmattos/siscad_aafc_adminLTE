@@ -29,7 +29,9 @@ class PatrimonialBrandRepositoryEloquent extends BaseRepository implements Patri
 
 	public function findPatrimonialBrandById($id)
     {
-        return $this->patrimonial_brand->find($id);
+        return $this->patrimonial_brand
+        	->withTrashed()
+        	->find($id);
     }
 
     public function storePatrimonialBrand($input)

@@ -29,7 +29,9 @@ class PatrimonialModelRepositoryEloquent extends BaseRepository implements Patri
 
 	public function findPatrimonialModelById($id)
     {
-        return $this->patrimonial_model->find($id);
+        return $this->patrimonial_model
+        	->withTrashed()
+        	->find($id);
     }
 
     public function storePatrimonialModel($input)

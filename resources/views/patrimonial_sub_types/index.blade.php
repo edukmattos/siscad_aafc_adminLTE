@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content_header')
-    <h1>ADMINISTRAÇÃO: PATRIMÔNIOS - SUB-TIPOS</h1>
+    <h1>CONFIGURAÇÃO: PATRIMÔNIOS - SUB-TIPOS</h1>
     
     <ol class="breadcrumb">
       	<div class="btn-group-horizontal">

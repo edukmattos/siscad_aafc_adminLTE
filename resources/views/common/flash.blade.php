@@ -100,4 +100,37 @@
   </div>
 @endif
 
+@if(Session::has('flash_message_patrimonial_brand_destroy'))
+  <div class="alert alert-danger" role="alert" align="left">
+    <b>{{ Session::get('flash_message_patrimonial_brand_destroy') }}</b>
+    <p class="pull-right">
+      Recuperar ? 
+      <a href="{!! route('patrimonial_brands.restore', ['id' => $patrimonial_brand->id]) !!}" class="btn btn-success">SIM</a>
+      <a href="{!! route('patrimonial_brands.show', ['id' => $patrimonial_brand->id]) !!}" class="btn btn-danger">Não</a>
+    </p>
+  </div>
+@endif
+
+@if(Session::has('flash_message_patrimonial_model_destroy'))
+  <div class="alert alert-danger" role="alert" align="left">
+    <b>{{ Session::get('flash_message_patrimonial_model_destroy') }}</b>
+    <p class="pull-right">
+      Recuperar ? 
+      <a href="{!! route('patrimonial_models.restore', ['id' => $patrimonial_model->id]) !!}" class="btn btn-success">SIM</a>
+      <a href="{!! route('patrimonial_models.show', ['id' => $patrimonial_model->id]) !!}" class="btn btn-danger">Não</a>
+    </p>
+  </div>
+@endif
+
+@if(Session::has('flash_message_material_unit_destroy'))
+  <div class="alert alert-danger" role="alert" align="left">
+    <b>{{ Session::get('flash_message_material_unit_destroy') }}</b>
+    <p class="pull-right">
+      Recuperar ? 
+      <a href="{!! route('material_units.restore', ['id' => $material_unit->id]) !!}" class="btn btn-success">SIM</a>
+      <a href="{!! route('material_units.show', ['id' => $material_unit->id]) !!}" class="btn btn-danger">Não</a>
+    </p>
+  </div>
+@endif
+
 

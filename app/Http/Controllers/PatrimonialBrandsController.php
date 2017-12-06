@@ -9,16 +9,24 @@ use SisCad\Http\Controllers\Controller;
 use SisCad\Repositories\PatrimonialBrandRepository;
 
 use SisCad\Services\PatrimonialService;
+use SisCad\Services\PatrimonialBrandService;
+
+use Session;
 
 class PatrimonialBrandsController extends Controller
 {
     private $patrimonial_brandRepository;
     private $patrimonialService;
 
-    public function __construct(PatrimonialBrandRepository $patrimonial_brandRepository, PatrimonialService $patrimonialService)
+    public function __construct(
+            PatrimonialBrandRepository $patrimonial_brandRepository, 
+            PatrimonialService $patrimonialService,
+            PatrimonialBrandService $patrimonial_brandService
+        )
     {
         $this->patrimonial_brandRepository = $patrimonial_brandRepository;
         $this->patrimonialService = $patrimonialService;
+        $this->patrimonial_brandService = $patrimonial_brandService;
     }
 
     /**
@@ -54,12 +62,12 @@ class PatrimonialBrandsController extends Controller
      */
     public function store(Requests\PatrimonialBrandRequest $request)
     {
-        $input = $request->all();
+        $data = $request->all();
 
-        $input['code'] = strtoupper($input['code']);
-        $input['description'] = strtoupper($input['description']);
+        $data['code'] = strtoupper($data['code']);
+        $data['description'] = strtoupper($data['description']);
 
-        $patrimonial_brand = $this->patrimonial_brandRepository->storePatrimonialBrand($input);
+        $patrimonial_brand = $this->patrimonial_brandRepository->storePatrimonialBrand($data);
 
         return redirect('patrimonial_brands');
     }
@@ -103,13 +111,13 @@ class PatrimonialBrandsController extends Controller
      */
     public function update(Requests\PatrimonialBrandRequest $request, $id)
     {
-        $input = $request->all();
+        $data = $request->all();
 
-        $input['code'] = strtoupper($input['code']);
-        $input['description'] = strtoupper($input['description']);
+        $data['code'] = strtoupper($data['code']);
+        $data['description'] = strtoupper($data['description']);
 
         $patrimonial_brand = $this->patrimonial_brandRepository->findPatrimonialBrandById($id);
-        $patrimonial_brand->update($input);
+        $patrimonial_brand->update($data);
 
         $this->patrimonialService->brand_update($id);
 
@@ -126,26 +134,27 @@ class PatrimonialBrandsController extends Controller
     {
         $this->authorize('patrimonial_brands-destroy');
 
-        if($this->memberRepository->findMembersByPatrimonialBrandId($id)->count()>0)
+        if($this->patrimonial_brandService->destroy($id))
         {
-           return redirect('patrimonial_brands')->withInput()->withErrors(['error' => '<b>Exclusão CANCELADA</b> >> Existe(m) Associado(s) vinculado(s) ao registro selecionado !']); 
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) patrimônio(s) vinculado(s) ao registro selecionado !');
+            
+            return redirect()->route('patrimonial_brands.show', ['id' => $id]);
         }
-
+        
         $this->patrimonial_brandRepository->findPatrimonialBrandById($id)->delete();
 
-        return redirect('patrimonial_brands');
+        Session::flash('flash_message_patrimonial_brand_destroy', 'Registro EXCLUÍDO com sucesso !');
+            
+        return redirect()->route('patrimonial_brands.show', ['id' => $id]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function restore($id)
     {
-        $this->patrimonial_brandRepository->withTrashed()->findPatrimonialBrandById($id)->restore();
+        $patrimonial_brand = $this->patrimonial_brandRepository->findPatrimonialBrandById($id);
+        $patrimonial_brand->restore();
 
-        return redirect('patrimonial_brands');
+        Session::flash('flash_message_success', 'Registro RESTAURADO !');
+
+        return redirect()->route('patrimonial_brands.show', ['id' => $id]);
     }
 }

@@ -9,16 +9,24 @@ use SisCad\Http\Controllers\Controller;
 use SisCad\Repositories\PatrimonialModelRepository;
 
 use SisCad\Services\PatrimonialService;
+use SisCad\Services\PatrimonialModelService;
+
+use Session;
 
 class PatrimonialModelsController extends Controller
 {
     private $patrimonial_modelRepository;
     private $patrimonialService;
+    private $patrimonial_modelService;
 
-    public function __construct(PatrimonialModelRepository $patrimonial_modelRepository, PatrimonialService $patrimonialService)
+    public function __construct(
+            PatrimonialModelRepository $patrimonial_modelRepository, 
+            PatrimonialService $patrimonialService,
+            PatrimonialModelService $patrimonial_modelService)
     {
         $this->patrimonial_modelRepository = $patrimonial_modelRepository;
         $this->patrimonialService = $patrimonialService;
+        $this->patrimonial_modelService = $patrimonial_modelService;
     }
 
     /**
@@ -126,26 +134,27 @@ class PatrimonialModelsController extends Controller
     {
         $this->authorize('patrimonial_models-destroy');
 
-        if($this->memberRepository->findMembersByPatrimonialModelId($id)->count()>0)
+        if($this->patrimonial_modelService->destroy($id))
         {
-           return redirect('patrimonial_models')->withInput()->withErrors(['error' => '<b>Exclusão CANCELADA</b> >> Existe(m) Associado(s) vinculado(s) ao registro selecionado !']); 
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) patrimônio(s) vinculado(s) ao registro selecionado !');
+            
+            return redirect()->route('patrimonial_models.show', ['id' => $id]);
         }
-
+        
         $this->patrimonial_modelRepository->findPatrimonialModelById($id)->delete();
 
-        return redirect('patrimonial_models');
+        Session::flash('flash_message_patrimonial_model_destroy', 'Registro EXCLUÍDO com sucesso !');
+            
+        return redirect()->route('patrimonial_models.show', ['id' => $id]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function restore($id)
     {
-        $this->patrimonial_modelRepository->withTrashed()->findPatrimonialModelById($id)->restore();
+        $patrimonial_model = $this->patrimonial_modelRepository->findPatrimonialModelById($id);
+        $patrimonial_model->restore();
 
-        return redirect('patrimonial_models');
+        Session::flash('flash_message_success', 'Registro RESTAURADO !');
+
+        return redirect()->route('patrimonial_models.show', ['id' => $id]);
     }
 }
