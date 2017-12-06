@@ -103,11 +103,11 @@
 							            <td><a href="{!! route('providers.show', [$patrimonial->provider_id]) !!}" title="{{ $patrimonial->provider->description_short }}">{{ $patrimonial->provider->cnpj_mask }}</a></td>
 							            <td>{{ $patrimonial->invoice_date->format('d/m/Y') }}</td>
 							            <td>{{ $patrimonial->invoice }}</td>
-							            <td>{{ number_format(($patrimonial->purchase_value + $patrimonial->getTotalDepreciationMaterials() + $patrimonial->getTotalDepreciationServices()), 2,",",".") }}</td>
+							            <td class="text-right">{{ number_format(($patrimonial->purchase_value + $patrimonial->getTotalDepreciationMaterials() + $patrimonial->getTotalDepreciationServices()), 2,",",".") }}</td>
 
-							            <td>{{ number_format(($patrimonial->residual_value), 2,",",".") }}</td>
+							            <td class="text-right">{{ number_format(($patrimonial->residual_value), 2,",",".") }}</td>
 
-							            <td>{{ number_format(($patrimonial->purchase_value + $patrimonial->getTotalDepreciationMaterials() + $patrimonial->getTotalDepreciationServices() - $patrimonial->residual_value), 2,",",".") }}</td>
+							            <td class="text-right">{{ number_format(($patrimonial->purchase_value + $patrimonial->getTotalDepreciationMaterials() + $patrimonial->getTotalDepreciationServices() - $patrimonial->residual_value), 2,",",".") }}</td>
 
 							            <td>{{ $patrimonial->depreciation_date_start->format('d/m/Y') }}</td>
 							            <td>{{ number_format($patrimonial->getDepreciationMonthlyValue(), 2,",",".") }}</td>
