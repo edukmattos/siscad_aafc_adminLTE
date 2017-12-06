@@ -74,6 +74,11 @@ class SisCadRepositoryProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            \SisCad\Repositories\PartnerRepository::class, 
+            \SisCad\Repositories\PartnerRepositoryEloquent::class
+        );
+
+        $this->app->bind(
             \SisCad\Repositories\PartnerTypeRepository::class, 
             \SisCad\Repositories\PartnerTypeRepositoryEloquent::class
         );

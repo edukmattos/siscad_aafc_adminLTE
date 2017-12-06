@@ -142,7 +142,7 @@ return [
         ],
 
         [
-            'text'        => 'Forbecedores',
+            'text'        => 'Fornecedores',
             'url'         => '/providers/',
             'icon'        => 'truck',
             'label'       => '',
@@ -233,6 +233,20 @@ return [
                     ],
                 ],
                 [
+                    'text' => 'Parceiros',
+                    'url'  => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'Tipos',
+                            'url'  => '/partner_types',
+                        ],
+                        [
+                            'text' => 'Setores',
+                            'url'  => '/partner_sectors',
+                        ],                        
+                    ],
+                ],
+                [
                     'text'    => 'Materiais',
                     'url'     => '#',
                     'submenu' => [
@@ -243,19 +257,6 @@ return [
                     ],
                 ],
             ],
-        ],
-        'LABELS',
-        [
-            'text'       => 'Important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'Warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'Information',
-            'icon_color' => 'aqua',
         ],
     ],
 

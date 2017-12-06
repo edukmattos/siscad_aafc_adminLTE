@@ -7,17 +7,26 @@ use Illuminate\Http\Request;
 use SisCad\Http\Requests;
 use SisCad\Http\Controllers\Controller;
 use SisCad\Repositories\PartnerTypeRepository;
-
 use SisCad\Repositories\PartnerRepository;
+
+use SisCad\Services\PartnerTypeService;
+
+use Session;
 
 class PartnerTypesController extends Controller
 {
     private $partner_typeRepository;
+    private $partnerRepository;
+    private $partner_typeService;
 
-    public function __construct(PartnerTypeRepository $partner_typeRepository, PartnerRepository $partnerRepository)
+    public function __construct(
+            PartnerTypeRepository $partner_typeRepository, 
+            PartnerRepository $partnerRepository,
+            PartnerTypeService $partner_typeService)
     {
         $this->partner_typeRepository = $partner_typeRepository;
         $this->partnerRepository = $partnerRepository;
+        $this->partner_typeService = $partner_typeService;
     }
 
     /**
@@ -49,12 +58,12 @@ class PartnerTypesController extends Controller
      */
     public function store(Requests\PartnerTypeRequest $request)
     {
-        $input = $request->all();
+        $data = $request->all();
 
-        $input['code'] = strtoupper($input['code']);
-        $input['description'] = strtoupper($input['description']);
+        $data['code'] = strtoupper($data['code']);
+        $data['description'] = strtoupper($data['description']);
 
-        $partner_type = $this->partner_typeRepository->storePartnerType($input);
+        $partner_type = $this->partner_typeRepository->storePartnerType($data);
 
         return redirect('partner_types');
     }
@@ -94,15 +103,15 @@ class PartnerTypesController extends Controller
      */
     public function update(Requests\PartnerTypeRequest $request, $id)
     {
-        $input = $request->all();
+        $data = $request->all();
 
-        $input['code'] = strtoupper($input['code']);
-        $input['description'] = strtoupper($input['description']);
+        $data['code'] = strtoupper($data['code']);
+        $data['description'] = strtoupper($data['description']);
 
         $partner_type = $this->partner_typeRepository->findPartnerTypeById($id);
-        $partner_type->update($input);
+        $partner_type->update($data);
 
-        return redirect('partner_types');
+        return redirect()->route('partner_types.show', ['id' => $id]);
     }
 
     /**
@@ -113,27 +122,29 @@ class PartnerTypesController extends Controller
      */
     public function destroy($id)
     {
-        if($this->partnerRepository->findPartnersByTypeId($id)->count()>0)
-        {
-           #return view('errors.destroy_denied');
-           return redirect('partner_types')->withInput()->withErrors(['error' => '<b>Exclusão CANCELADA</b> >> Existe(m) Parceiro(s) vinculado(s) a este registro !']); 
-        }
+        $this->authorize('partner_types-destroy');
 
+        if($this->partner_typeService->destroy($id))
+        {
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) patrimônio(s) vinculado(s) ao registro selecionado !');
+            
+            return redirect()->route('partner_types.show', ['id' => $id]);
+        }
+        
         $this->partner_typeRepository->findPartnerTypeById($id)->delete();
 
-        return redirect('partner_types');
+        Session::flash('flash_message_partner_type_destroy', 'Registro EXCLUÍDO com sucesso !');
+            
+        return redirect()->route('partner_types.show', ['id' => $id]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function restore($id)
     {
-        $this->partner_typeRepository->withTrashed()->findPartnerTypeById($id)->restore();
+        $partner_type = $this->partner_typeRepository->findPartnerTypeById($id);
+        $partner_type->restore();
 
-        return redirect('partner_types');
+        Session::flash('flash_message_success', 'Registro RESTAURADO !');
+
+        return redirect()->route('partner_types.show', ['id' => $id]);
     }
 }

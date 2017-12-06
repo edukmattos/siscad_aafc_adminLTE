@@ -6,15 +6,28 @@ use Illuminate\Http\Request;
 
 use SisCad\Http\Requests;
 use SisCad\Http\Controllers\Controller;
+use SisCad\Repositories\PartnerRepository;
 use SisCad\Repositories\PartnerSectorRepository;
+
+use SisCad\Services\PartnerSectorService;
+
+use Session;
 
 class PartnerSectorsController extends Controller
 {
     private $partner_sectorRepository;
+    private $partnerRepository;
+    private $partner_sectorService;
 
-    public function __construct(PartnerSectorRepository $partner_sectorRepository)
+    public function __construct(
+            PartnerSectorRepository $partner_sectorRepository,
+            PartnerRepository $partnerRepository,
+            PartnerSectorService $partner_sectorService
+        )
     {
         $this->partner_sectorRepository = $partner_sectorRepository;
+        $this->partnerRepository = $partnerRepository;
+        $this->partner_sectorService = $partner_sectorService;
     }
 
     /**
@@ -50,12 +63,12 @@ class PartnerSectorsController extends Controller
      */
     public function store(Requests\PartnerSectorRequest $request)
     {
-        $input = $request->all();
+        $data = $request->all();
 
-        $input['code'] = strtoupper($input['code']);
-        $input['description'] = strtoupper($input['description']);
+        $data['code'] = strtoupper($data['code']);
+        $data['description'] = strtoupper($data['description']);
 
-        $partner_sector = $this->partner_sectorRepository->storePartnerSector($input);
+        $partner_sector = $this->partner_sectorRepository->storePartnerSector($data);
 
         return redirect('partner_sectors');
     }
@@ -99,15 +112,15 @@ class PartnerSectorsController extends Controller
      */
     public function update(Requests\PartnerSectorRequest $request, $id)
     {
-        $input = $request->all();
+        $data = $request->all();
 
-        $input['code'] = strtoupper($input['code']);
-        $input['description'] = strtoupper($input['description']);
+        $data['code'] = strtoupper($data['code']);
+        $data['description'] = strtoupper($data['description']);
 
         $partner_sector = $this->partner_sectorRepository->findPartnerSectorById($id);
-        $partner_sector->update($input);
+        $partner_sector->update($data);
 
-        return redirect('partner_sectors');
+        return redirect()->route('partner_sectors.show', ['id' => $id]);
     }
 
     /**
@@ -118,28 +131,29 @@ class PartnerSectorsController extends Controller
      */
     public function destroy($id)
     {
-        $this->authorize('partner_sectors-create');
+        $this->authorize('partner_sectors-destroy');
 
-        if($this->memberRepository->findMembersByPartnerSectorId($id)->count()>0)
+        if($this->partner_sectorService->destroy($id))
         {
-           return redirect('partner_sectors')->withInput()->withErrors(['error' => '<b>Exclusão CANCELADA</b> >> Existe(m) Associado(s) vinculado(s) ao registro selecionado !']); 
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) Parceiro(s) vinculado(s) ao registro selecionado !');
+            
+            return redirect()->route('partner_sectors.show', ['id' => $id]);
         }
-
+        
         $this->partner_sectorRepository->findPartnerSectorById($id)->delete();
 
-        return redirect('partner_sectors');
+        Session::flash('flash_message_partner_sector_destroy', 'Registro EXCLUÍDO com sucesso !');
+            
+        return redirect()->route('partner_sectors.show', ['id' => $id]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function restore($id)
     {
-        $this->partner_sectorRepository->withTrashed()->findPartnerSectorById($id)->restore();
+        $partner_sector = $this->partner_sectorRepository->findPartnerSectorById($id);
+        $partner_sector->restore();
 
-        return redirect('partner_sectors');
+        Session::flash('flash_message_success', 'Registro RESTAURADO !');
+
+        return redirect()->route('partner_sectors.show', ['id' => $id]);
     }
 }

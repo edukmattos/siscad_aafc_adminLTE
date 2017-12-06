@@ -22,13 +22,18 @@ class PartnersController extends Controller
     private $partner_typeRepository;
     private $partnerRepository;
 
-    public function __construct(RegionRepository $regionRepository, CityRepository $cityRepository, PartnerRepository $partnerRepository, PartnerSectorRepository $partner_sectorRepository, PartnerTypeRepository $partner_typeRepository)
+    public function __construct(
+            RegionRepository $regionRepository, 
+            CityRepository $cityRepository, 
+            PartnerRepository $partnerRepository, 
+            PartnerSectorRepository $partner_sectorRepository, 
+            PartnerTypeRepository $partner_typeRepository)
     {
-        $this->cityRepository = $cityRepository;
         $this->regionRepository = $regionRepository;
+        $this->cityRepository = $cityRepository;
+        $this->partnerRepository = $partnerRepository;
         $this->partner_sectorRepository = $partner_sectorRepository;
         $this->partner_typeRepository = $partner_typeRepository;
-        $this->partnerRepository = $partnerRepository;
     }
 
     /**

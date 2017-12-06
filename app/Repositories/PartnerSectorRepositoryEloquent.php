@@ -37,7 +37,9 @@ class PartnerSectorRepositoryEloquent extends BaseRepository implements PartnerS
 
 	public function findPartnerSectorById($id)
     {
-        return $this->partner_sector->find($id);
+        return $this->partner_sector
+        	->withTrashed()
+        	->find($id);
     }
 
     public function storePartnerSector($input)

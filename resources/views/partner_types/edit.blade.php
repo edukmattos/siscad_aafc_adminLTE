@@ -1,20 +1,47 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('content_header')
+	<h1>CONFIGURAÇÃO: PARCEIROS - TIPOS</h1>
+    
+  	<ol class="breadcrumb">
+    	<div class="btn-group-horizontal">
+      		<a href="{!! route('partner_types.create') !!}" type="button" class="btn btn-sm btn-success" rel="tooltip" title="Novo"><i class="fa fa-file-o"></i></a>
+      		<a href="{!! route('partner_types') !!}" type="button" class="btn btn-sm btn-info" rel="tooltip" title="Pesquisar"><i class="fa fa-search"></i></a>
+		</div>
+  	</ol>
+@stop
+
 
 @section('content')
 
-	<ol class="breadcrumb">
-  		<li class="breadcrumb-item">Administração</li>
-  		<li class="breadcrumb-item">Parceiros</li>
-  		<li class="breadcrumb-item"><a href="{!! route('partner_types') !!}" class="btn btn-xs btn-warning"><i class="fa fa-arrow-left"></i> <b>Tipos</b></a></li>
-  		<li class="breadcrumb-item"><b>ALTERAÇÃO</b></li>
-	</ol>
+<!-- Main content -->
+    <section class="content">
+      	<div class="row">
+        	<div class="col-md-12">
+          		<div class="box box-info">
+		            <div class="box-header with-border">
+  						<h3 class="box-title">ALTERAÇÃO</h3>
+			        </div>
 
-	<hr class="hr-warning" />
+					{!! Form::model($partner_type, ['route' => ['partner_types.update', $partner_type->id], 'method' => 'put', 'class' => 'form-horizontal', 'role'=>'form']) !!}
+						<div class="box-body">
+						
+		    				<?php $form_method = "put"; ?>
 
-	{!! Form::model($partner_type, ['route' => ['partner_types.update', $partner_type->id], 'method' => 'put', 'class' => 'form-horizontal', 'role'=>'form']) !!}
+		    				@include('partner_types.form')
 
-	    @include('partner_types.form')
+						</div>
 
-	{!! Form::close() !!}
+						<div class="box-footer">
+						    <label for="submit_buttons" class="col-sm-2 control-label"></label>
+						    <button type="submit" class="btn btn-flat btn-success">Confirmar <i class="fa fa-check"></i></button>
+						    <a href="{{ URL::previous() }}" class="btn btn-flat btn-danger">Cancelar <i class="fa fa-times"></i></a>
+						</div>
+						
+					{!! Form::close() !!}
+				</div>
+			</div>
+		</div>
+	</section>
 	    
 @endsection

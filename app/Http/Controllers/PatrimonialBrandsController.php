@@ -132,29 +132,29 @@ class PatrimonialBrandsController extends Controller
      */
     public function destroy($id)
     {
-        $this->authorize('patrimonial_brands-destroy');
+        $this->authorize('partner_types-destroy');
 
-        if($this->patrimonial_brandService->destroy($id))
+        if($this->partner_typeService->destroy($id))
         {
             Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) patrimônio(s) vinculado(s) ao registro selecionado !');
             
-            return redirect()->route('patrimonial_brands.show', ['id' => $id]);
+            return redirect()->route('partner_types.show', ['id' => $id]);
         }
         
-        $this->patrimonial_brandRepository->findPatrimonialBrandById($id)->delete();
+        $this->partner_typeRepository->findPartnerByPartnerTypeId($id)->delete();
 
-        Session::flash('flash_message_patrimonial_brand_destroy', 'Registro EXCLUÍDO com sucesso !');
+        Session::flash('flash_message_partner_type_destroy', 'Registro EXCLUÍDO com sucesso !');
             
-        return redirect()->route('patrimonial_brands.show', ['id' => $id]);
+        return redirect()->route('partner_types.show', ['id' => $id]);
     }
 
     public function restore($id)
     {
-        $patrimonial_brand = $this->patrimonial_brandRepository->findPatrimonialBrandById($id);
-        $patrimonial_brand->restore();
+        $partner_type = $this->partner_typeRepository->findPartnerByPartnerTypeId($id);
+        $partner_type->restore();
 
         Session::flash('flash_message_success', 'Registro RESTAURADO !');
 
-        return redirect()->route('patrimonial_brands.show', ['id' => $id]);
+        return redirect()->route('partner_types.show', ['id' => $id]);
     }
 }

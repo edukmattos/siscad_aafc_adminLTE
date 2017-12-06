@@ -145,6 +145,7 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::get('/{id}/show', 'PartnerSectorsController@show')->name('partner_sectors.show');
 		Route::get('/{id}/edit', 'PartnerSectorsController@edit')->name('partner_sectors.edit');
 		Route::get('/{id}/destroy', 'PartnerSectorsController@destroy')->name('partner_sectors.destroy');
+		Route::get('/{id}/restore', 'PartnerSectorsController@restore')->name('partner_sectors.restore');
 		Route::put('/{id}/update', 'PartnerSectorsController@update')->name('partner_sectors.update');
 		Route::post('/', 'PartnerSectorsController@store')->name('partner_sectors.store');
 	});
@@ -155,6 +156,7 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::get('/{id}/show', 'PartnerTypesController@show')->name('partner_types.show');
 		Route::get('/{id}/edit', 'PartnerTypesController@edit')->name('partner_types.edit');
 		Route::get('/{id}/destroy', 'PartnerTypesController@destroy')->name('partner_types.destroy');
+		Route::get('/{id}/restore', 'PartnerTypesController@restore')->name('partner_types.restore');
 		Route::put('/{id}/update', 'PartnerTypesController@update')->name('partner_types.update');
 		Route::post('/', 'PartnerTypesController@store')->name('partner_types.store');
 	});

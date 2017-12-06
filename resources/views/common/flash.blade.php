@@ -133,4 +133,24 @@
   </div>
 @endif
 
+@if(Session::has('flash_message_partner_type_destroy'))
+  <div class="alert alert-danger" role="alert" align="left">
+    <b>{{ Session::get('flash_message_partner_type_destroy') }}</b>
+    <p class="pull-right">
+      Recuperar ? 
+      <a href="{!! route('partner_types.restore', ['id' => $partner_type->id]) !!}" class="btn btn-success">SIM</a>
+      <a href="{!! route('partner_types.show', ['id' => $partner_type->id]) !!}" class="btn btn-danger">Não</a>
+    </p>
+  </div>
+@endif
 
+@if(Session::has('flash_message_partner_sector_destroy'))
+  <div class="alert alert-danger" role="alert" align="left">
+    <b>{{ Session::get('flash_message_partner_sector_destroy') }}</b>
+    <p class="pull-right">
+      Recuperar ? 
+      <a href="{!! route('partner_sectors.restore', ['id' => $partner_sector->id]) !!}" class="btn btn-success">SIM</a>
+      <a href="{!! route('partner_sectors.show', ['id' => $partner_sector->id]) !!}" class="btn btn-danger">Não</a>
+    </p>
+  </div>
+@endif

@@ -29,7 +29,9 @@ class PartnerTypeRepositoryEloquent extends BaseRepository implements PartnerTyp
 
 	public function findPartnerTypeById($id)
     {
-        return $this->partner_type->find($id);
+        return $this->partner_type
+        	->withTrashed()
+        	->find($id);
     }
 
     public function storePartnerType($input)
