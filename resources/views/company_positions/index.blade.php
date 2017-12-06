@@ -1,44 +1,51 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('content_header')
+    <h1>CONFIGURAÇÃO: EMPRESA - CARGOS</h1>
+    
+    <ol class="breadcrumb">
+      	<div class="btn-group-horizontal">
+    		<a href="{!! route('company_positions.create') !!}" type="button" class="btn btn-sm btn-success" rel="tooltip" title="Novo"><i class="fa fa-file-o"></i></a>
+	    </div>
+	</ol>
+@stop
 
 @section('content')
-	
-	<ol class="breadcrumb">
-  		<li class="breadcrumb-item">Administração</li>
-  		<li class="breadcrumb-item">Empresa</li>
-  		<li class="breadcrumb-item">Cargos</li>
-  		<li class="breadcrumb-item"><b>PESQUISA</b></li>
-	</ol>
+	    <!-- Main content -->
+    <section class="content">
+      	<div class="row">
+        	<div class="col-md-12">
+          		<div class="box box-info">
+		            <div class="box-header with-border">
+		              <h3 class="box-title">PESQUISA</h3>
+		            </div>
 
-	<div class="table-responsive">
-		<table class="table table-bordered table-striped" id="table_company_positions" data-toggle="table" data-toolbar="#filter-bar" data-show-toggle="false" data-search="false" data-show-filter="true" data-show-columns="true" data-show-export="true" data-pagination="true" data-click-to-select="true" data-page-list="[10, 20, 50, 100, All]" data-toolbar="#filter-bar"> 
-		    <thead>
-		        <th data-width="1%" class="text-center">
-		        	<a href="{!! route('company_positions.create') !!}" type="button" class="round round-sm hollow green" rel="tooltip" title="Incluir"><i class="fa fa-file-o"></i></a>
-		        </th>
-		        <th data-width="2%">Código</th>
-		        <th>Descrição</th>
-		        <th data-width="1%" class="text-center">#</th>
-		    </thead>
-		    <tbody>
-			    @foreach($company_positions as $company_position)
-			        <tr>
-			            <td>
-			                <a href="{!! route('company_positions.edit', [$company_position->id]) !!}" type="button" class="round round-sm hollow blue"><i class="fa fa-edit"></i></a>
-			            </td>
-			            <td>{!! $company_position->code !!}</td>
-			            <td>{!! $company_position->description !!}</td>
-			            <td>
-			            	<a href="javascript:;" onclick="onDestroy('{!! route('company_positions.destroy', [$company_position->id]) !!}')" id="link_delete" type="button" class="round round-sm hollow red"><i class="fa fa-trash-o text-danger"></i></a>
-			            </td>
-			        </tr>
-			    @endforeach
-		    </tbody>
-		</table>
-	</div>
-@endsection
-
-@section('js_scripts')
-	<script type="text/javascript">
-	  	$('#table_company_positions').bootstrapTable();
-	</script>
+		            <div class="box-body"><!-- Main content -->
+          				<table class="display dataTable" cellspacing="0" width="100%" id="table_company_positions"> 
+							<thead>
+								<tr>
+									<th width="2%">Código</th>
+		        					<th>Descrição</th>
+		        				</tr>
+		        			</thead>
+		        			<tfoot>
+		        				<tr>
+									<th width="2%">Código</th>
+		        					<th>Descrição</th>
+		        				</tr>
+		        			</tfoot>
+							<tbody>
+							    @foreach($company_positions as $company_position)
+								    <tr>
+										<td><a href="{!! route('company_positions.show', [$company_position->id]) !!}">{{ $company_position->code }}</a></td>
+								        <td>{{ $company_position->description }}</td>
+							        </tr>
+							    @endforeach
+						    </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 @endsection

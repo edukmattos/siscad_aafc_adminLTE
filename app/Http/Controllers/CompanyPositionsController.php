@@ -8,13 +8,22 @@ use SisCad\Http\Requests;
 use SisCad\Http\Controllers\Controller;
 use SisCad\Repositories\CompanyPositionRepository;
 
+use SisCad\Services\CompanyPositionService;
+
+use Session;
+
 class CompanyPositionsController extends Controller
 {
     private $company_positionRepository;
+    private $company_positionService;
 
-    public function __construct(CompanyPositionRepository $company_positionRepository)
+    public function __construct(
+            CompanyPositionRepository $company_positionRepository,
+            CompanyPositionService $company_positionService
+        )
     {
         $this->company_positionRepository = $company_positionRepository;
+        $this->company_positionService = $company_positionService;
     }
 
     /**
@@ -107,7 +116,7 @@ class CompanyPositionsController extends Controller
         $company_position = $this->company_positionRepository->findCompanyPositionById($id);
         $company_position->update($input);
 
-        return redirect('company_positions');
+        return redirect()->route('company_positions.show', ['id' => $id]);
     }
 
     /**
@@ -120,21 +129,27 @@ class CompanyPositionsController extends Controller
     {
         $this->authorize('company_positions-destroy');
 
+        if($this->company_positionService->destroy($id))
+        {
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) Movimentação(ões) Funcional(is) vinculado(s) ao registro selecionado !');
+            
+            return redirect()->route('company_positions.show', ['id' => $id]);
+        }
+        
         $this->company_positionRepository->findCompanyPositionById($id)->delete();
 
-        return redirect('company_positions');
+        Session::flash('flash_message_company_position_destroy', 'Registro EXCLUÍDO com sucesso !');
+            
+        return redirect()->route('company_positions.show', ['id' => $id]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function restore($id)
     {
-        $this->company_positionRepository->withTrashed()->findCompanyPositionById($id)->restore();
+        $company_position = $this->company_positionRepository->findCompanyPositionById($id);
+        $company_position->restore();
 
-        return redirect('company_positions');
+        Session::flash('flash_message_success', 'Registro RESTAURADO !');
+
+        return redirect()->route('company_positions.show', ['id' => $id]);
     }
 }

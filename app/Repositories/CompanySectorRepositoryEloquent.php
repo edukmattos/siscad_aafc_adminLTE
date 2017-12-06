@@ -29,7 +29,9 @@ class CompanySectorRepositoryEloquent extends BaseRepository implements CompanyS
 
 	public function findCompanySectorById($id)
     {
-        return $this->company_sector->find($id);
+        return $this->company_sector
+        	->withTreashed()
+        	->find($id);
     }
 
     public function storeCompanySector($input)

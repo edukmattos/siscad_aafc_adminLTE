@@ -28,7 +28,9 @@ class CompanyPositionRepositoryEloquent extends BaseRepository implements Compan
 
 	public function findCompanyPositionById($id)
     {
-        return $this->company_position->find($id);
+        return $this->company_position
+        	->withTrashed()
+        	->find($id);
     }
 
     public function storeCompanyPosition($input)

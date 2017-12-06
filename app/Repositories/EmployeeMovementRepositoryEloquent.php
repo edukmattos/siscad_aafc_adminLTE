@@ -49,6 +49,13 @@ class EmployeeMovementRepositoryEloquent extends BaseRepository implements Emplo
 			->get();
     }
 
+    public function allEmployeeMovementsByCompanyPositionId($id)
+    {
+    	return $this->employee_movement
+			->whereCompanyPositionId($id)
+			->get();		
+    }
+
     public function lastEmployeeMovementDateByEmployeeId($id)
     {
         return $this->employee_movement

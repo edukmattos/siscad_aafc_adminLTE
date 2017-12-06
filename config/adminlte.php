@@ -256,6 +256,27 @@ return [
                         ],
                     ],
                 ],
+                [
+                    'text' => 'Empresa',
+                    'url'  => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'Cargos',
+                            'url'  => '/company_positions',
+                        ],
+                        [
+                            'text' => 'Funções',
+                            'url'  => '/company_responsibilities',
+                        ],                                                [
+                            'text' => 'Setores',
+                            'url'  => '/company_sectors',
+                        ],
+                        [
+                            'text' => 'Sub-Setores',
+                            'url'  => '/company_sub_sectors',
+                        ],                        
+                    ],
+                ],
             ],
         ],
     ],
