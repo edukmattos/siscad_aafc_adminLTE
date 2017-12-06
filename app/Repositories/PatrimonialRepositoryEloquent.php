@@ -247,12 +247,12 @@ class PatrimonialRepositoryEloquent extends BaseRepository implements Patrimonia
 
                 if($srch_company_sector_id)
                 {
-                    $query->whereCompanySectorId($srch_company_sector_id);
+                    $query->where('patrimonials.company_sector_id','=',$srch_company_sector_id);
                 }
 
                 if($srch_company_sub_sector_id)
                 {
-                    $query->whereCompanySubSectorId($srch_company_sub_sector_id);
+                    $query->where('patrimonials.company_sub_sector_id','=',$srch_company_sub_sector_id);
                 }
 
                 if($srch_patrimonial_status_id)
