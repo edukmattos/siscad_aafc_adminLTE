@@ -173,7 +173,7 @@ class CitiesController extends Controller
 
     public function state($id)
     {
-        $cities = $this->cityRepository->findCitiesByStateId($id);
+        $cities = $this->cityRepository->allCitiesByStateId($id);
         
         return response()->json($cities);
     }

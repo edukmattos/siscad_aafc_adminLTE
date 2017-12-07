@@ -9,17 +9,24 @@ use SisCad\Http\Controllers\Controller;
 use SisCad\Repositories\RegionRepository;
 use SisCad\Repositories\CityRepository;
 
+use SisCad\Services\RegionService;
+
 use Session;
 
 class RegionsController extends Controller
 {
     private $regionRepository;
     private $cityRepository;
+    private $regionService;
 
-    public function __construct(RegionRepository $regionRepository, CityRepository $cityRepository)
+    public function __construct(
+            RegionRepository $regionRepository, 
+            CityRepository $cityRepository,
+            RegionService $regionService)
     {
         $this->regionRepository = $regionRepository;
         $this->cityRepository = $cityRepository;
+        $this->regionService = $regionService;
     }
 
     /**
@@ -79,7 +86,7 @@ class RegionsController extends Controller
         $this->authorize('regions-show');
 
         $region = $this->regionRepository->findRegionById($id);
-        $cities = $this->cityRepository->findCitiesByRegionId($id);
+        $cities = $this->cityRepository->allCitiesByRegionId($id);
         $logs = $region->revisionHistory;
         
         return view('regions.show', compact('region', 'cities', 'logs'));
@@ -121,16 +128,37 @@ class RegionsController extends Controller
         return redirect('regions')->with('flash_message_success', 'Registro alterado com sucesso !');
     }
 
-    /**
+/**
      * Remove the specified resource from storage.
      *
-     * @param  \SisCad\Region  $region
-     * @return \Illuminate\Http\Response
+     * @param  int  $id
+     * @return Response
      */
-    public function destroy(Region $region)
+    public function destroy($id)
     {
         $this->authorize('regions-destroy');
 
-        return $this->regionRepository->delete($region);
+        if($this->regionService->destroy($id))
+        {
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) Cidade(s) vinculada(s) ao registro selecionado !');
+            
+            return redirect()->route('regions.show', ['id' => $id]);
+        }
+        
+        $this->regionRepository->findRegionById($id)->delete();
+
+        Session::flash('flash_message_region_destroy', 'Registro EXCLUÍDO com sucesso !');
+            
+        return redirect()->route('regions.show', ['id' => $id]);
+    }
+
+    public function restore($id)
+    {
+        $region = $this->regionRepository->findCompanyPositionById($id);
+        $region->restore();
+
+        Session::flash('flash_message_success', 'Registro RESTAURADO !');
+
+        return redirect()->route('regions.show', ['id' => $id]);
     }
 }

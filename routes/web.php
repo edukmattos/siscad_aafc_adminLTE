@@ -85,6 +85,7 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::get('/{id}/show', 'RegionsController@show')->name('regions.show');
 		Route::get('/{id}/edit', 'RegionsController@edit')->name('regions.edit');
 		Route::get('/{id}/destroy', 'RegionsController@destroy')->name('regions.destroy');
+		Route::get('/{id}/restore', 'RegionsController@restore')->name('regions.restore');
 		Route::put('/{id}/update', 'RegionsController@update')->name('regions.update');
 		Route::post('/', 'RegionsController@store')->name('regions.store');
 	});

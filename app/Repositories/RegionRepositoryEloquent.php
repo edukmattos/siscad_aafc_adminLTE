@@ -29,7 +29,9 @@ class RegionRepositoryEloquent extends BaseRepository implements RegionRepositor
 
 	public function findRegionById($id)
     {
-        return $this->region->find($id);
+        return $this->region
+        	->withTrashed()
+        	->find($id);
     }
 
     public function store($data)

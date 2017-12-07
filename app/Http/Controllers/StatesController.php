@@ -122,7 +122,7 @@ class StatesController extends Controller
     {
         $this->authorize('states-destroy');
 
-        if($this->cityRepository->findCitiesByStateId($id)->count()>0)
+        if($this->cityRepository->allCitiesByStateId($id)->count()>0)
         {
            return redirect('states')->withInput()->withErrors(['error' => '<b>Exclusão CANCELADA</b> >> Existe(m) Cidade(s) vinculada(s) ao registro selecionado !']); 
         }

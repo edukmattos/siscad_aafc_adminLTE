@@ -38,7 +38,7 @@ class CityRepositoryEloquent extends BaseRepository implements CityRepository
         $city->save();
     }
 
-    public function findCitiesByStateId($id)
+    public function allCitiesByStateId($id)
     {
         return $this->city
             ->whereStateId($id)
@@ -46,7 +46,7 @@ class CityRepositoryEloquent extends BaseRepository implements CityRepository
             ->get();
     }
 
-    public function findCitiesByRegionId($id)
+    public function allCitiesByRegionId($id)
     {
         return $this->city
             ->whereRegionId($id)

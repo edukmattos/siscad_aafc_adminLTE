@@ -1,33 +1,23 @@
 @extends('adminlte::page')
 
 @section('content')
-    <div class="container">
+
+    <div class="error-page">
         <div class="row">
-            <div class="col-md-12">
-                <div class="access_denied-template">
-                     @if (Auth::guest())
-                        <h1>Oops ...</h1>
-                        <h2>Usuário NÃO identificado !</h2>
-                        <div class="access_denied-details">
-                            Desculpe-nos mas o acesso a esta área é SOMENTE para usuários logados e autorizados !
-                        </div>
-                        <div class="access_denied-actions">
-                            <a href="{{ url('/login/') }}" class="btn btn-primary">Entrar</a>
-                            <a href="javascript:history.go(-1)" class="btn btn-default"><span class="fa fa-undo"></span> Voltar </a>
-                        </div>
-                    @else
-                        <h1>Oops ...</h1>
-                        <h2>Acesso NEGADO !</h2>
-                        <div class="access_denied-details">
-                            Desculpe-nos mas o acesso a esta área é SOMENTE para usuários autorizados !
-                        </div>
-                        <div class="access_denied-actions">
-                            <a href="{{ url('/') }}" class="btn btn-primary btn-lg"><span class="fa fa-home"></span> Inicio </a>
-                            <a href="javascript:history.go(-1)" class="btn btn-default btn-lg"><span class="fa fa-undo"></span> Voltar </a>
-                        </div>
-                    @endif
-                </div>
+            <h2 class="headline text-red text-center">
+                <i class="fa fa-hand-paper-o fa-5x text-red"></i>
+            </h2>
+        </div>
+
+        <div class="row">
+            <div class="error-content text-center">
+                <h3>
+                    Desculpe-nos mas o acesso a esta área é SOMENTE para usuários AUTORIZADOS !
+                </h3>
             </div>
+        </div>
+        <div class="text-center">
+            <a href="javascript:history.go(-1)" class="btn btn-primary btn-flat btn-md"><span class="fa fa-undo"></span> Voltar </a>
         </div>
     </div>
 @endsection

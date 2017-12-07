@@ -277,6 +277,34 @@ return [
                         ],                        
                     ],
                 ],
+                [
+                    'text'    => 'Eventos',
+                    'url'     => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'Tipos',
+                            'url'  => '/meeting_types',
+                        ],
+                    ],
+                ],
+                [
+                    'text'    => 'Localidades',
+                    'url'     => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'Regiões',
+                            'url'  => '/regions',
+                        ],
+                        [
+                            'text' => 'Estados',
+                            'url'  => '/states',
+                        ],
+                        [
+                            'text' => 'Cidades',
+                            'url'  => '/cities',
+                        ],
+                    ],
+                ],
             ],
         ],
     ],
