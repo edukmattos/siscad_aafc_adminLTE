@@ -8,13 +8,21 @@ use SisCad\Http\Requests;
 use SisCad\Http\Controllers\Controller;
 use SisCad\Repositories\CompanySectorRepository;
 
+use SisCad\Services\CompanySectorService;
+
+use Session;
+
 class CompanySectorsController extends Controller
 {
     private $company_sectorRepository;
+    private $company_sectorService;
 
-    public function __construct(CompanySectorRepository $company_sectorRepository)
+    public function __construct(
+        CompanySectorRepository $company_sectorRepository,
+        CompanySectorService $company_sectorService)
     {
         $this->company_sectorRepository = $company_sectorRepository;
+        $this->company_sectorService = $company_sectorService;
     }
 
     /**
@@ -118,28 +126,36 @@ class CompanySectorsController extends Controller
      */
     public function destroy($id)
     {
-        $this->authorize('company_sectors-create');
+        $this->authorize('company_sectors-destroy');
 
-        if($this->memberRepository->findMembersByCompanySectorId($id)->count()>0)
+        if($this->company_sectorService->destroyEmployeeMovement($id))
         {
-           return redirect('company_sectors')->withInput()->withErrors(['error' => '<b>Exclusão CANCELADA</b> >> Existe(m) Associado(s) vinculado(s) ao registro selecionado !']); 
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) Movimentação(ões) Funcional(is) vinculada(s) ao registro selecionado !');
+            
+            return redirect()->route('company_sectors.show', ['id' => $id]);
         }
 
+        if($this->company_sectorService->destroyPatrimonialMovement($id))
+        {
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) Movimentação(ões) Patrimonial(is) vinculada(s) ao registro selecionado !');
+            
+            return redirect()->route('company_sectors.show', ['id' => $id]);
+        }
+        
         $this->company_sectorRepository->findCompanySectorById($id)->delete();
 
-        return redirect('company_sectors');
+        Session::flash('flash_message_company_sector_destroy', 'Registro EXCLUÍDO com sucesso !');
+            
+        return redirect()->route('company_sectors.show', ['id' => $id]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function restore($id)
     {
-        $this->company_sectorRepository->withTrashed()->findCompanySectorById($id)->restore();
+        $company_sector = $this->company_sectorRepository->findCompanySectorById($id);
+        $company_sector->restore();
 
-        return redirect('company_sectors');
+        Session::flash('flash_message_success', 'Registro RESTAURADO !');
+
+        return redirect()->route('company_sectors.show', ['id' => $id]);
     }
 }

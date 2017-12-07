@@ -48,7 +48,28 @@ class PatrimonialMovementRepositoryEloquent extends BaseRepository implements Pa
 			->get();
     }
 
-    public function lastPatrimonialMovementDateByPatrimonialId($id)
+    public function allPatrimonialMovementsByCompanyPositionId($id)
+    {
+    	return $this->patrimonial_movement
+			->whereCompanyPositiontId($id)
+			->get();
+    }
+
+    public function allPatrimonialMovementsByCompanySectorId($id)
+    {
+    	return $this->patrimonial_movement
+			->whereCompanySectorId($id)
+			->get();
+    }
+
+    public function allPatrimonialMovementsByCompanySubSectorId($id)
+    {
+    	return $this->patrimonial_movement
+			->whereCompanySubSectorId($id)
+			->get();
+    }
+
+	public function lastPatrimonialMovementDateByPatrimonialId($id)
     {
         return $this->patrimonial_movement
 			->wherePatrimonialId($id)

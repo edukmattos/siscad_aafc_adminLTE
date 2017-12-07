@@ -5,7 +5,7 @@ namespace SisCad\Services;
 use SisCad\Repositories\EmployeeMovementRepository;
 use SisCad\Repositories\PatrimonialMovementRepository;
 
-class CompanySectorService
+class CompanySubSectorService
 {
 	protected $employee_movementRepository;
 	protected $patrimonial_movementRepository;
@@ -20,7 +20,7 @@ class CompanySectorService
 
 	public function destroyEmployeeMovement($id)
 	{
-		if($this->employee_movementRepository->allEmployeeMovementsByCompanySectorId($id)->count()>0)
+		if($this->employee_movementRepository->allEmployeeMovementsByCompanySubSectorId($id)->count()>0)
 	    {
 	      	return true;
 	    }
@@ -30,7 +30,7 @@ class CompanySectorService
 
 	public function destroyPatrimonialMovement($id)
 	{
-		if($this->patrimonial_movementRepository->allPatrimonialMovementsByCompanySectorId($id)->count()>0)
+		if($this->patrimonial_movementRepository->allPatrimonialMovementsByCompanySubSectorId($id)->count()>0)
 	    {
 	      	return true;
 	    }

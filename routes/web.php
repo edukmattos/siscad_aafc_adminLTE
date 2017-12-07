@@ -477,6 +477,7 @@ Route::group(['prefix' => 'company_sub_sectors'], function () {
 	Route::get('/{id}/show', 'CompanySubSectorsController@show')->name('company_sub_sectors.show');
 	Route::get('/{id}/edit', 'CompanySubSectorsController@edit')->name('company_sub_sectors.edit');
 	Route::get('/{id}/destroy', 'CompanySubSectorsController@destroy')->name('company_sub_sectors.destroy');
+	Route::get('/{id}/restore', 'CompanySubSectorsController@restore')->name('company_sub_sectors.restore');
 	Route::put('/{id}/update', 'CompanySubSectorsController@update')->name('company_sub_sectors.update');
 	Route::post('/', 'CompanySubSectorsController@store')->name('company_sub_sectors.store');
 });
