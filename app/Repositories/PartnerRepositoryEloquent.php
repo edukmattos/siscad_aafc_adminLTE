@@ -63,7 +63,7 @@ class PartnerRepositoryEloquent extends BaseRepository implements PartnerReposit
         	->find($id);
     }
 
-    public function findPartnersByCityId($id)
+    public function allPartnersByCityId($id)
     {
         return $this->partner
             ->whereCityId($id)

@@ -122,7 +122,7 @@ class MemberStatusesController extends Controller
     {
         $this->authorize('member_statuses-destroy');
 
-        if($this->memberRepository->findMembersByStatusId($id)->count()>0)
+        if($this->memberRepository->allMembersByPlanId($id)->count()>0)
         {
            return redirect('member_statuses')->withInput()->withErrors(['error' => '<b>Exclusão CANCELADA</b> >> Existe(m) Associado(s) vinculado(s) ao registro selecionado !']); 
         }

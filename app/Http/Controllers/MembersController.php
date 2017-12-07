@@ -349,7 +349,7 @@ class MembersController extends Controller
 
     public function city($id)
     {
-        $members = $this->memberRepository->findMembersByCityId($id);
+        $members = $this->memberRepository->allMembersByCityId($id);
         
         return response()->json($members);
     }

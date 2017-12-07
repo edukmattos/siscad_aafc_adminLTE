@@ -42,7 +42,14 @@ class ManagementUnitRepositoryEloquent extends BaseRepository implements Managem
         return $this->management_unit->find($id);
     }
 
-    public function storeManagementUnit($input)
+	public function allManagementUnitsByCityId($id)
+    {
+        return $this->management_unit
+        	->whereCityId($id)
+            ->get();
+    }
+
+        public function storeManagementUnit($input)
     {
         $management_unit = $this->management_unit->fill($input);
         $management_unit->save();

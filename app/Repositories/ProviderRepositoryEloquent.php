@@ -29,8 +29,18 @@ class ProviderRepositoryEloquent extends BaseRepository implements ProviderRepos
 
 	public function findProviderById($id)
     {
-        return $this->provider->find($id);
+        return $this->provider
+        	->withTrashed()
+        	->find($id);
     }
+
+    public function allProvidersByCityId($id)
+    {
+        return $this->provider
+        	->whereCityId($id)
+        	->get();
+    }
+
 
     public function storeProvider($input)
     {

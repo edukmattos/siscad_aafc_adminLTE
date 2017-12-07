@@ -122,7 +122,7 @@ class PlansController extends Controller
     {
         $this->authorize('plans-destroy');
 
-        if($this->memberRepository->findMembersByPlanId($id)->count()>0)
+        if($this->memberRepository->allMembersByPlanId($id)->count()>0)
         {
            return redirect('plans')->withInput()->withErrors(['error' => '<b>Exclusão CANCELADA</b> >> Existe(m) Associado(s) vinculado(s) ao registro selecionado !']); 
         }

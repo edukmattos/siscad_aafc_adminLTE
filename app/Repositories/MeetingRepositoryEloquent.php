@@ -33,14 +33,24 @@ class MeetingRepositoryEloquent extends BaseRepository implements MeetingReposit
 			->get();
 	}
 
+	public function allMeetingsByCityId($id)
+    {
+        return $this->meeting
+        	->whereCityId($id);
+    }
+
 	public function findMeetingById($id)
     {
-        return $this->meeting->withTrashed()->find($id);
+        return $this->meeting
+        	->withTrashed()
+        	->find($id);
     }
 
     public function findMeetingTrashedById($id)
     {
-        return $this->meeting->withTrashed()->find($id);
+        return $this->meeting
+        	->withTrashed()
+        	->find($id);
     }
 
     public function storeMeeting($input)

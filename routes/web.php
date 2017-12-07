@@ -96,6 +96,7 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::get('/{id}/show', 'CitiesController@show')->name('cities.show');
 		Route::get('/{id}/edit', 'CitiesController@edit')->name('cities.edit');
 		Route::get('/{id}/destroy', 'CitiesController@destroy')->name('cities.destroy');
+		Route::get('/{id}/restore', 'CitiesController@restore')->name('cities.restore');
 		Route::put('/{id}/update', 'CitiesController@update')->name('cities.update');
 		Route::post('/', 'CitiesController@store')->name('cities.store');
 	});

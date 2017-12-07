@@ -176,3 +176,36 @@
     </p>
   </div>
 @endif
+
+@if(Session::has('flash_message_company_sector_destroy'))
+  <div class="alert alert-danger" role="alert" align="left">
+    <b>{{ Session::get('flash_message_company_sector_destroy') }}</b>
+    <p class="pull-right">
+      Recuperar ? 
+      <a href="{!! route('company_sectors.restore', ['id' => $company_sector->id]) !!}" class="btn btn-success">SIM</a>
+      <a href="{!! route('company_sectors.show', ['id' => $company_sector->id]) !!}" class="btn btn-danger">Não</a>
+    </p>
+  </div>
+@endif
+
+@if(Session::has('flash_message_company_sub_sector_destroy'))
+  <div class="alert alert-danger" role="alert" align="left">
+    <b>{{ Session::get('flash_message_company_sub_sector_destroy') }}</b>
+    <p class="pull-right">
+      Recuperar ? 
+      <a href="{!! route('company_sub_sectors.restore', ['id' => $company_sub_sector->id]) !!}" class="btn btn-success">SIM</a>
+      <a href="{!! route('company_sub_sectors.show', ['id' => $company_sub_sector->id]) !!}" class="btn btn-danger">Não</a>
+    </p>
+  </div>
+@endif
+
+@if(Session::has('flash_message_city_destroy'))
+  <div class="alert alert-danger" role="alert" align="left">
+    <b>{{ Session::get('flash_message_city_destroy') }}</b>
+    <p class="pull-right">
+      Recuperar ? 
+      <a href="{!! route('cities.restore', ['id' => $city->id]) !!}" class="btn btn-success">SIM</a>
+      <a href="{!! route('cities.show', ['id' => $city->id]) !!}" class="btn btn-danger">Não</a>
+    </p>
+  </div>
+@endif

@@ -13,7 +13,9 @@ use SisCad\Repositories\CityRepository;
 use SisCad\Repositories\PartnerRepository;
 use SisCad\Repositories\MemberRepository;
 
-use Gate;
+use SisCad\Services\CityService;
+
+use Session;
 
 class CitiesController extends Controller
 {
@@ -23,13 +25,23 @@ class CitiesController extends Controller
     private $partnerRepository;
     private $memberRepository;
 
-    public function __construct(CityRepository $cityRepository, StateRepository $stateRepository, RegionRepository $regionRepository, PartnerRepository $partnerRepository, MemberRepository $memberRepository)
+    private $cityService;
+
+    public function __construct(
+            CityRepository $cityRepository, 
+            StateRepository $stateRepository, 
+            RegionRepository $regionRepository, 
+            PartnerRepository $partnerRepository, 
+            MemberRepository $memberRepository,
+            CityService $cityService)
     {
         $this->cityRepository = $cityRepository;
         $this->stateRepository = $stateRepository;
         $this->regionRepository = $regionRepository;
         $this->partnerRepository = $partnerRepository;
         $this->memberRepository = $memberRepository;
+
+        $this->cityService = $cityService;
     }
 
     /**
@@ -76,11 +88,11 @@ class CitiesController extends Controller
      */
     public function store(Requests\CityRequest $request)
     {
-        $input = $request->all();
+        $data = $request->all();
 
-        $input['description'] = strtoupper($input['description']);
+        $data['description'] = strtoupper($data['description']);
 
-        $city = $this->cityRepository->storeCity($input);
+        $city = $this->cityRepository->storeCity($data);
       
         return redirect('cities');
     }
@@ -134,14 +146,14 @@ class CitiesController extends Controller
      */
     public function update(Requests\CityRequest $request, $id)
     {
-        $input = $request->all();
+        $data = $request->all();
 
-        $input['description'] = strtoupper($input['description']);
+        $data['description'] = strtoupper($data['description']);
                 
         $city = $this->cityRepository->findCityById($id);
-        $city->update($input);
+        $city->update($data);
 
-        return redirect('cities');
+        return redirect()->route('cities.show', ['id' => $id]);
     }
 
     /**
@@ -154,27 +166,62 @@ class CitiesController extends Controller
     {
         $this->authorize('cities-destroy');
 
-        if($this->partnerRepository->findPartnersByCityId($id)->count()>0)
+        if($this->cityService->destroyCityMemberCheck($id))
         {
-           #return view('errors.destroy_denied');
-           return redirect('cities')->withInput()->withErrors(['error' => '<b>Exclusão CANCELADA</b> >> Existe(m) Parceiro(s) vinculada(s) ao registro selecionado !']); 
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) Sócio(s) vinculado(s) ao registro selecionado !');
+            
+            return redirect()->route('cities.show', ['id' => $id]);
         }
 
-        if($this->memberRepository->findMembersByCityId($id)->count()>0)
+        if($this->cityService->destroyCityPartnerCheck($id))
         {
-           #return view('errors.destroy_denied');
-           return redirect('CitiesController')->withInput()->withErrors(['error' => '<b>Exclusão CANCELADA</b> >> Existe(m) Sócios(s) vinculada(s) ao registro selecionado !']); 
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) Parceiro(s) vinculado(s) ao registro selecionado !');
+            
+            return redirect()->route('cities.show', ['id' => $id]);
         }
 
+        if($this->cityService->destroyCityProviderCheck($id))
+        {
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) Fornecedor(es) vinculado(s) ao registro selecionado !');
+            
+            return redirect()->route('cities.show', ['id' => $id]);
+        }
+
+        if($this->cityService->destroyCityManagementUnitCheck($id))
+        {
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) Unid.Gestora(s) vinculada(s) ao registro selecionado !');
+            
+            return redirect()->route('cities.show', ['id' => $id]);
+        }
+
+        if($this->cityService->destroyCityEmployeesCheck($id))
+        {
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) Funcionário(s) vinculado(s) ao registro selecionado !');
+            
+            return redirect()->route('cities.show', ['id' => $id]);
+        }
+
+        if($this->cityService->destroyCityMeetingCheck($id))
+        {
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) Evento(s) vinculado(s) ao registro selecionado !');
+            
+            return redirect()->route('cities.show', ['id' => $id]);
+        }
+        
         $this->cityRepository->findCityById($id)->delete();
 
-        return redirect('cities');
+        Session::flash('flash_message_company_sector_destroy', 'Registro EXCLUÍDO com sucesso !');
+            
+        return redirect()->route('cities.show', ['id' => $id]);
     }
 
-    public function state($id)
+    public function restore($id)
     {
-        $cities = $this->cityRepository->allCitiesByStateId($id);
-        
-        return response()->json($cities);
+        $company_sector = $this->cityRepository->findCityById($id);
+        $company_sector->restore();
+
+        Session::flash('flash_message_success', 'Registro RESTAURADO !');
+
+        return redirect()->route('cities.show', ['id' => $id]);
     }
 }

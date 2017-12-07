@@ -53,16 +53,18 @@ class EmployeeRepositoryEloquent extends BaseRepository implements EmployeeRepos
         	->get();
     }
 
-    public function findEmployeesByStatusId($id)
+    public function allEmployeesByStatusId($id)
     {
         return $this->employee
-        	->whereEmployeeStatusId($id);
+        	->whereEmployeeStatusId($id)
+        	->get();
     }
 
-    public function findEmployeesByCityId($id)
+    public function allEmployeesByCityId($id)
     {
         return $this->employee
-        	->whereCityId($id);
+        	->whereCityId($id)
+        	->get();
     }
 
     public function storeEmployee($input)

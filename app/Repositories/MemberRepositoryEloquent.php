@@ -118,19 +118,19 @@ class MemberRepositoryEloquent extends BaseRepository implements MemberRepositor
         	->get();
     }
 
-    public function findMembersByStatusId($id)
+    public function allMembersByStatusId($id)
     {
         return $this->member
         	->whereMemberStatusId($id);
     }
 
-    public function findMembersByPlanId($id)
+    public function allMembersByPlanId($id)
     {
         return $this->member
         	->wherePlanId($id);
     }
 
-    public function findMembersByCityId($id)
+    public function allMembersByCityId($id)
     {
         return $this->member
         	->whereCityId($id);
