@@ -30,7 +30,7 @@ class CompanySectorRepositoryEloquent extends BaseRepository implements CompanyS
 	public function findCompanySectorById($id)
     {
         return $this->company_sector
-        	->withTreashed()
+        	->withTrashed()
         	->find($id);
     }
 

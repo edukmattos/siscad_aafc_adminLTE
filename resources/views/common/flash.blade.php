@@ -165,3 +165,14 @@
     </p>
   </div>
 @endif
+
+@if(Session::has('flash_message_company_responsibility_destroy'))
+  <div class="alert alert-danger" role="alert" align="left">
+    <b>{{ Session::get('flash_message_company_responsibility_destroy') }}</b>
+    <p class="pull-right">
+      Recuperar ? 
+      <a href="{!! route('company_responsibilities.restore', ['id' => $company_responsibility->id]) !!}" class="btn btn-success">SIM</a>
+      <a href="{!! route('company_responsibilities.show', ['id' => $company_responsibility->id]) !!}" class="btn btn-danger">Não</a>
+    </p>
+  </div>
+@endif

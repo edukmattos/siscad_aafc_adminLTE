@@ -8,13 +8,21 @@ use SisCad\Http\Requests;
 use SisCad\Http\Controllers\Controller;
 use SisCad\Repositories\CompanyResponsibilityRepository;
 
+use SisCad\Services\CompanyResponsibilityService;
+
+use Session;
+
 class CompanyResponsibilitiesController extends Controller
 {
     private $company_responsibilityRepository;
+    private $company_responsibilityService;
 
-    public function __construct(CompanyResponsibilityRepository $company_responsibilityRepository)
+    public function __construct(
+            CompanyResponsibilityRepository $company_responsibilityRepository,
+            CompanyResponsibilityService $company_responsibilityService)
     {
         $this->company_responsibilityRepository = $company_responsibilityRepository;
+        $this->company_responsibilityService = $company_responsibilityService;
     }
 
     /**
@@ -107,7 +115,7 @@ class CompanyResponsibilitiesController extends Controller
         $company_responsibility = $this->company_responsibilityRepository->findCompanyResponsibilityById($id);
         $company_responsibility->update($input);
 
-        return redirect('company_responsibilities');
+        return redirect()->route('company_responsibilities.show', ['id' => $id]);
     }
 
     /**
@@ -120,21 +128,27 @@ class CompanyResponsibilitiesController extends Controller
     {
         $this->authorize('company_responsibilities-destroy');
 
+        if($this->company_responsibilityService->destroy($id))
+        {
+            Session::flash('flash_message_danger', 'Exclusão CANCELADA >> Existe(m) Movimentação(ões) Funcional(is) vinculado(s) ao registro selecionado !');
+            
+            return redirect()->route('company_responsibilities.show', ['id' => $id]);
+        }
+        
         $this->company_responsibilityRepository->findCompanyResponsibilityById($id)->delete();
 
-        return redirect('company_responsibilities');
+        Session::flash('flash_message_company_responsibility_destroy', 'Registro EXCLUÍDO com sucesso !');
+            
+        return redirect()->route('company_responsibilities.show', ['id' => $id]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function restore($id)
     {
-        $this->company_responsibilityRepository->withTrashed()->findCompanyResponsibilityById($id)->restore();
+        $company_responsibility = $this->company_responsibilityRepository->findCompanyResponsibilityById($id);
+        $company_responsibility->restore();
 
-        return redirect('company_responsibilities');
+        Session::flash('flash_message_success', 'Registro RESTAURADO !');
+
+        return redirect()->route('company_responsibilities.show', ['id' => $id]);
     }
 }

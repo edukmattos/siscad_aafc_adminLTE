@@ -28,7 +28,9 @@ class CompanyResponsibilityRepositoryEloquent extends BaseRepository implements 
 
 	public function findCompanyResponsibilityById($id)
     {
-        return $this->company_responsibility->find($id);
+        return $this->company_responsibility
+        	->withTrashed()
+        	->find($id);
     }
 
     public function storeCompanyResponsibility($input)

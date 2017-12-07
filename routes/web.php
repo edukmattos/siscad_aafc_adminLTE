@@ -455,6 +455,7 @@ Route::group(['prefix' => 'company_responsibilities'], function () {
 	Route::get('/{id}/show', 'CompanyResponsibilitiesController@show')->name('company_responsibilities.show');
 	Route::get('/{id}/edit', 'CompanyResponsibilitiesController@edit')->name('company_responsibilities.edit');
 	Route::get('/{id}/destroy', 'CompanyResponsibilitiesController@destroy')->name('company_responsibilities.destroy');
+	Route::get('/{id}/restore', 'CompanyResponsibilitiesController@restore')->name('company_responsibilities.restore');
 	Route::put('/{id}/update', 'CompanyResponsibilitiesController@update')->name('company_responsibilities.update');
 	Route::post('/', 'CompanyResponsibilitiesController@store')->name('company_responsibilities.store');
 });
@@ -465,6 +466,7 @@ Route::group(['prefix' => 'company_sectors'], function () {
 	Route::get('/{id}/show', 'CompanySectorsController@show')->name('company_sectors.show');
 	Route::get('/{id}/edit', 'CompanySectorsController@edit')->name('company_sectors.edit');
 	Route::get('/{id}/destroy', 'CompanySectorsController@destroy')->name('company_sectors.destroy');
+	Route::get('/{id}/restore', 'CompanySectorsController@restore')->name('company_sectors.restore');
 	Route::put('/{id}/update', 'CompanySectorsController@update')->name('company_sectors.update');
 	Route::post('/', 'CompanySectorsController@store')->name('company_sectors.store');
 });
