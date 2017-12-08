@@ -181,7 +181,7 @@ return [
         ],
 
         [
-            'text'    => 'Configurações',
+            'text'    => 'Administração',
             'icon'    => 'gears',
             'submenu' => [
                 [
@@ -302,6 +302,20 @@ return [
                         [
                             'text' => 'Cidades',
                             'url'  => '/cities',
+                        ],
+                    ],
+                ],
+                [
+                    'text'    => 'Acessibilidade',
+                    'url'     => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'Usuários',
+                            'url'  => '/users',
+                        ],
+                        [
+                            'text' => 'Grupos',
+                            'url'  => '/roles',
                         ],
                     ],
                 ],
