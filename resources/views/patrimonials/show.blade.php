@@ -19,8 +19,7 @@
     @include('common.trashed')
   @endif
   
-  <section class="content">
-    <div class="row">
+  <div class="row">
       <div class="col-sm-6">
         @include('patrimonials.patrimonial')    
       </div>
@@ -28,15 +27,14 @@
       <div class="col-sm-6">
         @include('patrimonials.accounting')
       </div>
-    </div>
+  </div>
 
-    <div class="row">
+  <div class="row">
       <div class="col-sm-12">
         @include('patrimonials.files')
         @include('patrimonials.movements')
         @include('patrimonials.materials')
         @include('patrimonials.services')
       </div>
-    </div>
-  </section>
+  </div>
 @endsection

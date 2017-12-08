@@ -14,17 +14,15 @@
 
 
 @section('content')
-<!-- Main content -->
-    <section class="content">
-      	<div class="row">
+  	<div class="row">
         	<div class="col-md-12">
           		<div class="box box-info">
 		            <div class="box-header with-border">
 		              <h3 class="box-title">PESQUISA</h3>
 		            </div>
 
-		            <div class="box-body"><!-- Main content -->
-          				<table class="display" cellspacing="0" width="100%" id="table_partners">
+		            <div class="box-body">
+          				<table class="display dataTable" cellspacing="0" width="100%" id="table_partners">
     						<thead>
 								<tr>
 									<th>Região</th>
@@ -78,29 +76,5 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-@endsection
-
-@section('js')
-	<script type="text/javascript">
-	  	$(document).ready(function() 
-		{
-    		$('#table_partners').DataTable( 
-    		{
-                responsive: true,
-                dom: 'Bfrtip',
-		        buttons: [
-		            'copy', 'csv', 'excel', 'pdf', 'print'
-		        ],
-		        language: {
-            		"lengthMenu": "Display _MENU_ records per page",
-            		"zeroRecords": "Ops ... Nenhum REGISTRO localizado !",
-            		"info": "Showing page _PAGE_ of _PAGES_",
-            		"infoEmpty": "No records available",
-            		"infoFiltered": "(filtered from _MAX_ total records)"
-        		}
-    		});
-		});	
-	</script>
+	</div>
 @endsection

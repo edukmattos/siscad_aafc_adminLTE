@@ -115,9 +115,9 @@ class UsersController extends Controller
         $data['password'] = bcrypt('123456');
         $data['confirmation_code'] = str_random(100);
 
-        $input['name'] = strtoupper($input['name']);
-        $input['fullname'] = strtoupper($input['fullname']);
-        $input['email'] = strtolower($input['email']);
+        $data['name'] = strtoupper($data['name']);
+        $data['fullname'] = strtoupper($data['fullname']);
+        $data['email'] = strtolower($data['email']);
         
         $this->userRepository->storeUser($data);
 
@@ -164,9 +164,9 @@ class UsersController extends Controller
     {
         $user = $this->userRepository->findUserById($id);
 
-        $input = $request->all();
+        $data = $request->all();
 
-        $role = $this->roleRepository->findRoleById($input['role_id']);
+        $role = $this->roleRepository->findRoleById($data['role_id']);
 
         $user->roles()->attach($role);
 
@@ -203,14 +203,14 @@ class UsersController extends Controller
 
     public function update(Requests\UserEditRequest $request, $id)
     {
-        $input = $request->all();
+        $data = $request->all();
 
-        $input['name'] = strtoupper($input['name']);
-        $input['fullname'] = strtoupper($input['fullname']);
-        $input['email'] = strtolower($input['email']);
+        $data['name'] = strtoupper($data['name']);
+        $data['fullname'] = strtoupper($data['fullname']);
+        $data['email'] = strtolower($data['email']);
 
         $user = $this->userRepository->findUserById($id);
-        $user->update($input);
+        $user->update($data);
 
         return redirect('users');
     }

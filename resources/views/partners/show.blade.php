@@ -15,9 +15,7 @@
 @stop
 
 @section('content')
-  <!-- Main content -->
-  <section class="content">
-    <div class="row">
+  <div class="row">
       <div class="col-md-8">
         <div class="box box-info">
           <div class="box-header with-border">
@@ -88,6 +86,5 @@
       <div class="col-sm-4">
         @include('revisionable.logs_register')
       </div>
-    </div>
-  </section>    
+  </div>
 @endsection

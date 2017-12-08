@@ -18,8 +18,7 @@
     @include('common.trashed')
   @endif
 
-  <section class="content">
-    <div class="row">
+  <div class="row">
       <div class="col-sm-12">
         <div class="box box-info">
           <div class="box-header with-border">
@@ -51,8 +50,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-      
+  </div>    
 @endsection
   

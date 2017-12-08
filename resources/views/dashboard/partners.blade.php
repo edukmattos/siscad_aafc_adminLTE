@@ -1,16 +1,414 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('content_header')
+    <h1>PARCEIROS</h1>
+        <b>Painel Controle</b>
+    
+    <ol class="breadcrumb">
+        <div class="btn-group-horizontal">
+            <a href="{!! route('partners.create') !!}" type="button" class="btn btn-sm btn-success" rel="tooltip" title="Novo"><i class="fa fa-file-o"></i></a>
+            <a href="{!! route('partners.search') !!}" type="button" class="btn btn-sm btn-info" rel="tooltip" title="Pesquisar"><i class="fa fa-search"></i></a>
+        </div>
+    </ol>
+@stop
 
 @section('content')
 
-	<ol class="breadcrumb">
-        <li class="breadcrumb-item">PAINEL DE CONTROLE</li>
-        <li class="breadcrumb-item"><b>PARCEIROS</b></li>
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>{{ $partner_type1_allpartnersbytype->count() }}</h3>
+                    <p><b>{{ $partner_type1->description }}</b></p>
+                    <p>
+                        <i class="fa fa-2x fa-envelope"> {{ $partner_type1_allpartnersemailbytype->count() }} </i>
+                    </p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <div class="small-box-footer">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href="{!! route('dashboard.partners', ['partner_type_id' => 1]) !!}"><i class='fa fa-eye'  style="color:white"></i></a>
+                        </div>
+                        
+                        <div class="col-sm-4">
+                            <a href="{!! route('dashboard.partners_labels', ['model' => 'allPartnersByType', 'partner_type_id' => 1]) !!}"><i class='fa fa-tag' style="color:white"></i></a>
+                        </div>
 
-        <div class="row pull-right">
-            <a href="{!! route('partners.create') !!}" type="button" class="round round-sm hollow green" rel="tooltip" title="Incluir"><i class="fa fa-file-o"></i></a>
-            <a href="{!! route('partners.search') !!}" type="button" class="round round-sm hollow" rel="tooltip" title="Pesquisar"><i class="fa fa-search"></i></a>  
+                        <div class="col-sm-4">
+                            <a href="{!! route('dashboard.partners_reports', ['model' => 'allPartnersByType', 'partner_type_id' => 1]) !!}"><i class='fa fa-print' style="color:white"></i></a>
+                        </div>
+                    </div>
+ 
+                </div>
+            </div>
         </div>
-    </ol>
+
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>{{ $partner_type2_allpartnersbytype->count() }}</h3>
+                    <p><b>{{ $partner_type2->description }}</b></p>
+                    <p>
+                        <i class="fa fa-2x fa-envelope"> {{ $partner_type2_allpartnersemailbytype->count() }} </i>
+                    </p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <div class="small-box-footer">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href="{!! route('dashboard.partners', ['partner_type_id' => 2]) !!}"><i class='fa fa-eye'  style="color:white"></i></a>
+                        </div>
+                        
+                        <div class="col-sm-4">
+                            <a href="{!! route('dashboard.partners_labels', ['model' => 'allPartnersByType', 'partner_type_id' => 2]) !!}"><i class='fa fa-tag' style="color:white"></i></a>
+                        </div>
+                        
+                        <div class="col-sm-4">
+                            <a href="{!! route('dashboard.partners_reports', ['model' => 'allPartnersByType', 'partner_type_id' => 2]) !!}"><i class='fa fa-print' style="color:white"></i></a>
+                        </div>
+                    </div>
+ 
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>{{ $partner_type3_allpartnersbytype->count() }}</h3>
+                    <p><b>{{ $partner_type3->description }}</b></p>
+                    <p>
+                        <i class="fa fa-2x fa-envelope"> {{ $partner_type3_allpartnersemailbytype->count() }} </i>
+                    </p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <div class="small-box-footer">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href="{!! route('dashboard.partners', ['partner_type_id' => 3]) !!}"><i class='fa fa-eye'  style="color:white"></i></a>
+                        </div>
+                        
+                        <div class="col-sm-4">
+                            <a href="{!! route('dashboard.partners_labels', ['model' => 'allPartnersByType', 'partner_type_id' => 3]) !!}"><i class='fa fa-tag' style="color:white"></i></a>
+                        </div>
+                        
+                        <div class="col-sm-4">
+                            <a href="{!! route('dashboard.partners_reports', ['model' => 'allPartnersByType', 'partner_type_id' => 3]) !!}"><i class='fa fa-print' style="color:white"></i></a>
+                        </div>
+                    </div>
+ 
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>{{ $partner_type4_allpartnersbytype->count() }}</h3>
+                    <p><b>{{ $partner_type4->description }}</b></p>
+                    <p>
+                        <i class="fa fa-2x fa-envelope"> {{ $partner_type4_allpartnersemailbytype->count() }} </i>
+                    </p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <div class="small-box-footer">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href="{!! route('dashboard.partners', ['partner_type_id' => 4]) !!}"><i class='fa fa-eye'  style="color:white"></i></a>
+                        </div>
+                        
+                        <div class="col-sm-4">
+                            <a href="{!! route('dashboard.partners_labels', ['model' => 'allPartnersByType', 'partner_type_id' => 4]) !!}"><i class='fa fa-tag' style="color:white"></i></a>
+                        </div>
+                        
+                        <div class="col-sm-4">
+                            <a href="{!! route('dashboard.partners_reports', ['model' => 'allPartnersByType', 'partner_type_id' => 4]) !!}"><i class='fa fa-print' style="color:white"></i></a>
+                        </div>
+                    </div>
+ 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            @foreach($partner_type1_regions as $region)
+                @if($region->partners->count() >= 0)
+                    <div class="box box-solid collapsed-box">
+                        <div class="box-header">
+                            <h3 class="box-title">{{ $region->description }}</h3>
+                            <div class="box-tools pull-right">
+                                @if($partner_type1_allpartnersbytype->count() == 0)
+                                    <span class="badge bg-aqua">
+                                    0
+                                    </span>
+                                @else
+                                    <span class="badge bg-aqua">
+                                    {{ $region->partners->count() }}
+                                    </span>
+                                    ({{ number_format(100*($region->partners->count()/$partner_type1_allpartnersbytype->count()), 0) }}%)
+                                @endif
+
+                                <a href="{!! route('dashboard.partners', ['partner_type_id' => 1, 'region_id' => $region->id]) !!}"><i class='fa fa-eye'></i></a> 
+                                | 
+                                <a href="{!! route('dashboard.partners_labels', ['model' => 'allPartnersByRegionType', 'partner_type_id' => 1, 'region_id' => $region->id]) !!}"><i class='fa fa-tag'></i></a> 
+                                | 
+                                <a href="{!! route('dashboard.partners_reports', ['model' => 'allPartnersByRegionType', 'partner_type_id' => 1, 'region_id' => $region->id]) !!}"><i class='fa fa-print'></i></a>
+
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body" style="display: none;">
+                            @foreach($partner_type1_cities as $city)
+                                @if($city->region_id == $region->id)
+                                    @if($city->partners->count()>0)
+                                        <div class="progress-group">
+                                            <span class="progress-text">{{ $city->description }} / {{ $city->state->code }} </span>
+                                            <span class="progress-number">
+                                                @if ($city->partners->count() == '0')
+                                                    <span class="badge bg-aqua">
+                                                        0
+                                                    </span>
+                                                @else
+                                                    <span class="badge bg-aqua">
+                                                        {{ $city->partners->count() }}
+                                                    </span>
+                                                    ({{ number_format(100*($city->partners->count()/$region->partners->count()), 0) }}%)
+                                                @endif
+                                                <a href="{!! route('dashboard.partners', ['partner_type_id' => 1, 'city_id' => $city->id]) !!}"><i class='fa fa-eye'></i></a> 
+                                                | 
+                                                <a href="{!! route('dashboard.partners_labels', ['model' => 'allPartnersByCityType', 'partner_type_id' => 1, 'city_id' => $city->id]) !!}"><i class='fa fa-tag'></i></a> 
+                                                | 
+                                                <a href="{!! route('dashboard.partners_reports', ['model' => 'allPartnersByCityType', 'partner_type_id' => 1, 'city_id' => $city->id]) !!}"><i class='fa fa-print'></i></a>
+                                            </span>
+
+                                            <div class="progress sm">
+                                                <div class="progress-bar progress-bar-aqua" style="width: {{ 100*($city->partners->count()/$region->partners->count()) }}%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        </div>
+
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            @foreach($partner_type2_regions as $region)
+                @if($region->partners->count() >= 0)
+                    <div class="box box-solid collapsed-box">
+                        <div class="box-header">
+                            <h3 class="box-title">{{ $region->description }}</h3>
+                            <div class="box-tools pull-right">
+                                @if($partner_type2_allpartnersbytype->count() == 0)
+                                    <span class="badge bg-aqua">
+                                    0
+                                    </span>
+                                @else
+                                    <span class="badge bg-aqua">
+                                    {{ $region->partners->count() }}
+                                    </span>
+                                    ({{ number_format(100*($region->partners->count()/$partner_type2_allpartnersbytype->count()), 0) }}%)
+                                @endif
+
+                                <a href="{!! route('dashboard.partners', ['partner_type_id' => 2, 'region_id' => $region->id]) !!}"><i class='fa fa-eye'></i></a> 
+                                | 
+                                <a href="{!! route('dashboard.partners_labels', ['model' => 'allPartnersByRegionType', 'partner_type_id' => 2, 'region_id' => $region->id]) !!}"><i class='fa fa-tag'></i></a> 
+                                | 
+                                <a href="{!! route('dashboard.partners_reports', ['model' => 'allPartnersByRegionType', 'partner_type_id' => 2, 'region_id' => $region->id]) !!}"><i class='fa fa-print'></i></a>
+
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body" style="display: none;">
+                            @foreach($partner_type2_cities as $city)
+                                @if($city->region_id == $region->id)
+                                    @if($city->partners->count()>0)
+                                        <div class="progress-group">
+                                            <span class="progress-text">{{ $city->description }} / {{ $city->state->code }} </span>
+                                            <span class="progress-number">
+                                                @if ($city->partners->count() == '0')
+                                                    <span class="badge bg-aqua">
+                                                        0
+                                                    </span>
+                                                @else
+                                                    <span class="badge bg-aqua">
+                                                        {{ $city->partners->count() }}
+                                                    </span>
+                                                    ({{ number_format(100*($city->partners->count()/$region->partners->count()), 0) }}%)
+                                                @endif
+                                                <a href="{!! route('dashboard.partners', ['partner_type_id' => 2, 'city_id' => $city->id]) !!}"><i class='fa fa-eye'></i></a> 
+                                                | 
+                                                <a href="{!! route('dashboard.partners_labels', ['model' => 'allPartnersByCityType', 'partner_type_id' => 2, 'city_id' => $city->id]) !!}"><i class='fa fa-tag'></i></a> 
+                                                | 
+                                                <a href="{!! route('dashboard.partners_reports', ['model' => 'allPartnersByCityType', 'partner_type_id' => 2, 'city_id' => $city->id]) !!}"><i class='fa fa-print'></i></a>
+                                            </span>
+
+                                            <div class="progress sm">
+                                                <div class="progress-bar progress-bar-aqua" style="width: {{ 100*($city->partners->count()/$region->partners->count()) }}%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        </div>
+
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            @foreach($partner_type3_regions as $region)
+                @if($region->partners->count() >= 0)
+                    <div class="box box-solid collapsed-box">
+                        <div class="box-header">
+                            <h3 class="box-title">{{ $region->description }}</h3>
+                            <div class="box-tools pull-right">
+                                @if($partner_type3_allpartnersbytype->count() == 0)
+                                    <span class="badge bg-aqua">
+                                    0
+                                    </span>
+                                @else
+                                    <span class="badge bg-aqua">
+                                    {{ $region->partners->count() }}
+                                    </span>
+                                    ({{ number_format(100*($region->partners->count()/$partner_type3_allpartnersbytype->count()), 0) }}%)
+                                @endif
+
+                                <a href="{!! route('dashboard.partners', ['partner_type_id' => 3, 'region_id' => $region->id]) !!}"><i class='fa fa-eye'></i></a> 
+                                | 
+                                <a href="{!! route('dashboard.partners_labels', ['model' => 'allPartnersByRegionType', 'partner_type_id' => 3, 'region_id' => $region->id]) !!}"><i class='fa fa-tag'></i></a> 
+                                | 
+                                <a href="{!! route('dashboard.partners_reports', ['model' => 'allPartnersByRegionType', 'partner_type_id' => 3, 'region_id' => $region->id]) !!}"><i class='fa fa-print'></i></a>
+
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body" style="display: none;">
+                            @foreach($partner_type3_cities as $city)
+                                @if($city->region_id == $region->id)
+                                    @if($city->partners->count()>0)
+                                        <div class="progress-group">
+                                            <span class="progress-text">{{ $city->description }} / {{ $city->state->code }} </span>
+                                            <span class="progress-number">
+                                                @if ($city->partners->count() == '0')
+                                                    <span class="badge bg-aqua">
+                                                        0
+                                                    </span>
+                                                @else
+                                                    <span class="badge bg-aqua">
+                                                        {{ $city->partners->count() }}
+                                                    </span>
+                                                    ({{ number_format(100*($city->partners->count()/$region->partners->count()), 0) }}%)
+                                                @endif
+                                                <a href="{!! route('dashboard.partners', ['partner_type_id' => 3, 'city_id' => $city->id]) !!}"><i class='fa fa-eye'></i></a> 
+                                                | 
+                                                <a href="{!! route('dashboard.partners_labels', ['model' => 'allPartnersByCityType', 'partner_type_id' => 3, 'city_id' => $city->id]) !!}"><i class='fa fa-tag'></i></a> 
+                                                | 
+                                                <a href="{!! route('dashboard.partners_reports', ['model' => 'allPartnersByCityType', 'partner_type_id' => 3, 'city_id' => $city->id]) !!}"><i class='fa fa-print'></i></a>
+                                            </span>
+
+                                            <div class="progress sm">
+                                                <div class="progress-bar progress-bar-aqua" style="width: {{ 100*($city->partners->count()/$region->partners->count()) }}%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        </div>
+
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            @foreach($partner_type4_regions as $region)
+                @if($region->partners->count() >= 0)
+                    <div class="box box-solid collapsed-box">
+                        <div class="box-header">
+                            <h3 class="box-title">{{ $region->description }}</h3>
+                            <div class="box-tools pull-right">
+                                @if($partner_type4_allpartnersbytype->count() == 0)
+                                    <span class="badge bg-aqua">
+                                    0
+                                    </span>
+                                @else
+                                    <span class="badge bg-aqua">
+                                    {{ $region->partners->count() }}
+                                    </span>
+                                    ({{ number_format(100*($region->partners->count()/$partner_type4_allpartnersbytype->count()), 0) }}%)
+                                @endif
+
+                                <a href="{!! route('dashboard.partners', ['partner_type_id' => 4, 'region_id' => $region->id]) !!}"><i class='fa fa-eye'></i></a> 
+                                | 
+                                <a href="{!! route('dashboard.partners_labels', ['model' => 'allPartnersByRegionType', 'partner_type_id' => 4, 'region_id' => $region->id]) !!}"><i class='fa fa-tag'></i></a> 
+                                | 
+                                <a href="{!! route('dashboard.partners_reports', ['model' => 'allPartnersByRegionType', 'partner_type_id' => 4, 'region_id' => $region->id]) !!}"><i class='fa fa-print'></i></a>
+
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body" style="display: none;">
+                            @foreach($partner_type4_cities as $city)
+                                @if($city->region_id == $region->id)
+                                    @if($city->partners->count()>0)
+                                        <div class="progress-group">
+                                            <span class="progress-text">{{ $city->description }} / {{ $city->state->code }} </span>
+                                            <span class="progress-number">
+                                                @if ($city->partners->count() == '0')
+                                                    <span class="badge bg-aqua">
+                                                        0
+                                                    </span>
+                                                @else
+                                                    <span class="badge bg-aqua">
+                                                        {{ $city->partners->count() }}
+                                                    </span>
+                                                    ({{ number_format(100*($city->partners->count()/$region->partners->count()), 0) }}%)
+                                                @endif
+                                                <a href="{!! route('dashboard.partners', ['partner_type_id' => 4, 'city_id' => $city->id]) !!}"><i class='fa fa-eye'></i></a> 
+                                                | 
+                                                <a href="{!! route('dashboard.partners_labels', ['model' => 'allPartnersByCityType', 'partner_type_id' => 4, 'city_id' => $city->id]) !!}"><i class='fa fa-tag'></i></a> 
+                                                | 
+                                                <a href="{!! route('dashboard.partners_reports', ['model' => 'allPartnersByCityType', 'partner_type_id' => 4, 'city_id' => $city->id]) !!}"><i class='fa fa-print'></i></a>
+                                            </span>
+
+                                            <div class="progress sm">
+                                                <div class="progress-bar progress-bar-aqua" style="width: {{ 100*($city->partners->count()/$region->partners->count()) }}%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        </div>
+    </div>
 
     <div class="row-fluid">
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">

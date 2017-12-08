@@ -1,20 +1,41 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
+@section('content_header')
+    <h1>ADMINISTRAÇÃO: ACESSIBILIDADE - USUÁRIOS</h1>
+    
+    <ol class="breadcrumb">
+      	<div class="btn-group-horizontal">
+	    	<a href="{!! route('users') !!}" type="button" class="btn btn-sm btn-info" rel="tooltip" title="Pesquisar"><i class="fa fa-search"></i></a>
+		</div>
+	</ol>
+@stop
 
 @section('content')
-	
-	<ol class="breadcrumb">
-  		<li class="breadcrumb-item">Administração</li>
-  		<li class="breadcrumb-item">Acessibilidade</li>
-  		<li class="breadcrumb-item"><a href="{!! route('users') !!}">Usuários</a></li>
-  		<li class="breadcrumb-item"><b>INCLUSÃO</b></li>
-	</ol>
+   	<div class="row">
+        	<div class="col-md-12">
+          		<div class="box box-info">
+		            <div class="box-header with-border">
+  						<h3 class="box-title">INCLUSÃO</h3>
+			        </div>
 
-	<hr class="hr-warning" />
+			        {!! Form::open(['route' => 'users.store', 'class'=>'form-horizontal', 'role'=>'form']) !!}
 
-	{!! Form::open(['route' => 'users.store', 'class'=>'form-horizontal', 'role'=>'form']) !!}
+	    				<div class="box-body">
+						
+		    				<?php $form_method = "post"; ?>
 
-	    @include('users.form')
+		    				@include('users.form')
 
-	{!! Form::close() !!}
+						</div>
 
+						<div class="box-footer">
+						    <label for="submit_buttons" class="col-sm-2 control-label"></label>
+						    <button type="submit" class="btn btn-flat btn-success">Confirmar <i class="fa fa-check"></i></button>
+						    <a href="{{ URL::previous() }}" class="btn btn-flat btn-danger">Cancelar <i class="fa fa-times"></i></a>
+						</div>
+						
+					{!! Form::close() !!}
+				</div>
+			</div>
+	</div>
 @endsection

@@ -18,8 +18,7 @@
 		@include('common.trashed')
 	@endif
 
-  	<section class="content">
-    	<div class="row">
+	<div class="row">
       		<div class="col-sm-4">
   		   		@include('employees.view')
 	  		</div>
@@ -28,6 +27,5 @@
 	  			@include('employees.movements')
 	  			@include('employees.patrimonials')
 	  		</div>
-	  	</div>
-	</section>
+	</div>
 @stop

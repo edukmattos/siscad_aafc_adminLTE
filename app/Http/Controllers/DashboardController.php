@@ -634,7 +634,7 @@ class DashboardController extends Controller
     {
         $partner_type1 = $this->partner_typeRepository->findPartnerTypeById(1);
         
-        $partner_type1_allpartnersbytype = $this->partnerRepository->allPartnersByTypeId(1);
+        $partner_type1_allpartnersbytype = $this->partnerRepository->allPartnersByPartnerTypeId(1);
     
         $partner_type1_allpartnersemailbytype = $this->partnerRepository->allPartnersEmailByType(1);
         
@@ -655,7 +655,7 @@ class DashboardController extends Controller
 
         $partner_type2 = $this->partner_typeRepository->findPartnerTypeById(2);
         
-        $partner_type2_allpartnersbytype = $this->partnerRepository->allPartnersByTypeId(2);
+        $partner_type2_allpartnersbytype = $this->partnerRepository->allPartnersByPartnerTypeId(2);
         
         $partner_type2_allpartnersemailbytype = $this->partnerRepository->allPartnersEmailByType(2);
         
@@ -676,7 +676,7 @@ class DashboardController extends Controller
 
         $partner_type3 = $this->partner_typeRepository->findPartnerTypeById(3);
         
-        $partner_type3_allpartnersbytype = $this->partnerRepository->allPartnersByTypeId(3);
+        $partner_type3_allpartnersbytype = $this->partnerRepository->allPartnersByPartnerTypeId(3);
         
         $partner_type3_allpartnersemailbytype = $this->partnerRepository->allPartnersEmailByType(3);
         
@@ -697,7 +697,7 @@ class DashboardController extends Controller
 
         $partner_type4 = $this->partner_typeRepository->findPartnerTypeById(4);
 
-        $partner_type4_allpartnersbytype = $this->partnerRepository->allPartnersByTypeId(4);
+        $partner_type4_allpartnersbytype = $this->partnerRepository->allPartnersByPartnerTypeId(4);
 
         $partner_type4_allpartnersemailbytype = $this->partnerRepository->allPartnersEmailByType(4);
 
@@ -718,7 +718,7 @@ class DashboardController extends Controller
 
         $partner_type5 = $this->partner_typeRepository->findPartnerTypeById(5);
 
-        $partner_type5_allpartnersbytype = $this->partnerRepository->allPartnersByTypeId(5);
+        $partner_type5_allpartnersbytype = $this->partnerRepository->allPartnersByPartnerTypeId(5);
 
         $partner_type5_allpartnersemailbytype = $this->partnerRepository->allPartnersEmailByType(5);
 
@@ -739,7 +739,7 @@ class DashboardController extends Controller
 
         $partner_type6 = $this->partner_typeRepository->findPartnerTypeById(6);
 
-        $partner_type6_allpartnersbytype = $this->partnerRepository->allPartnersByTypeId(6);
+        $partner_type6_allpartnersbytype = $this->partnerRepository->allPartnersByPartnerTypeId(6);
 
         $partner_type6_allpartnersemailbytype = $this->partnerRepository->allPartnersEmailByType(6);
 
@@ -760,7 +760,7 @@ class DashboardController extends Controller
 
         $partner_type7 = $this->partner_typeRepository->findPartnerTypeById(7);
 
-        $partner_type7_allpartnersbytype = $this->partnerRepository->allPartnersByTypeId(7);
+        $partner_type7_allpartnersbytype = $this->partnerRepository->allPartnersByPartnerTypeId(7);
 
         $partner_type7_allpartnersemailbytype = $this->partnerRepository->allPartnersEmailByType(7);
 
