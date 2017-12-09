@@ -37,9 +37,9 @@ class UserEditRequest extends Request
             'name.max' => '<b>Usuário</b> >> MÀXIMO 50 caracteres.',
             'name.unique' => '<b>Usuário</b> >> Indisponível.',
             
-            'fullname.required' => '<b>Nome</b> >> Preenchimento obrigatório.',
-            'fullname.max' => '<b>Nome</b> >> MÀXIMO 100 caracteres.',
-            'fullname.unique' => '<b>Nome</b> >> Indisponível.',
+            'fullname.required' => '<b>Nome completo</b> >> Preenchimento obrigatório.',
+            'fullname.max' => '<b>Nome completo</b> >> MÀXIMO 100 caracteres.',
+            'fullname.unique' => '<b>Nome completo</b> >> Indisponível.',
 
             'email.required' => '<b>e-mail</b> >> Preenchimento obrigatório.',
             'email.max' => '<b>e-mail</b> >> MÀXIMO 50 caracteres.',

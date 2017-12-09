@@ -24,11 +24,7 @@
           <ul class="users-list clearfix">
             @foreach($plan1_last_members as $member)
               <li>
-                @if($member->gender_id == 1)
-                  <img src="/img/user_male.png" class="img-circle img-responsive center-block" width="100">
-                @else
-                  <img src="/img/user_female.png" class="img-circle img-responsive center-block" width="100">
-                @endif
+                <img src="/uploads/avatars/members/{{ $member->avatar }}" class="img-circle img-responsive center-block" width="100">
                 <a class="users-list-name" href="{!! route('members.show', ['id' => $member->id]) !!}">{{ $member->name }}</a>
                 <span class="users-list-date">{{ $member->date_aafc_ini->diffForHumans() }}</span>
               </li>
@@ -61,11 +57,7 @@
           <ul class="users-list clearfix">
             @foreach($plan2_last_members as $member)
               <li>
-                @if($member->gender_id == 1)
-                  <img src="/img/user_male.png" class="img-circle img-responsive center-block" width="100">
-                @else
-                  <img src="/img/user_female.png" class="img-circle img-responsive center-block" width="100">
-                @endif
+                <img src="/uploads/avatars/members/{{ $member->avatar }}" class="img-circle img-responsive center-block" width="100">
                 <a class="users-list-name" href="{!! route('members.show', ['id' => $member->id]) !!}">{{ $member->name }}</a>
                 <span class="users-list-date">{{ $member->date_aafc_ini->diffForHumans() }}</span>
               </li>
@@ -98,11 +90,7 @@
           <ul class="users-list clearfix">
             @foreach($plan3_last_members as $member)
               <li>
-                @if($member->gender_id == 1)
-                  <img src="/img/user_male.png" class="img-circle img-responsive center-block" width="100">
-                @else
-                  <img src="/img/user_female.png" class="img-circle img-responsive center-block" width="100">
-                @endif
+                <img src="/uploads/avatars/members/{{ $member->avatar }}" class="img-circle img-responsive center-block" width="100">
                 <a class="users-list-name" href="{!! route('members.show', ['id' => $member->id]) !!}">{{ $member->name }}</a>
                 <span class="users-list-date">{{ $member->date_aafc_ini->diffForHumans() }}</span>
               </li>
@@ -152,11 +140,7 @@
           <ul class="users-list clearfix">
             @foreach($birthday_last_members as $member)
               <li>
-                @if($member->gender_id == 1)
-                  <img src="/img/user_male.png" class="img-circle img-responsive center-block" width="100">
-                @else
-                  <img src="/img/user_female.png" class="img-circle img-responsive center-block" width="100">
-                @endif
+                <img src="/uploads/avatars/members/{{ $member->avatar }}" class="img-circle img-responsive center-block" width="100">
                 <a class="users-list-name" href="{!! route('members.show', ['id' => $member->id]) !!}">{{ $member->name }}</a>
                 <span class="users-list-date">{{ $member->birthday->format('d') }} ({{ $member->birthday->age }} anos)</span>
               </li>
@@ -172,6 +156,29 @@
       </div>
     </div>
   </div>
+
+  <div class="row">
+          <div class="col-sm-12">
+          <!-- LINE CHART -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Line Chart</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <div class="chart">
+                <canvas id="lineChart" style="height:350px"></canvas>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          </div>
+          </div>
 
   <h4>PATRIMÔNIOS</h4>
   <div class="row">

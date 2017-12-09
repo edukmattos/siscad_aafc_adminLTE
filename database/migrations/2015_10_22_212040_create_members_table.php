@@ -15,6 +15,7 @@ class CreateMembersTable extends Migration
         Schema::create('members', function (Blueprint $table) 
         {
             $table->increments('id');
+            $table->string('avatar', 50)->default('default.png');
             $table->string('name', 100)->nullable();
             $table->integer('code');
             $table->string('cpf', 14)->nullable();

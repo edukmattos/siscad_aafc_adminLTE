@@ -28,6 +28,7 @@ class Member extends Revisionable
     protected $dontKeepRevisionOf = [];
     #protected $revisionFormattedFields = array('title'  => 'string:<strong>%s</strong>', 'public' => 'boolean:No|Yes', 'deleted_at' => 'isEmpty:Active|Deleted');
     protected $revisionFormattedFieldNames = [
+        'avatar' => 'Avatar',
         'code' => 'Matrícula',
         'cpf' => 'CPF',
         'name' => 'Nome',
@@ -65,6 +66,7 @@ class Member extends Revisionable
     protected $revisionUnknownString = 'desconhecido';
 
     protected $fillable = [
+        'avatar',
         'code',
         'cpf',
         'name',

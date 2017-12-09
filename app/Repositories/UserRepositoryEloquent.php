@@ -55,7 +55,8 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
 	public function findUserById($id)
     {
-        return $this->user->find($id);
+        return $this->user
+            ->find($id);
     }
 
     public function lastUser()

@@ -21,13 +21,14 @@
   						<h3 class="box-title">ALTERAÇÃO</h3>
 			        </div>
 					
-					{!! Form::model($member, ['route' => ['members.update', $member->id], 'method' => 'put', 'class' => 'form-horizontal', 'role'=>'form']) !!}
+					{!! Form::model($member, ['route' => ['members.update', $member->id], 'method' => 'put', 'files' => true, 'class' => 'form-horizontal', 'role'=>'form']) !!}
 
 					    <div class="box-body">
 						
 		    				<?php $form_method = "put"; ?>
 
 		    				@include('members.form')
+		    				
 						</div>
 
 						<div class="box-footer">

@@ -20,110 +20,93 @@
   @endif
 
   <div class="row">
-      <div class="col-md-8">
-        <div class="box box-info">
-          <div class="box-header with-border">
-            <h3 class="box-title">{{ $member->name }}</h3>
-            <div class="box-tools pull-right">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                <i class="fa fa-minus"></i>
-              </button>
-            </div>
-          </div>
-          <div class="box-body">
-            <div class="table-responsive">
-              <table class="table table-bordered table-striped">
-                <thead>
-                  
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="text-right" width="25%">Matrícula</td>
-                    <td class="text-left">{{ $member->code }}</td>
-                  </tr>
-
-                  <tr>
-                    <td class="text-right">CPF</td>
-                    <td class="text-left">{{ $member->cpf_mask }}</td>
-                  </tr>
-                  
-                  <tr>
-                    <td class="text-right">Plano</td>
-                    <td class="text-left">{{ $member->plan->description }}</td>
-                  </tr>
-
-                  <tr>
-                    <td class="text-right">Situação</td>
-                    <td class="text-left">{{ $member->member_status->description }}
-                      @if($member->member_status_id=='1')
-                        por {{ $member->member_status_reason->description }} {{ $member->date_aafc_fim->diffForHumans() }} (desde {{ $member->date_aafc_fim->format('d/m/Y') }})
-                      @endif
-
-                      @if($member->member_status_id=='2')
-                        {{ $member->date_aafc_ini->diffForHumans() }} (desde {{ $member->date_aafc_ini->format('d/m/Y') }}) 
-                      @endif
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td class="text-right">Nascimento</td>
-                    <td class="text-left">
-                      @if($member->birthday!=null)
-                        {{ $member->birthday->format('d/m/Y') }} ({{ $member->birthday->age }} anos)
-                      @endif
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td class="text-right">Endereço</td>
-                    <td class="text-left">{{ $member->address }}</td>
-                  </tr>
-
-                  <tr>
-                    <td class="text-right">Bairro</td>
-                    <td class="text-left">{{ $member->neighborhood }}</td>
-                  </tr>
-
-                  <tr>
-                    <td class="text-right">Cidade</td>
-                    <td class="text-left">{{ $member->city->description }} / {{ $member->city->state->code }}</td>
-                  </tr>
-
-                  <tr>
-                    <td class="text-right">CEP</td>
-                    <td class="text-left">{{ $member->zip_code_mask }}</td>
-                  </tr>
-
-                  <tr>
-                    <td class="text-right">Região</td>
-                    <td class="text-left">{{ $member->city->region->description }} ({{ $member->city->region->code }})</td>
-                  </tr>
-
-                  <tr>
-                    <td class="text-right">Telefone</td>
-                    <td class="text-left">{{ $member->phone_mask }}</td>
-                  </tr>
-
-                  <tr>
-                    <td class="text-right">Celular</td>
-                    <td class="text-left">{{ $member->mobile_mask }}</td>
-                  </tr>
-
-                  <tr>
-                    <td class="text-right">Observações</td>
-                    <td class="text-left">{{ $member->comments }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+    <div class="col-sm-4">
+      <!-- Profile Image -->
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">{{ $member->name }}</h3>
         </div>
-      </div>
+        <div class="box-body box-profile">
+          <img class="profile-user-img img-responsive img-circle" src="/uploads/avatars/members/{{ $member->avatar }}" alt="User profile picture">
 
-      <div class="col-md-4">
-        @include('members.payments')
-        @include('revisionable.logs_register')
+          <h3 class="profile-username text-center">{{ $member->fullname }}</h3>
+
+          <p class="text-muted text-center">
+            {{ $member->member_status->description }}
+            @if($member->member_status_id=='1')
+              por {{ $member->member_status_reason->description }} {{ $member->date_aafc_fim->diffForHumans() }} (desde {{ $member->date_aafc_fim->format('d/m/Y') }})
+            @endif
+            @if($member->member_status_id=='2')
+              {{ $member->date_aafc_ini->diffForHumans() }} (desde {{ $member->date_aafc_ini->format('d/m/Y') }}) 
+            @endif
+          </p>
+
+          <ul class="list-group list-group-unbordered">
+            <li class="list-group-item">
+              Matrícula <a class="pull-right">{{ $member->code }}</a>
+            </li>
+            <li class="list-group-item">
+              CPF <a class="pull-right">{{ $member->cpf_mask }}</a>
+            </li>
+            <li class="list-group-item">
+              Plano <a class="pull-right">{{ $member->plan->description }}</a>
+            </li>
+            <li class="list-group-item">
+              Situação <a class="pull-right">
+                        {{ $member->member_status->description }}
+                          @if($member->member_status_id=='1')
+                            por {{ $member->member_status_reason->description }} {{ $member->date_aafc_fim->diffForHumans() }} (desde {{ $member->date_aafc_fim->format('d/m/Y') }})
+                          @endif
+
+                          @if($member->member_status_id=='2')
+                            {{ $member->date_aafc_ini->diffForHumans() }} (desde {{ $member->date_aafc_ini->format('d/m/Y') }}) 
+                          @endif
+                        </a>
+            </li>
+            <li class="list-group-item">
+              Nascimento <a class="pull-right">
+                            @if($member->birthday!=null)
+                              {{ $member->birthday->format('d/m/Y') }} ({{ $member->birthday->age }} anos)
+                            @endif
+                         </a>
+            </li>
+            <li class="list-group-item">
+              E-Mail <a class="pull-right">{{ $member->email }}</a>
+            </li>
+            <li class="list-group-item">
+              Endereço <a class="pull-right">{{ $member->address }}</a>
+            </li>
+            <li class="list-group-item">
+              Bairro <a class="pull-right">{{ $member->neighborhood }}</a>
+            </li>
+            <li class="list-group-item">
+              Cidade <a class="pull-right">{{ $member->city->description }} / {{ $member->city->state->code }}</a>
+            </li>
+            <li class="list-group-item">
+              CEP <a class="pull-right">{{ $member->zip_code_mask }}</a>
+            </li>
+            <li class="list-group-item">
+              Região <a class="pull-right">{{ $member->city->region->description }} ({{ $member->city->region->code }})</a>
+            </li>
+            <li class="list-group-item">
+              Telefone <a class="pull-right">{{ $member->phone_mask }}</a>
+            </li>
+            <li class="list-group-item">
+              Celular <a class="pull-right">{{ $member->mobile_mask }}</a>
+            </li>
+            <li class="list-group-item">
+              Observações <a class="pull-right">{{ $member->comments }}</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.box-body -->
       </div>
+    </div>
+
+    <div class="col-md-8">
+      @include('members.payments')
+      @include('revisionable.logs_register')
+    </div>
   </div>
 @endsection
   

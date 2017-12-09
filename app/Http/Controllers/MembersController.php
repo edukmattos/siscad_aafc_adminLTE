@@ -18,6 +18,8 @@ use SisCad\Repositories\PlanRepository;
 use SisCad\Repositories\GenderRepository;
 use SisCad\Repositories\BankRepository;
 
+use Image;
+
 class MembersController extends Controller
 {
     private $regionRepository;
@@ -100,19 +102,19 @@ class MembersController extends Controller
 
     public function search_results(Requests\MemberSearchRequest $request)
     { 
-        $input = $request->all();
+        $data = $request->all();
 
         $request->flash();
 
-        session(['srch_member_code' => $input['srch_member_code']]);
-        session(['srch_member_cpf' => $input['srch_member_cpf']]);
-        session(['srch_member_name' => $input['srch_member_name']]);
-        session(['srch_member_plan_id' => $input['srch_member_plan_id']]);
-        session(['srch_member_gender_id' => $input['srch_member_gender_id']]);
-        session(['srch_member_region_id' => $input['srch_member_region_id']]);
-        session(['srch_member_city_id' => $input['srch_member_city_id']]);
-        session(['srch_member_status_id' => $input['srch_member_status_id']]);
-        session(['srch_member_status_reason_id' => $input['srch_member_status_reason_id']]);
+        session(['srch_member_code' => $data['srch_member_code']]);
+        session(['srch_member_cpf' => $data['srch_member_cpf']]);
+        session(['srch_member_name' => $data['srch_member_name']]);
+        session(['srch_member_plan_id' => $data['srch_member_plan_id']]);
+        session(['srch_member_gender_id' => $data['srch_member_gender_id']]);
+        session(['srch_member_region_id' => $data['srch_member_region_id']]);
+        session(['srch_member_city_id' => $data['srch_member_city_id']]);
+        session(['srch_member_status_id' => $data['srch_member_status_id']]);
+        session(['srch_member_status_reason_id' => $data['srch_member_status_reason_id']]);
 
         $members = $this->memberRepository->searchMembers();
 
@@ -175,37 +177,47 @@ class MembersController extends Controller
      */
     public function store(Requests\MemberRequest $request)
     {
-        $input = $request->all();
+        $data = $request->all();
 
-        $input['name'] = strtoupper($input['name']);
-        $input['address'] = strtoupper($input['address']);
-        $input['neighborhood'] = strtoupper($input['neighborhood']);
-        $input['comments'] = strtoupper($input['comments']);
+        $data['name'] = strtoupper($data['name']);
+        $data['address'] = strtoupper($data['address']);
+        $data['neighborhood'] = strtoupper($data['neighborhood']);
+        $data['comments'] = strtoupper($data['comments']);
 
-        if($input['birthday'])
+        if($data['birthday'])
         {
-            $input['birthday'] = \DateTime::createFromFormat('d/m/Y', $input['birthday']);
-            $input['birthday'] = $input['birthday']->format('Y-m-d');
+            $data['birthday'] = \DateTime::createFromFormat('d/m/Y', $data['birthday']);
+            $data['birthday'] = $data['birthday']->format('Y-m-d');
         }
         else
         {
-            $input['birthday'] = null;
+            $data['birthday'] = null;
         }
 
-        $input['date_aafc_ini'] = \DateTime::createFromFormat('d/m/Y', $input['date_aafc_ini']);
-        $input['date_aafc_ini'] = $input['date_aafc_ini']->format('Y-m-d');
+        $data['date_aafc_ini'] = \DateTime::createFromFormat('d/m/Y', $data['date_aafc_ini']);
+        $data['date_aafc_ini'] = $data['date_aafc_ini']->format('Y-m-d');
 
-        if($input['date_aafc_fim'])
+        if($data['date_aafc_fim'])
         {
-            $input['date_aafc_fim'] = \DateTime::createFromFormat('d/m/Y', $input['date_aafc_fim']);
-            $input['date_aafc_fim'] = $input['date_aafc_fim']->format('Y-m-d');
+            $data['date_aafc_fim'] = \DateTime::createFromFormat('d/m/Y', $data['date_aafc_fim']);
+            $data['date_aafc_fim'] = $data['date_aafc_fim']->format('Y-m-d');
         }
         else
         {
-            $input['date_aafc_fim'] = null;
+            $data['date_aafc_fim'] = null;
+        }
+
+        if ($request->hasFile('avatar'))
+        {
+            $avatar = $request->file('avatar');
+            $filename = $id.'.'.$avatar->getClientOriginalExtension();
+
+            Image::make($avatar)->resize(300,300)->save(public_path('uploads/avatars/members/' . $filename));
+
+            $data['avatar'] = $filename;
         }
         
-        $member = $this->memberRepository->storeMember($input);
+        $member = $this->memberRepository->storeMember($data);
         
         $member = $this->memberRepository->allMembersById()->last();
         #$logs = $member->revisionHistory;
@@ -283,49 +295,59 @@ class MembersController extends Controller
      */
     public function update(Requests\MemberRequest $request, $id)
     {
-        $input = $request->all();
+        $data = $request->all();
 
-        $input['name'] = strtoupper($input['name']);
-        $input['address'] = strtoupper($input['address']);
-        $input['neighborhood'] = strtoupper($input['neighborhood']);
-        $input['comments'] = strtoupper($input['comments']);
+        $data['name'] = strtoupper($data['name']);
+        $data['address'] = strtoupper($data['address']);
+        $data['neighborhood'] = strtoupper($data['neighborhood']);
+        $data['comments'] = strtoupper($data['comments']);
 
-        #dd($input['comments']);
+        #dd($data['comments']);
 
-        if($input['birthday'])
+        if($data['birthday'])
         {
-            $input['birthday'] = \DateTime::createFromFormat('d/m/Y', $input['birthday']);
-            $input['birthday'] = $input['birthday']->format('Y-m-d');
+            $data['birthday'] = \DateTime::createFromFormat('d/m/Y', $data['birthday']);
+            $data['birthday'] = $data['birthday']->format('Y-m-d');
         }
         else
         {
-            $input['birthday'] = null;
+            $data['birthday'] = null;
         }
 
-        if($input['date_aafc_ini'])
+        if($data['date_aafc_ini'])
         {
-            $input['date_aafc_ini'] = \DateTime::createFromFormat('d/m/Y', $input['date_aafc_ini']);
-            $input['date_aafc_ini'] = $input['date_aafc_ini']->format('Y-m-d');
+            $data['date_aafc_ini'] = \DateTime::createFromFormat('d/m/Y', $data['date_aafc_ini']);
+            $data['date_aafc_ini'] = $data['date_aafc_ini']->format('Y-m-d');
         }
         else
         {
-            $input['date_aafc_ini'] = null;
+            $data['date_aafc_ini'] = null;
         }
 
-        if($input['date_aafc_fim'])
+        if($data['date_aafc_fim'])
         {
-            $input['date_aafc_fim'] = \DateTime::createFromFormat('d/m/Y', $input['date_aafc_fim']);
-            $input['date_aafc_fim'] = $input['date_aafc_fim']->format('Y-m-d');
+            $data['date_aafc_fim'] = \DateTime::createFromFormat('d/m/Y', $data['date_aafc_fim']);
+            $data['date_aafc_fim'] = $data['date_aafc_fim']->format('Y-m-d');
         }
         else
         {
-            $input['date_aafc_fim'] = null;
+            $data['date_aafc_fim'] = null;
         }
         
-        #dd($input);
+        #dd($data);
+
+        if ($request->hasFile('avatar'))
+        {
+            $avatar = $request->file('avatar');
+            $filename = $id.'.'.$avatar->getClientOriginalExtension();
+
+            Image::make($avatar)->resize(300,300)->save(public_path('uploads/avatars/members/' . $filename));
+
+            $data['avatar'] = $filename;
+        }
 
         $member = $this->memberRepository->findMemberById($id);
-        $member->update($input);
+        $member->update($data);
 
         #$logs = $member->revisionHistory;
         

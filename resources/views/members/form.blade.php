@@ -214,5 +214,13 @@
 				            </div>
 						</div>
 
+						<div class="form-group {{ $errors->has('avatar') ? 'has-error' : '' }}">
+							<label for="avatar" class="col-sm-2 control-label">Avatar:</label>
+							<div class="col-sm-8">
+					            <div class="input-group">
+				              		{!! Form::file('avatar', ['class' => 'custom-file-input']) !!}
+				               	</div>
+				            </div>
+						</div>
 						
 

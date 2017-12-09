@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <div class="col-sm-8">
+    <div class="col-sm-9">
       <!-- About Me Box -->
       <div class="box box-primary">
         <div class="box-header with-border">
