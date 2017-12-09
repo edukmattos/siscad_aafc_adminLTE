@@ -20,7 +20,7 @@
   @endif
 
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <!-- Profile Image -->
       <div class="box box-primary">
         <div class="box-header with-border">
@@ -103,7 +103,7 @@
       </div>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-9">
       @include('members.payments')
       @include('revisionable.logs_register')
     </div>

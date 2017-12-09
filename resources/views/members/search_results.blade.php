@@ -33,6 +33,7 @@
 									<th>Data Sai</th>
 									<th>Matrícula</th>
 									<th>CPF</th>
+									<th>Avatar</th>
 									<th>Nome</th>
 									<th>Endereço</th>
 									<th>Bairro</th>	
@@ -54,6 +55,7 @@
 									<th>Data Sai</th>
 									<th>Matrícula</th>
 									<th>CPF</th>
+									<th>Avatar</th>
 									<th>Nome</th>
 									<th>Endereço</th>
 									<th>Bairro</th>	
@@ -84,6 +86,7 @@
                       					</td>
 									   	<td class="text-right"><a href="{!! route('members.show', ['id' => $member->id]) !!}">{{ $member->code }}</a></td></td>
 										<td>{{ $member->cpf_mask }}</td>
+										<td><img src="/uploads/avatars/members/{{ $member->avatar }}" class="img-circle img-responsive center-block" width="50"></td>
 									    <td>{{ $member->name }}</td>
 									    <td>{{ $member->address }}</td>
 									    <td>{{ $member->neighborhood }}</td>
