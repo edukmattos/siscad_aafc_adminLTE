@@ -23,7 +23,7 @@
         <div class="box-body box-profile">
           <img class="profile-user-img img-responsive img-circle" src="/uploads/avatars/users/{{ Auth::user()->avatar }}" alt="User profile picture">
 
-          <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
+          <h3 class="profile-username text-center">{{ Auth::user()->fullname }}</h3>
 
           <p class="text-muted text-center">Desde {{ Auth::user()->created_at->format('d/m/Y') }} </p>
 
