@@ -175,7 +175,7 @@ return [
         [
             'text'        => 'Funcionários',
             'url'         => '/employees/search/',
-            'icon'        => 'users',
+            'icon'        => 'id-card',
             'label'       => '',
             'label_color' => 'success',
         ],
