@@ -20,80 +20,81 @@
   @endif
 
   <div class="row">
-      <div class="col-md-8">
-        <div class="box box-info">
-          <div class="box-header with-border">
+    <div class="col-sm-8">
+      <div class="box box-info">
+        <div class="box-header with-border">
             <h3 class="box-title">{{ $provider->description }}</h3>
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse">
                 <i class="fa fa-minus"></i>
               </button>
             </div>
-          </div>
-          <div class="box-body">
-            <div class="table-responsive">
+        </div>
+        <div class="box-body">
+          <div class="table-responsive">
               <table class="table table-bordered table-striped">
                 <thead>
                 </thead>
                 <tbody>
-                <tr>
-                  <td class="text-right" width="25%">CNPJ</td>
-                  <td class="text-left">{{ $provider->cnpj_mask }}</td>
-                </tr>
-                
-                <tr>
-                  <td class="text-right">Endereço</td>
-                  <td class="text-left">{{ $provider->address }}</td>
-                </tr>
+                  <tr>
+                    <td class="text-right" width="25%">CNPJ</td>
+                    <td class="text-left">{{ $provider->cnpj_mask }}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="text-right">Endereço</td>
+                    <td class="text-left">{{ $provider->address }}</td>
+                  </tr>
 
-                <tr>
-                  <td class="text-right">Bairro</td>
-                  <td class="text-left">{{ $provider->neighborhood }}</td>
-                </tr>
+                  <tr>
+                    <td class="text-right">Bairro</td>
+                    <td class="text-left">{{ $provider->neighborhood }}</td>
+                  </tr>
 
-                <tr>
-                  <td class="text-right">Cidade</td>
-                  <td class="text-left">{{ $provider->city->description }} / {{ $provider->city->state->code }}</td>
-                </tr>
+                  <tr>
+                    <td class="text-right">Cidade</td>
+                    <td class="text-left">{{ $provider->city->description }} / {{ $provider->city->state->code }}</td>
+                  </tr>
 
-                <tr>
-                  <td class="text-right">CEP</td>
-                  <td class="text-left">{{ $provider->zip_code_mask }}</td>
-                </tr>
+                  <tr>
+                    <td class="text-right">CEP</td>
+                    <td class="text-left">{{ $provider->zip_code_mask }}</td>
+                  </tr>
 
-                <tr>
-                  <td class="text-right">Região</td>
-                  <td class="text-left">{{ $provider->city->region->description }} ({{ $provider->city->region->code }})</td>
-                </tr>
+                  <tr>
+                    <td class="text-right">Região</td>
+                    <td class="text-left">{{ $provider->city->region->description }} ({{ $provider->city->region->code }})</td>
+                  </tr>
 
-                <tr>
-                  <td class="text-right">Telefone</td>
-                  <td class="text-left">{{ $provider->phone_mask }}</td>
-                </tr>
+                  <tr>
+                    <td class="text-right">Telefone</td>
+                    <td class="text-left">{{ $provider->phone_mask }}</td>
+                  </tr>
 
-                <tr>
-                  <td class="text-right">Celular</td>
-                  <td class="text-left">{{ $provider->mobile_mask }}</td>
-                </tr>
+                  <tr>
+                    <td class="text-right">Celular</td>
+                    <td class="text-left">{{ $provider->mobile_mask }}</td>
+                  </tr>
 
-                <tr>
-                  <td class="text-right">e-mail</td>
-                  <td class="text-left">{{ $provider->email }}</td>
-                </tr>
+                  <tr>
+                    <td class="text-right">e-mail</td>
+                    <td class="text-left">{{ $provider->email }}</td>
+                  </tr>
 
-                <tr>
-                  <td class="text-right">Observações</td>
-                  <td class="text-left">{{ $provider->comments }}</td>
-                </tr>
-              </tbody>
-            </table>
+                  <tr>
+                    <td class="text-right">Observações</td>
+                    <td class="text-left">{{ $provider->comments }}</td>
+                  </tr>
+                </tbody>
+              </table>
           </div>
         </div>
       </div>
-  </div>
-
-  <div class="col-sm-4">
-   	@include('revisionable.logs_register')
+    </div>
+    
+    <div class="col-sm-4">
+   	  @include('revisionable.logs_register')
+    </div>
   </div>
 @endsection
   

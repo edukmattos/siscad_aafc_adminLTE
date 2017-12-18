@@ -20,7 +20,7 @@
   						<h3 class="box-title">INCLUSÃO</h3>
 			        </div>
 					
-					{!! Form::open(['route' => 'members.store', 'class'=>'form-horizontal', 'role'=>'form'], 'files' => true) !!}
+					{!! Form::open(['route' => 'members.store', 'class'=>'form-horizontal', 'role'=>'form', 'files' => true]) !!}
 
 						<div class="box-body">
 						

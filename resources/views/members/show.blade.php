@@ -103,7 +103,7 @@
       </div>
     </div>
 
-    <div class="col-md-9">
+    <div class="col-sm-9">
       @include('members.payments')
       @include('revisionable.logs_register')
     </div>
